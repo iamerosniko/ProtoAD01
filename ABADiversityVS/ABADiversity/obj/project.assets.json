@@ -12543,11 +12543,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\alverer\\source\\repos\\ABADiversity\\ABADiversity\\ABADiversityClient.csproj",
+      "projectUniqueName": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\ABADiversityClient.csproj",
       "projectName": "ABADiversityClient",
-      "projectPath": "C:\\Users\\alverer\\source\\repos\\ABADiversity\\ABADiversity\\ABADiversityClient.csproj",
+      "projectPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\ABADiversityClient.csproj",
       "packagesPath": "C:\\Users\\alverer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alverer\\source\\repos\\ABADiversity\\ABADiversity\\obj\\",
+      "outputPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
