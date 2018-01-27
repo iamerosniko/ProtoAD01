@@ -12534,7 +12534,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alverer\\.nuget\\packages\\": {},
+    "C:\\Users\\zEROSeven\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -12543,17 +12543,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversityAPI\\ABADiversityAPI.csproj",
+      "projectUniqueName": "C:\\Users\\zEROSeven\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversityAPI\\ABADiversityAPI.csproj",
       "projectName": "ABADiversityAPI",
-      "projectPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversityAPI\\ABADiversityAPI.csproj",
-      "packagesPath": "C:\\Users\\alverer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversityAPI\\obj\\",
+      "projectPath": "C:\\Users\\zEROSeven\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversityAPI\\ABADiversityAPI.csproj",
+      "packagesPath": "C:\\Users\\zEROSeven\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zEROSeven\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversityAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\alverer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zEROSeven\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12577,14 +12577,14 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.All": {
-            "target": "Package",
-            "version": "[2.0.3, )"
-          },
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "[2.0.0, )",
+            "version": "2.0",
             "autoReferenced": true
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.3"
           }
         },
         "imports": [
