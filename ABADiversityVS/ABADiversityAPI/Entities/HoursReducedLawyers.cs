@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ABADiversityAPI.Entities
 {
+  [Table("ABA_HoursReducedLawyers")]
   public class HoursReducedLawyers
   {
     public int HoursReducedLawyerID { get; set; }
