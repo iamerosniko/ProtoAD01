@@ -4,6 +4,10 @@ namespace ABADiversityAPI.Entities
 {
   public class ABAContext : DbContext
   {
+    public ABAContext(DbContextOptions<ABAContext> options) : base(options)
+    {
+
+    }
     DbSet<CompanyProfiles> CompanyProfiles { get; set; }
     DbSet<FirmDemographics> FirmDemographics { get; set; }
     DbSet<FirmInitiatives> FirmInitiatives { get; set; }
