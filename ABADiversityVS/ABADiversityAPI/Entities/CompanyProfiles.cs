@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace ABADiversityAPI.Entities
   [Table("ABA_CompanyProfiles")]
   public class CompanyProfiles
   {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int CompanyProfileID { get; set; }
     public string FirmName { get; set; }
     public string FirmHead { get; set; }

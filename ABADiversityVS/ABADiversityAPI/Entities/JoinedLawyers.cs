@@ -9,6 +9,8 @@ namespace ABADiversityAPI.Entities
   [Table("ABA_JoinedLawyers")]
   public class JoinedLawyers
   {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int JoinedLawyerID { get; set; }
     public string Role { get; set; }
     public string Race { get; set; }
