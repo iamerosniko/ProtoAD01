@@ -22,7 +22,7 @@ namespace ABADiversityAPI.Entities
     public int TotalLawyers { get; set; }
     public int TotalUSLawyers { get; set; }
     //foreign key
-    public int SizeCategory { get; set; }
+    public int SizeCategoryID { get; set; }
     public bool IsFirmWomenOwned { get; set; }
     public string OwnershipCategory { get; set; }
     public bool IsFirmCertified { get; set; }
