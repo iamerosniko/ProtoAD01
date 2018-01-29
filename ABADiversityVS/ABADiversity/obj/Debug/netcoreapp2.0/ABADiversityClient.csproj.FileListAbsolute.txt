@@ -9,3 +9,14 @@ C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\De
 C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.AssemblyInfo.cs
 C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.dll
 C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.pdb
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\bin\Debug\netcoreapp2.0\ABADiversityClient.deps.json
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\bin\Debug\netcoreapp2.0\ABADiversityClient.runtimeconfig.json
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\bin\Debug\netcoreapp2.0\ABADiversityClient.runtimeconfig.dev.json
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\bin\Debug\netcoreapp2.0\ABADiversityClient.dll
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\bin\Debug\netcoreapp2.0\ABADiversityClient.pdb
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.csprojResolveAssemblyReference.cache
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.csproj.CoreCompileInputs.cache
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.AssemblyInfoInputs.cache
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.AssemblyInfo.cs
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.dll
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.pdb

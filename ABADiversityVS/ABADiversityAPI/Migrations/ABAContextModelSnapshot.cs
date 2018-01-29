@@ -39,7 +39,7 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<string>("OwnershipCategory");
 
-                    b.Property<int>("SizeCategory");
+                    b.Property<int>("SizeCategoryID");
 
                     b.Property<string>("SurveyContactEmail");
 

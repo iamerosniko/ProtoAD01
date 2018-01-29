@@ -12534,7 +12534,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zEROSeven\\.nuget\\packages\\": {},
+    "C:\\Users\\alverer\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -12543,17 +12543,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\zEROSeven\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\ABADiversityClient.csproj",
+      "projectUniqueName": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\ABADiversityClient.csproj",
       "projectName": "ABADiversityClient",
-      "projectPath": "C:\\Users\\zEROSeven\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\ABADiversityClient.csproj",
-      "packagesPath": "C:\\Users\\zEROSeven\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zEROSeven\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\obj\\",
+      "projectPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\ABADiversityClient.csproj",
+      "packagesPath": "C:\\Users\\alverer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABADiversityVS\\ABADiversity\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\zEROSeven\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alverer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

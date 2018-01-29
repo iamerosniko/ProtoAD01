@@ -11,8 +11,8 @@ using System;
 namespace ABADiversityAPI.Migrations
 {
     [DbContext(typeof(ABAContext))]
-    [Migration("20180127183531_InitialDB")]
-    partial class InitialDB
+    [Migration("20180129133833_ABAInitialMigrations")]
+    partial class ABAInitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,7 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<string>("OwnershipCategory");
 
-                    b.Property<int>("SizeCategory");
+                    b.Property<int>("SizeCategoryID");
 
                     b.Property<string>("SurveyContactEmail");
 

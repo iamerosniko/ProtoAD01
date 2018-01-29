@@ -6,7 +6,7 @@ namespace ABADiversityAPI.Entities
   {
     public ABAContext(DbContextOptions<ABAContext> options) : base(options)
     {
-
+      Database.Migrate();
     }
     DbSet<CompanyProfiles> CompanyProfiles { get; set; }
     DbSet<FirmDemographics> FirmDemographics { get; set; }

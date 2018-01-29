@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ABADiversityAPI.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class ABAInitialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,7 +22,7 @@ namespace ABADiversityAPI.Migrations
                     IsFirmCertified = table.Column<bool>(nullable: false),
                     IsFirmWomenOwned = table.Column<bool>(nullable: false),
                     OwnershipCategory = table.Column<string>(nullable: true),
-                    SizeCategory = table.Column<int>(nullable: false),
+                    SizeCategoryID = table.Column<int>(nullable: false),
                     SurveyContactEmail = table.Column<string>(nullable: true),
                     SurveyContactPerson = table.Column<string>(nullable: true),
                     SurveyContactTitle = table.Column<string>(nullable: true),
