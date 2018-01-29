@@ -65,6 +65,20 @@ namespace ABADiversityAPI
       //                cfg.CreateMap<Models.AssociateDepartmentSkillsetForCreateDTO, Entities.AssociateDepartmentSkillset>();
       //              });
 
+
+      try
+      {
+        using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+        .CreateScope())
+        {
+          serviceScope.ServiceProvider.GetService<ABAContext>().Database.Migrate();
+        }
+      }
+      catch (Exception ex)
+      {
+        System.Diagnostics.Debug.WriteLine(ex, "Failed to migrate or seed database");
+      }
+
       app.UseMvc();
     }
   }

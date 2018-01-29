@@ -21,5 +21,8 @@ namespace ABADiversityAPI.Entities
     public DbSet<SetUser> SetUsers { get; set; }
     public DbSet<SetUserAccess> SetUserAccesses { get; set; }
 
+
+    //test
+    public DbSet<Dummy> Dummies { get; set; }
   }
 }
