@@ -1,0 +1,5 @@
+create a folder per main module
+example
+views/maintenance
+views/profile
+views/survey
