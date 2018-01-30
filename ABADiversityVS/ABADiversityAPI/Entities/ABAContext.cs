@@ -23,6 +23,5 @@ namespace ABADiversityAPI.Entities
 
 
     //test
-    public DbSet<Dummy> Dummies { get; set; }
   }
 }

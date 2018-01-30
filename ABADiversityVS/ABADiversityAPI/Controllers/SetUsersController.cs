@@ -10,57 +10,57 @@ using ABADiversityAPI.Entities;
 namespace ABADiversityAPI.Controllers
 {
   [Produces("application/json")]
-  [Route("api/SetGroups")]
-  public class SetGroupsController : Controller
+  [Route("api/SetUsers")]
+  public class SetUsersController : Controller
   {
     private readonly ABAContext _context;
 
-    public SetGroupsController(ABAContext context)
+    public SetUsersController(ABAContext context)
     {
       _context = context;
     }
 
-    // GET: api/SetGroups
+    // GET: api/SetUsers
     [HttpGet]
-    public IEnumerable<SetGroup> GetSetGroups()
+    public IEnumerable<SetUser> GetSetUsers()
     {
-      return _context.SetGroups;
+      return _context.SetUsers;
     }
 
-    // GET: api/SetGroups/5
+    // GET: api/SetUsers/5
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetSetGroup([FromRoute] string id)
+    public async Task<IActionResult> GetSetUser([FromRoute] string id)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState);
       }
 
-      var setGroup = await _context.SetGroups.SingleOrDefaultAsync(m => m.grp_id == id);
+      var setUser = await _context.SetUsers.SingleOrDefaultAsync(m => m.user_id == id);
 
-      if (setGroup == null)
+      if (setUser == null)
       {
         return NotFound();
       }
 
-      return Ok(setGroup);
+      return Ok(setUser);
     }
 
-    // PUT: api/SetGroups/5
+    // PUT: api/SetUsers/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutSetGroup([FromRoute] string id, [FromBody] SetGroup setGroup)
+    public async Task<IActionResult> PutSetUser([FromRoute] string id, [FromBody] SetUser setUser)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState);
       }
 
-      if (id != setGroup.grp_id)
+      if (id != setUser.user_id)
       {
         return BadRequest();
       }
 
-      _context.Entry(setGroup).State = EntityState.Modified;
+      _context.Entry(setUser).State = EntityState.Modified;
 
       try
       {
@@ -68,7 +68,7 @@ namespace ABADiversityAPI.Controllers
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!SetGroupExists(id))
+        if (!SetUserExists(id))
         {
           return NotFound();
         }
@@ -81,45 +81,45 @@ namespace ABADiversityAPI.Controllers
       return NoContent();
     }
 
-    // POST: api/SetGroups
+    // POST: api/SetUsers
     [HttpPost]
-    public async Task<IActionResult> PostSetGroup([FromBody] SetGroup setGroup)
+    public async Task<IActionResult> PostSetUser([FromBody] SetUser setUser)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState);
       }
 
-      _context.SetGroups.Add(setGroup);
+      _context.SetUsers.Add(setUser);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetSetGroup", new { id = setGroup.grp_id }, setGroup);
+      return CreatedAtAction("GetSetUser", new { id = setUser.user_id }, setUser);
     }
 
-    // DELETE: api/SetGroups/5
+    // DELETE: api/SetUsers/5
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteSetGroup([FromRoute] string id)
+    public async Task<IActionResult> DeleteSetUser([FromRoute] string id)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState);
       }
 
-      var setGroup = await _context.SetGroups.SingleOrDefaultAsync(m => m.grp_id == id);
-      if (setGroup == null)
+      var setUser = await _context.SetUsers.SingleOrDefaultAsync(m => m.user_id == id);
+      if (setUser == null)
       {
         return NotFound();
       }
 
-      _context.SetGroups.Remove(setGroup);
+      _context.SetUsers.Remove(setUser);
       await _context.SaveChangesAsync();
 
-      return Ok(setGroup);
+      return Ok(setUser);
     }
 
-    private bool SetGroupExists(string id)
+    private bool SetUserExists(string id)
     {
-      return _context.SetGroups.Any(e => e.grp_id == id);
+      return _context.SetUsers.Any(e => e.user_id == id);
     }
   }
 }
