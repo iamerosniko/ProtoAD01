@@ -1,4 +1,5 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ABADiversityAPI.Entities;
 
 namespace ABADiversityAPI.Entities
 {
@@ -20,6 +21,7 @@ namespace ABADiversityAPI.Entities
     public DbSet<SetGroup> SetGroups { get; set; }
     public DbSet<SetUser> SetUsers { get; set; }
     public DbSet<SetUserAccess> SetUserAccesses { get; set; }
+    public DbSet<ABADiversityAPI.Entities.HoursReducedLawyers> HoursReducedLawyers { get; set; }
 
 
     //test
