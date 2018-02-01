@@ -16,6 +16,8 @@ export class AuthGuard implements CanActivate, CanActivateChild{
         let isAllowed: boolean = false;
         if(sessionStorage.getItem('AuthToken')==null){
             this.router.navigate(['./Login']) 
+        }
+        else{
             isAllowed=true;
         }
         console.log('authguard activated');

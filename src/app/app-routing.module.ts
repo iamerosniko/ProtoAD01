@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: '', redirectTo:'/Login', pathMatch:"full" },
   { path: 'Reports', component : ReportsComponent, canActivate:[AuthGuard] },
   { path: 'Survey', component : SurveysComponent, canActivate:[AuthGuard] },
-  { path:'Logout', component:LogoutComponent},
-  { path:'Login', component:LoginComponent},
-  { path:'Noaccess', component:NoaccessComponent},
+  { path: 'Logout', component:LogoutComponent},
+  { path: 'Login', component:LoginComponent},
+  { path: 'Noaccess', component:NoaccessComponent},
   { path: '**', redirectTo :'/Login' }
 ];
 
