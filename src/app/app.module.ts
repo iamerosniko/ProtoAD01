@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SurveysModule } from './views/surveys/surveys.module';
 import { ReportsModule } from './views/reports/reports.module';
 import { OthersModule } from './views/others/others.module';
+import { AuthGuard } from './router.services/auth-guard.services';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,7 @@ import { OthersModule } from './views/others/others.module';
     OthersModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
