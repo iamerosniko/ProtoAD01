@@ -1,6 +1,5 @@
 using ABADiversity;
 using ABADiversityClient.LogicalControllers;
-using ABADiversityClient.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -33,7 +32,7 @@ namespace ABADiversityClient.Controllers
 
     [HttpGet]
     [Route("api/ProvideAuthenticationToken")]
-    public MyToken ProvideAuthenticationToken()
+    public string ProvideAuthenticationToken()
     {
       //getCurrentUser
       var currentUser = _user.GetCurrentUser();
@@ -50,29 +49,25 @@ namespace ABADiversityClient.Controllers
 
       HttpContext.Session.SetString("AuthToken", myToken);
 
-      return new MyToken
-      {
-        Token = "myToken",
-        TokenName = "AuthToken"
-      };
+      return myToken;
+
+
     }
 
 
     [HttpGet]
     [Route("api/ProvideAuthorizationToken")]
-    public MyToken ProvideAuthorizationToken()
+    public string ProvideAuthorizationToken()
     {
+      var authorizationToken = "";
       var authToken = HttpContext.Session.GetString("AuthToken");
-      MyToken myToken = new MyToken();
-      myToken.TokenName = "ApiToken";
       if (authToken != null)
       {
-        var authorizationToken = _tokenFactory.GenerateAuthorizationToken(_tokenFactory.ExtractToken(authToken));
+        authorizationToken = _tokenFactory.GenerateAuthorizationToken(_tokenFactory.ExtractToken(authToken));
         HttpContext.Session.SetString("ApiToken", authorizationToken);
-        myToken.Token = authorizationToken;
       }
 
-      return myToken;
+      return authorizationToken;
     }
 
 

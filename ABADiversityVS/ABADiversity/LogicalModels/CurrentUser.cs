@@ -8,5 +8,13 @@ namespace ABADiversityClient.LogicalModels
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public List<string> Roles { get; set; }
+
+    public CurrentUser()
+    {
+      Roles = new List<string>();
+      UserID = "";
+      FirstName = "";
+      LastName = "";
+    }
   }
 }

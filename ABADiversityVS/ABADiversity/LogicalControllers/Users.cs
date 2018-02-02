@@ -44,7 +44,7 @@ namespace ABADiversityClient.LogicalControllers
           }
         }
       }
-      catch
+      catch(Exception ex)
       {
         currentUser = new CurrentUser()
         {
