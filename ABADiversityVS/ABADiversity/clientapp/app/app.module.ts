@@ -8,7 +8,7 @@ import { ReportsModule } from './views/reports/reports.module';
 import { OthersModule } from './views/others/others.module';
 import { AuthGuard } from './router.services/auth-guard.services';
 import { HttpModule } from '@angular/http'
-import { ClientApiService,ClientApiSettings,TokenService } from './services/aba.services';
+import { ClientApiService,ClientApiSettings,LoginService } from './services/aba.services';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ClientApiService,ClientApiSettings,TokenService } from './services/aba.
     OthersModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard,ClientApiService,ClientApiSettings,TokenService],
+  providers: [AuthGuard,ClientApiService,ClientApiSettings,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

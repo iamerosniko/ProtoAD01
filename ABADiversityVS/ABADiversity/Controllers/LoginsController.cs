@@ -13,15 +13,26 @@ namespace ABADiversityClient.Controllers
   public class LoginsController : Controller
   {
     private Users _user;
+    private TokenFactory _tokenFactory;
     private object currentUserController;
 
     public LoginsController()
     {
       _user = new Users();
+      _tokenFactory = new TokenFactory();
     }
-    // GET: api/MyToken
-    [HttpGet]
 
+
+    [HttpGet]
+    [Route("api/GetCurrentToken")]
+    public string GetCurrentToken()
+    {
+      var AuthToken = HttpContext.Session.GetString("AuthToken");
+      return AuthToken;
+    }
+
+
+    [HttpGet]
     [Route("api/ProvideAuthenticationToken")]
     public MyToken ProvideAuthenticationToken()
     {
@@ -49,26 +60,29 @@ namespace ABADiversityClient.Controllers
 
 
     [HttpGet]
-
     [Route("api/ProvideAuthorizationToken")]
     public MyToken ProvideAuthorizationToken()
     {
-      return new MyToken
+      var authToken = HttpContext.Session.GetString("AuthToken");
+      MyToken myToken = new MyToken();
+      myToken.TokenName = "ApiToken";
+      if (authToken != null)
       {
-        Token = "agaga",
-        TokenName = "asd"
-      };
+        var authorizationToken = _tokenFactory.GenerateAuthorizationToken(_tokenFactory.ExtractToken(authToken));
+        HttpContext.Session.SetString("ApiToken", authorizationToken);
+        myToken.Token = authorizationToken;
+      }
+
+      return myToken;
     }
+
 
     [HttpGet]
-
-    [Route("api/GetCurrentToken")]
-    public string GetCurrentToken()
+    [Route("api/Logout")]
+    public void Logout()
     {
-      var AuthToken = HttpContext.Session.GetString("AuthToken");
-      return AuthToken;
+      HttpContext.Session.Clear();
     }
-
 
   }
 }

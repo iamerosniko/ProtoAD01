@@ -4,7 +4,7 @@ import { ClientApiSettings } from './clientapi.settings';
 import { MyToken } from '../entities/my-token';
 import { Observable} from 'rxjs';
 @Injectable()
-export class TokenService {
+export class LoginService {
 
   constructor(private api:ClientApiService) {
     api.normalHeader();
