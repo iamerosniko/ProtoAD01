@@ -14,7 +14,6 @@ namespace ABADiversityClient.Controllers
   {
     private Users _user;
     private TokenFactory _tokenFactory;
-    private object currentUserController;
 
     public LoginsController()
     {

@@ -3,7 +3,6 @@ import { CanActivate, CanActivateChild, Router } from '@angular/router';
 
 // import { UserService } from './user.service';
 
-
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild{
     constructor ( private router: Router) {}
