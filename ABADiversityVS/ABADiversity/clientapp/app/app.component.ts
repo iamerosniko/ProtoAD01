@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   }
   
   async get(){
-    console.log( await this.token.getAuth());
+    console.log( await this.token.generateToken());
+    console.log( await this.token.getCurrentToken())
   }
 }

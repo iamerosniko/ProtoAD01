@@ -7,13 +7,20 @@ import { Observable} from 'rxjs';
 export class TokenService {
 
   constructor(private api:ClientApiService) {
-    api.apiUrl=ClientApiSettings.GETAPIURL("MyToken");
     api.normalHeader();
   }
   a : MyToken;
-  async getAuth(){
+  generateToken(){
+    this.api.apiUrl=ClientApiSettings.GETAPIURL("GenerateToken");
     var res = this.api.getAll()
     // console.log(<MyToken>res);
     return res;
   }
+
+  getCurrentToken(){
+    this.api.apiUrl=ClientApiSettings.GETAPIURL("GetCurrentToken");
+    var res = this.api.getAll()
+    return res;
+  }
+  
 }
