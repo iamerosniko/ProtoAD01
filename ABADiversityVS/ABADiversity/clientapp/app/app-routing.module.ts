@@ -7,12 +7,14 @@ import { SurveysComponent } from './views/surveys/surveys.component';
 import { NoaccessComponent } from './views/others/noaccess/noaccess.component';
 import { LoginComponent } from './views/others/login/login.component';
 import { LogoutComponent } from './views/others/logout/logout.component';
+import { RedirectingComponent } from './views/others/redirecting/redirecting.component';
 
 import { AuthGuard } from './router.services/auth-guard.services';
 const routes: Routes = [
   { path: '', redirectTo:'/Login', pathMatch:"full" },
   { path: 'Reports', component : ReportsComponent, canActivate:[AuthGuard] },
   { path: 'Survey', component : SurveysComponent, canActivate:[AuthGuard] },
+  { path: 'Redirecting', component : RedirectingComponent},
   { path: 'Logout', component:LogoutComponent},
   { path: 'Login', component:LoginComponent},
   { path: 'Noaccess', component:NoaccessComponent},
