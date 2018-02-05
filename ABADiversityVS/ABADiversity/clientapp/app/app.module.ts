@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SurveysModule } from './views/surveys/surveys.module';
 import { ReportsModule } from './views/reports/reports.module';
 import { OthersModule } from './views/others/others.module';
-import { AuthGuard } from './router.services/auth-guard.services';
+import { AuthGuard } from './auth-guard.services';
 import { HttpModule } from '@angular/http'
 import { ClientApiService,ClientApiSettings,LoginService } from './services/aba.services';
 
