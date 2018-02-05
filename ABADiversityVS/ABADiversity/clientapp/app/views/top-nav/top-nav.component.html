@@ -5,8 +5,8 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a>Survey</a></li>
-        <li><a>Reports</a></li>
+        <li [routerLinkActive]="['active']" role="presentation"><a [routerLink]="['./Survey']">Survey</a></li>
+        <li [routerLinkActive]="['active']" role="presentation"><a [routerLink]="['./Reports']">Reports</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><i class="fa fa-user-circle"></i>&nbsp;Hello, Albert Rick Martires</a></li>
