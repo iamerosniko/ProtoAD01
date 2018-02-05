@@ -17,6 +17,10 @@ export class RedirectingComponent implements OnInit {
   getValidRoutes(){
     //get all modules of the current user
     //iff null goto noaccess
-    this.router.navigate(['./Survey']);
+    setTimeout(() => {
+      this.router.navigate(['./Survey']);
+    }, 2000);
+
+    
   }
 }
