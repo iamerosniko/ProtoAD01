@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ClientApiService } from './clientapi.service'; 
 import { ClientApiSettings } from './clientapi.settings'; 
-import { MyToken } from '../entities/my-token';
 import { Observable} from 'rxjs';
 @Injectable()
 export class LoginService {
