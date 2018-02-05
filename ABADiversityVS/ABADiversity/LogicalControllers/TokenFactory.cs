@@ -1,6 +1,4 @@
 using ABADiversity;
-using ABADiversityClient.LogicalModels;
-using ABADiversityClient.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -76,29 +74,6 @@ namespace ABADiversityClient.LogicalControllers
       var myToken = new JwtSecurityTokenHandler().WriteToken(token);
 
       return myToken;
-    }
-
-
-    [HttpPost]
-    [Produces("application/json")]
-    [Route("api/TokenToRoles")]
-    public IEnumerable<CurrentRoles> TokenToRoles([FromBody] MyToken token)
-    {
-      List<CurrentRoles> currentRoles = new List<CurrentRoles>();
-      var jwtToken = new JwtSecurityToken(token.Token);
-      var roles = jwtToken.Claims.
-          Where(x => x.Type == ClaimTypes.Role);
-
-      foreach (Claim role in roles)
-      {
-        currentRoles.Add(new CurrentRoles
-        {
-          Role = role.Value
-        });
-      }
-
-      return currentRoles;
-
     }
 
 

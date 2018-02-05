@@ -1,9 +1,14 @@
 using ABADiversity;
 using ABADiversityClient.LogicalControllers;
+using ABADiversityClient.LogicalModels;
+using ABADiversityClient.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
 using System.Text;
 
 namespace ABADiversityClient.Controllers
@@ -78,5 +83,42 @@ namespace ABADiversityClient.Controllers
       HttpContext.Session.Clear();
     }
 
+
+    [HttpPost]
+    [Route("api/TokenToDetails")]
+    public CurrentUser TokenToDetails([FromBody] MyToken token)
+    {
+      CurrentUser currentUser = new CurrentUser();
+      var jwtToken = new JwtSecurityToken(token.Token);
+
+      var names = jwtToken.Claims.
+          Where(x => x.Type == ClaimTypes.Name).Select(x => x.Value);
+
+      var roles = jwtToken.Claims.
+          Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value);
+
+      var urls = jwtToken.Claims.
+          Where(x => x.Type == ClaimTypes.Uri).Select(x => x.Value);
+
+      var idS = jwtToken.Claims.
+          Where(x => x.Type == ClaimTypes.Sid).Select(x => x.Value);
+
+      var firstNames = jwtToken.Claims.
+          Where(x => x.Type == ClaimTypes.GivenName).Select(x => x.Value);
+
+      var surnames = jwtToken.Claims.
+          Where(x => x.Type == ClaimTypes.Surname).Select(x => x.Value);
+
+      currentUser.Name = names != null ? names.FirstOrDefault() : "";
+      currentUser.FirstName = firstNames != null ? firstNames.FirstOrDefault() : "";
+      currentUser.LastName = surnames != null ? surnames.FirstOrDefault() : "";
+      currentUser.Roles = roles != null ? roles.ToList() : new List<string>();
+      currentUser.Urls = urls != null ? urls.FirstOrDefault() : "";
+      currentUser.IdS = idS != null ? idS.FirstOrDefault() : "";
+
+
+      return currentUser;
+
+    }
   }
 }

@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate, CanActivateChild{
         // }
         // return this.userService.isAuthenticated;
         let isAllowed: boolean = false;
-        if(sessionStorage.getItem('AuthToken')==null){
+        if(sessionStorage.getItem('Cache0')==null){
             this.router.navigate(['./Login']) 
         }
         else{
