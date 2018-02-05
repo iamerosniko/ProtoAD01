@@ -34,4 +34,12 @@ export class LoginService {
     this.api.getAll();
   }
   
+  GetRoles(token:string){
+    this.api.apiUrl=ClientApiSettings.GETAPIURL("TokenToRoles");
+    var token1 = {'Token':token}
+
+    var a = this.api.postData(JSON.stringify(token1));
+
+    return (a)
+  }
 }

@@ -27,9 +27,10 @@ export class ClientApiService {
       .then(res=>res.json());
   }
 
-  async getOne(){
+  async getOne(id:string){
+    var apiurl= this.apiUrl +'/'+id
     return this.http
-      .get(this.apiUrl, {headers: this.headers})
+      .get(apiurl, {headers: this.headers})
       .toPromise()
       .then(res=>res.json());
   }  
