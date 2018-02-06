@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientApiService } from './clientapi.service'; 
 import { ClientApiSettings } from './clientapi.settings'; 
+import { FirmLeaderships } from '../entities/aba-entities';
 @Injectable()
 export class FirmLeadershipsService {
 
@@ -11,5 +12,10 @@ export class FirmLeadershipsService {
 
   getFirmLeaderships(){
     return this.api.getAll();
+  }
+
+  postFirmLeaderships(firmLeadership:FirmLeaderships){
+    var body = JSON.stringify(firmLeadership);
+    return this.api.postData(body);  
   }
 }

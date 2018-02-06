@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientApiService } from './clientapi.service'; 
 import { ClientApiSettings } from './clientapi.settings'; 
+import { FirmDemographics } from '../entities/aba-entities';
 @Injectable()
 export class FirmDemographicsService {
 
@@ -11,5 +12,10 @@ export class FirmDemographicsService {
 
   getFirmDemographics(){
     return this.api.getAll();
+  }
+  
+  postFirmDemographics(firmDemographic : FirmDemographics){
+    var body = JSON.stringify(firmDemographic);
+    return this.api.postData(body);  
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ClientApiService } from './clientapi.service'; 
 import { ClientApiSettings } from './clientapi.settings'; 
+import { HomegrownPartners } from '../entities/aba-entities';
 
 @Injectable()
 export class HomeGrownPartnersService {
@@ -15,4 +16,8 @@ export class HomeGrownPartnersService {
     return this.api.getAll()
   }
 
+  postHomeGrownPartners(homeGrownPartner:HomegrownPartners){
+    var body = JSON.stringify(homeGrownPartner);
+    return this.api.postData(body);  
+  }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientApiService } from './clientapi.service'; 
 import { ClientApiSettings } from './clientapi.settings'; 
+import { FirmInitiatives } from '../entities/aba-entities';
 @Injectable()
 export class FirmInitiativesService {
 
@@ -11,4 +12,10 @@ export class FirmInitiativesService {
   getFirmInitiatives(){
     return this.api.getAll();
   }
+  
+  postFirmInitiatives(firmInitiative:FirmInitiatives){
+    var body = JSON.stringify(firmInitiative);
+    return this.api.postData(body);  
+  }
 }
+

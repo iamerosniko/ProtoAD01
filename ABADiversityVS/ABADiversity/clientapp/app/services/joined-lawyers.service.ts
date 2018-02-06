@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientApiService } from './clientapi.service'; 
 import { ClientApiSettings } from './clientapi.settings'; 
+import { JoinedLawyers } from '../entities/aba-entities';
 @Injectable()
 export class JoinedLawyersService {
 
@@ -11,5 +12,10 @@ export class JoinedLawyersService {
 
   getJoinedLawyers(){
     return this.api.getAll();
+  }
+
+  postJoinedLawyers(joinedLawyer: JoinedLawyers){
+    var body = JSON.stringify(joinedLawyer);
+    return this.api.postData(body);  
   }
 }
