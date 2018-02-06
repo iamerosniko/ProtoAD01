@@ -12,6 +12,5 @@ namespace ABADiversityClient.Models
     public int Disabled { get; set; }
 
     public int CompanyProfileID { get; set; }
-    public int Year { get; set; }
   }
 }
