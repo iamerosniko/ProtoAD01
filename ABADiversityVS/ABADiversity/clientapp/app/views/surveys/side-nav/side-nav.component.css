@@ -24,6 +24,7 @@
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     font-size: 12.5px;
     font-size: small;
+    background-color: inherit;    
 }
 
 #wrapper.toggled {
@@ -53,11 +54,12 @@
     width: 100%;
     position: relative;
     padding: 20px;
+    background-color: inherit;
 }
 
 #wrapper.toggled #page-content-wrapper {
     position: relative;
-    margin-right: -250px;
+    margin-right: -250px;   
 }
 
 /* Sidebar Styles */
