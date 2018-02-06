@@ -31,9 +31,23 @@
       <div class="container-fluid">
         <app-save-bar></app-save-bar>
         <hr />
-        <div class="panel-group" id="accordion">
+        <div class="row">
+            <ul class="nav nav-pills btn-xs">
+                <li role="presentation" class="active">
+                    <a href="#company_profile" aria-controls="company_profile" role="tab" data-toggle="tab">Company Profile</a>
+                </li>
+                <li role="presentation">
+                    <a href="#firm_demographics" aria-controls="firm_demographics" role="tab" data-toggle="tab">Firm Demographics</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="company_profile">
             <app-company-profile></app-company-profile>
+          </div>
+          <div class="tab-pane fade" id="firm_demographics">
             <app-firm-demographics></app-firm-demographics>
+          </div>
         </div>
       </div>
       
