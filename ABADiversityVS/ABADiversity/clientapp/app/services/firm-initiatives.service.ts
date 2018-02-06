@@ -17,5 +17,10 @@ export class FirmInitiativesService {
     var body = JSON.stringify(firmInitiative);
     return this.api.postData(body);  
   }
+
+  putFirmInitiatives(firmInitiative:FirmInitiatives){
+    var body = JSON.stringify(firmInitiative);
+    return this.api.putData(body,firmInitiative.FirmInitiativesID.toString());  
+  }
 }
 

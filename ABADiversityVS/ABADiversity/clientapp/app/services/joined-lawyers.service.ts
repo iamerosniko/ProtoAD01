@@ -18,4 +18,9 @@ export class JoinedLawyersService {
     var body = JSON.stringify(joinedLawyer);
     return this.api.postData(body);  
   }
+
+  putJoinedLawyers(joinedLawyer: JoinedLawyers){
+    var body = JSON.stringify(joinedLawyer);
+    return this.api.putData(body,joinedLawyer.JoinedLawyerID.toString());  
+  }
 }

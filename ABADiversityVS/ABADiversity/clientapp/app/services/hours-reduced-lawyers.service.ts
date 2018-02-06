@@ -18,4 +18,9 @@ export class HoursReducedLawyersService {
     var body = JSON.stringify(hoursReducedLawyer);
     return this.api.postData(body);  
   }
+
+  putHoursReducedLawyers(hoursReducedLawyer: HoursReducedLawyers){
+    var body = JSON.stringify(hoursReducedLawyer);
+    return this.api.putData(body,hoursReducedLawyer.HoursReducedLawyerID.toString());  
+  }
 }

@@ -18,4 +18,9 @@ export class CompanyProfilesService {
     var body = JSON.stringify(companyProfile);
     return this.api.postData(body);  
   }
+
+  putCompanyProfiles(companyProfile:CompanyProfiles){
+    var body = JSON.stringify(companyProfile);
+    return this.api.putData(body,companyProfile.CompanyProfileID.toString());  
+  }
 }

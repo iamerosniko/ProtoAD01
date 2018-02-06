@@ -20,4 +20,9 @@ export class HomeGrownPartnersService {
     var body = JSON.stringify(homeGrownPartner);
     return this.api.postData(body);  
   }
+
+  putHomeGrownPartners(homeGrownPartner:HomegrownPartners){
+    var body = JSON.stringify(homeGrownPartner);
+    return this.api.putData(body,homeGrownPartner.HomegrownPartnersID.toString());  
+  }
 }

@@ -18,4 +18,9 @@ export class HighCompensatedPartnersService {
     var body = JSON.stringify(highCompensatedPartner);
     return this.api.postData(body);  
   }
+  
+  putHighCompensatedPartners(highCompensatedPartner:HighCompensatedPartners){
+    var body = JSON.stringify(highCompensatedPartner);
+    return this.api.putData(body,highCompensatedPartner.HighCompensatedPartnerID.toString());  
+  }
 }

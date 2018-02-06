@@ -18,4 +18,9 @@ export class FirmLeadershipsService {
     var body = JSON.stringify(firmLeadership);
     return this.api.postData(body);  
   }
+
+  putFirmLeaderships(firmLeadership:FirmLeaderships){
+    var body = JSON.stringify(firmLeadership);
+    return this.api.putData(body,firmLeadership.FirmLeadershipsID.toString());  
+  }
 }

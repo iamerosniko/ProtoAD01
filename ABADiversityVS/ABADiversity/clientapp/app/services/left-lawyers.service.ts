@@ -18,4 +18,9 @@ export class LeftLawyersService {
     var body = JSON.stringify(leftLawyer);
     return this.api.postData(body);  
   }
+
+  putLeftLawyers(leftLawyer:LeftLawyers){
+    var body = JSON.stringify(leftLawyer);
+    return this.api.putData(body,leftLawyer.LeftLawyerID.toString());  
+  }
 }

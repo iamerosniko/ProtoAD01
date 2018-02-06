@@ -18,4 +18,9 @@ export class FirmDemographicsService {
     var body = JSON.stringify(firmDemographic);
     return this.api.postData(body);  
   }
+
+  putFirmDemographics(firmDemographic : FirmDemographics){
+    var body = JSON.stringify(firmDemographic);
+    return this.api.putData(body,firmDemographic.FirmDemographicsID.toString());  
+  }
 }
