@@ -9,11 +9,13 @@ import { FirmDemographicsComponent } from './firm-demographics/firm-demographics
 import { FirmLeadershipDemographicComponent } from './firm-leadership-demographic/firm-leadership-demographic.component';
 import { LawyersLeftComponent } from './lawyers-left/lawyers-left.component';
 import { LawyersJoinedComponent } from './lawyers-joined/lawyers-joined.component';
+import { LawyersReducedHoursComponent } from './lawyers-reduced-hours/lawyers-reduced-hours.component';
+import { TopTenHighestCompensatedPartnersComponent } from './top-ten-highest-compensated-partners/top-ten-highest-compensated-partners.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [SurveysComponent,SideNavComponent,SaveBarComponent,CompanyProfileComponent,FirmDemographicsComponent, FirmLeadershipDemographicComponent, LawyersLeftComponent, LawyersJoinedComponent]
+  declarations: [SurveysComponent,SideNavComponent,SaveBarComponent,CompanyProfileComponent,FirmDemographicsComponent, FirmLeadershipDemographicComponent, LawyersLeftComponent, LawyersJoinedComponent, LawyersReducedHoursComponent, TopTenHighestCompensatedPartnersComponent]
 })
 export class SurveysModule { }
