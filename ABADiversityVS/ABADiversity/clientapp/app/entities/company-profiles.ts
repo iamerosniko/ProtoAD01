@@ -9,7 +9,11 @@ export interface CompanyProfiles {
     TotalLawyers :number,
     TotalUSLawyers :number,
     SizeCategoryID :number,
-    
+    IsFirmWomenOwned : boolean,
+    OwnershipCategory : string,
+    IsFirmCertified : boolean,
+    CertifyingEntityName : string,
+    Year:number
     
 }
 
