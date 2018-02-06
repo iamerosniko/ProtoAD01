@@ -1,0 +1,13 @@
+namespace ABADiversityClient.Entities
+{
+  public class FirmInitiatives
+  {
+    public int FirmInitiativeID { get; set; }
+    //foreignkey
+    public int InitiativeQuestionID { get; set; }
+    public bool IfYes { get; set; }
+    public string Comments { get; set; }
+    public int Year { get; set; }
+    public int CompanyProfileID { get; set; }
+  }
+}
