@@ -1,6 +1,6 @@
 using System;
 
-namespace ABADiversityClient.Entities
+namespace ABADiversityClient.Models
 {
   public class CompanyProfiles
   {

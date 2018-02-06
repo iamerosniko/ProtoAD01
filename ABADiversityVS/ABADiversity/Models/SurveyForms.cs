@@ -1,5 +1,3 @@
-using ABADiversityClient.Entities;
-
 namespace ABADiversityClient.Models
 {
   public class SurveyForms

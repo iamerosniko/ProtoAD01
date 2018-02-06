@@ -1,5 +1,6 @@
-using ABADiversityClient.Entities;
+
 using ABADiversityClient.LogicalControllers;
+using ABADiversityClient.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
