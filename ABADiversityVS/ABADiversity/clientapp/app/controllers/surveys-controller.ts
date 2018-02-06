@@ -25,7 +25,7 @@ export class SurveysController {
 
     }
 
-    async postSurvey(surveys:Surveys){
+    async postSurvey(surveys:Surveys):Promise<boolean>{
         var cpRes =<aba.CompanyProfiles> await this.companyProfilesService.postCompanyProfiles(surveys.CompanyProfile);
         var fdRes:aba.FirmDemographics[];
         var flRes:aba.FirmLeaderships[];
@@ -80,6 +80,6 @@ export class SurveysController {
             isComplete=true;
         }
 
-        
+        return new Promise<boolean>((res)=>res(isComplete));
     }
 }
