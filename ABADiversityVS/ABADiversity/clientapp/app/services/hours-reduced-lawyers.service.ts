@@ -9,7 +9,7 @@ export class HoursReducedLawyersService {
     api.apiUrl=ClientApiSettings.GETAPIURL("HoursReducedLawyers")
   }
 
-  getCompanyProfiles(){
+  getHoursReducedLawyers(){
     return this.api.getAll();
   }
 }

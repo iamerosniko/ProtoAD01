@@ -9,7 +9,7 @@ export class JoinedLawyersService {
     api.apiUrl=ClientApiSettings.GETAPIURL("JoinedLawyers")
   }
 
-  getCompanyProfiles(){
+  getJoinedLawyers(){
     return this.api.getAll();
   }
 }

@@ -8,7 +8,7 @@ export class FirmInitiativesService {
     api.authorizedHeader();
     api.apiUrl=ClientApiSettings.GETAPIURL("FirmInitiatives")
   }
-  getCompanyProfiles(){
+  getFirmInitiatives(){
     return this.api.getAll();
   }
 }

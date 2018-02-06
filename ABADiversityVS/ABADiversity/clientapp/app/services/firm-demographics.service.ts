@@ -9,7 +9,7 @@ export class FirmDemographicsService {
     api.apiUrl=ClientApiSettings.GETAPIURL("FirmDemographics")
   }
 
-  getCompanyProfiles(){
+  getFirmDemographics(){
     return this.api.getAll();
   }
 }

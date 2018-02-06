@@ -9,7 +9,7 @@ export class HighCompensatedPartnersService {
     api.apiUrl=ClientApiSettings.GETAPIURL("HighCompensatedPartners")
   }
 
-  getCompanyProfiles(){
+  getHighCompensatedPartners(){
     return this.api.getAll();
   }
 }
