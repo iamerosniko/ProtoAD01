@@ -12,7 +12,7 @@ import { observeOn } from 'rxjs/operators/observeOn';
 })
 
 export class AppComponent implements OnInit {
-
+  
   constructor(){
     setInterval(()=>{
       if(sessionStorage.getItem('Cache3')!=null){

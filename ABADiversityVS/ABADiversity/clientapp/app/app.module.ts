@@ -9,7 +9,7 @@ import { OthersModule } from './views/others/others.module';
 import { AuthGuard } from './auth-guard.services';
 import { HttpModule } from '@angular/http'
 import { ClientApiService,ClientApiSettings,LoginService } from './services/aba.services';
-import { TopNavComponent } from './Views/top-nav/top-nav.component';
+import { TopNavComponent } from './views/main/top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
