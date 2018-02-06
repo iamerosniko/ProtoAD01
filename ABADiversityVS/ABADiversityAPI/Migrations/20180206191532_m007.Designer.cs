@@ -11,9 +11,10 @@ using System;
 namespace ABADiversityAPI.Migrations
 {
     [DbContext(typeof(ABAContext))]
-    partial class ABAContextModelSnapshot : ModelSnapshot
+    [Migration("20180206191532_m007")]
+    partial class m007
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

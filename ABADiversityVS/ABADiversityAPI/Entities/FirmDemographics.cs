@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ABADiversityAPI.Entities
 {
@@ -13,11 +9,15 @@ namespace ABADiversityAPI.Entities
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int FIrmDemographicsID { get; set; }
-    public string Varchar { get; set; }
     public string Race { get; set; }
-    public int Value { get; set; }
-    public int Year { get; set; }
+    public int EquityPartners { get; set; }
+    public int NonEquityPartners { get; set; }
+    public int Associates { get; set; }
+    public int Counsels { get; set; }
+    public int OtherLawyers { get; set; }
+
     public int CompanyProfileID { get; set; }
+    public int Year { get; set; }
   }
 
 }

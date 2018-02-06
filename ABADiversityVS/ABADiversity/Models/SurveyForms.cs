@@ -10,7 +10,7 @@ namespace ABADiversityClient.Models
     public FirmLeaderships firmLeaderships { get; set; }
     public HighCompensatedPartners highCompensatedPartners { get; set; }
     public HoursReducedLawyers hoursReducedLawyers { get; set; }
-    public InitiativeQuestions initiativeQuestions { get; set; }
+    //public InitiativeQuestions initiativeQuestions { get; set; }
     public JoinedLawyers joinedLawyers { get; set; }
     public LeftLawyers leftLawyers { get; set; }
   }
