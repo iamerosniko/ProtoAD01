@@ -6,6 +6,10 @@ export interface CompanyProfiles {
     SurveyContactPerson :string,
     SurveyContactTitle :string,
     SurveyContactEmail :string,
+    TotalLawyers :number,
+    TotalUSLawyers :number,
+    SizeCategoryID :number,
+    
     
 }
 

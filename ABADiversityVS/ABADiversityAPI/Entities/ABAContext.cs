@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ABADiversityAPI.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABADiversityAPI.Entities
 {
@@ -14,14 +13,15 @@ namespace ABADiversityAPI.Entities
     public DbSet<FirmInitiatives> FirmInitiatives { get; set; }
     public DbSet<FirmLeaderships> FirmLeaderships { get; set; }
     public DbSet<HighCompensatedPartners> HighCompensatedPartners { get; set; }
+    public DbSet<HomegrownPartners> HomegrownPartners { get; set; }
     public DbSet<InitiativeQuestions> InitiativeQuestions { get; set; }
     public DbSet<JoinedLawyers> JoinedLawyers { get; set; }
     public DbSet<LeftLawyers> LeftLawyers { get; set; }
-
+    public DbSet<SizeCategory> LeftLawSizeCategoryyers { get; set; }
     public DbSet<SetGroup> SetGroups { get; set; }
     public DbSet<SetUser> SetUsers { get; set; }
     public DbSet<SetUserAccess> SetUserAccesses { get; set; }
-    public DbSet<ABADiversityAPI.Entities.HoursReducedLawyers> HoursReducedLawyers { get; set; }
+    public DbSet<HoursReducedLawyers> HoursReducedLawyers { get; set; }
 
 
     //test
