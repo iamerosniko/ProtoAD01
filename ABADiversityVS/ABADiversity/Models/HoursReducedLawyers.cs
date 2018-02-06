@@ -10,7 +10,6 @@ namespace ABADiversityClient.Models
     public int Counsels { get; set; }
     public int OtherLawyers { get; set; }
     public int CompanyProfileID { get; set; }
-    public int Year { get; set; }
 
   }
 }
