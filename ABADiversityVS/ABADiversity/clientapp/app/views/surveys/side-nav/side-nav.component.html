@@ -29,15 +29,20 @@
     </div>
     <div id="page-content-wrapper">
       <div class="container-fluid">
-        <app-save-bar></app-save-bar>
+        <div class="row">
+          <app-save-bar></app-save-bar>
+        </div>
         <hr />
         <div class="row">
             <ul class="nav nav-pills btn-xs">
                 <li role="presentation" class="active">
-                    <a href="#company_profile" aria-controls="company_profile" role="tab" data-toggle="tab">Company Profile</a>
+                    <a href="#company_profile" aria-controls="company_profile" role="tab" data-toggle="tab">Company<br />Profile</a>
                 </li>
                 <li role="presentation">
-                    <a href="#firm_demographics" aria-controls="firm_demographics" role="tab" data-toggle="tab">Firm Demographics</a>
+                    <a href="#firm_demographics" aria-controls="firm_demographics" role="tab" data-toggle="tab">Firm<br />Demographics</a>
+                </li>
+                <li role="presentation">
+                    <a href="#firm_leadership_demographics" aria-controls="firm_leadership_demographics" role="tab" data-toggle="tab">Firm Leadership /Management<br/>Demographic Profile</a>
                 </li>
             </ul>
         </div>
@@ -48,6 +53,9 @@
           <div class="tab-pane fade" id="firm_demographics">
             <app-firm-demographics></app-firm-demographics>
           </div>
+          <div class="tab-pane fade" id="firm_leadership_demographics">
+              <app-firm-leadership-demographic></app-firm-leadership-demographic>
+            </div>
         </div>
       </div>
       
