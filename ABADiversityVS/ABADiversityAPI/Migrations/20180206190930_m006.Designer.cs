@@ -11,9 +11,10 @@ using System;
 namespace ABADiversityAPI.Migrations
 {
     [DbContext(typeof(ABAContext))]
-    partial class ABAContextModelSnapshot : ModelSnapshot
+    [Migration("20180206190930_m006")]
+    partial class m006
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,8 +52,6 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<int>("TotalUSLawyers");
 
-                    b.Property<int>("Year");
-
                     b.HasKey("CompanyProfileID");
 
                     b.ToTable("ABA_CompanyProfiles");
@@ -65,8 +64,6 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<int>("Associates");
 
-                    b.Property<int>("CompanyProfileID");
-
                     b.Property<int>("Counsels");
 
                     b.Property<int>("EquityPartners");
@@ -76,8 +73,6 @@ namespace ABADiversityAPI.Migrations
                     b.Property<int>("OtherLawyers");
 
                     b.Property<string>("Race");
-
-                    b.Property<int>("Year");
 
                     b.HasKey("FIrmDemographicsID");
 
@@ -91,13 +86,9 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<string>("Comments");
 
-                    b.Property<int>("CompanyProfileID");
-
                     b.Property<bool>("IfYes");
 
                     b.Property<int>("InitiativeQuestionID");
-
-                    b.Property<int>("Year");
 
                     b.HasKey("FirmInitiativeID");
 
@@ -111,8 +102,6 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<string>("Category");
 
-                    b.Property<int>("CompanyProfileID");
-
                     b.Property<int>("Disabled");
 
                     b.Property<int>("LGBT");
@@ -125,8 +114,6 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<int>("WhiteMale");
 
-                    b.Property<int>("Year");
-
                     b.HasKey("FirmLeadershipID");
 
                     b.ToTable("ABA_FirmLeaderships");
@@ -137,15 +124,11 @@ namespace ABADiversityAPI.Migrations
                     b.Property<int>("HighCompensatedPartnerID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CompanyProfileID");
-
                     b.Property<int>("Men");
 
                     b.Property<string>("Race");
 
                     b.Property<int>("Women");
-
-                    b.Property<int>("Year");
 
                     b.HasKey("HighCompensatedPartnerID");
 
@@ -159,8 +142,6 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<int>("Associates");
 
-                    b.Property<int>("CompanyProfileID");
-
                     b.Property<int>("Counsels");
 
                     b.Property<int>("EquityPartners");
@@ -170,8 +151,6 @@ namespace ABADiversityAPI.Migrations
                     b.Property<int>("NonEquityPartners");
 
                     b.Property<int>("OtherLawyers");
-
-                    b.Property<int>("Year");
 
                     b.HasKey("HoursReducedLawyerID");
 
@@ -197,8 +176,6 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<int>("Associates");
 
-                    b.Property<int>("CompanyProfileID");
-
                     b.Property<int>("Counsels");
 
                     b.Property<int>("EquityPartners");
@@ -208,8 +185,6 @@ namespace ABADiversityAPI.Migrations
                     b.Property<int>("OtherLawyers");
 
                     b.Property<string>("Races");
-
-                    b.Property<int>("Year");
 
                     b.HasKey("JoinedLawyerID");
 
@@ -223,8 +198,6 @@ namespace ABADiversityAPI.Migrations
 
                     b.Property<int>("Associates");
 
-                    b.Property<int>("CompanyProfileID");
-
                     b.Property<int>("Counsels");
 
                     b.Property<int>("EquityPartners");
@@ -234,8 +207,6 @@ namespace ABADiversityAPI.Migrations
                     b.Property<int>("OtherLawyers");
 
                     b.Property<string>("Races");
-
-                    b.Property<int>("Year");
 
                     b.HasKey("LeftLawyerID");
 

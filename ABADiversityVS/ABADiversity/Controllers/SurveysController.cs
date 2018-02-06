@@ -52,7 +52,6 @@ namespace ABADiversityClient.Controllers
       body.firmLeaderships.CompanyProfileID = companyProfileResult.CompanyProfileID;
       body.highCompensatedPartners.CompanyProfileID = companyProfileResult.CompanyProfileID;
       body.hoursReducedLawyers.CompanyProfileID = companyProfileResult.CompanyProfileID;
-      body.initiativeQuestions.CompanyProfileID = companyProfileResult.CompanyProfileID;
       body.leftLawyers.CompanyProfileID = companyProfileResult.CompanyProfileID;
       body.joinedLawyers.CompanyProfileID = companyProfileResult.CompanyProfileID;
 
@@ -61,14 +60,14 @@ namespace ABADiversityClient.Controllers
       var firmLeadershipsResult = await firmLeadershipsController.Post(body.firmLeaderships);
       var highCompensatedPartnerResult = await highCompensatedPartnersController.Post(body.highCompensatedPartners);
       var hoursReducedLawyerResult = await hoursReducedLawyersController.Post(body.hoursReducedLawyers);
-      var initiativeQuestionResult = await initiativeQuestionsController.Post(body.initiativeQuestions);
+      //var initiativeQuestionResult = await initiativeQuestionsController.Post(body.initiativeQuestions);
       var leftLawyerResult = await leftLawyersController.Post(body.leftLawyers);
       var joinedLawyerResult = await joinedLawyersController.Post(body.joinedLawyers);
 
       if (companyProfileResult != null && firmDemographicResult != null &&
         firmInitiativesResult != null && firmLeadershipsResult != null &&
         highCompensatedPartnerResult != null && hoursReducedLawyerResult != null &&
-        initiativeQuestionResult != null && leftLawyerResult != null && joinedLawyerResult != null)
+        leftLawyerResult != null && joinedLawyerResult != null)
       {
         return JsonConvert.DeserializeObject<SurveyForms>(body.ToString());
       }

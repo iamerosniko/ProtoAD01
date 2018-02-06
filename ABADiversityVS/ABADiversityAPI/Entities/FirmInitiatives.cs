@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ABADiversityAPI.Entities
 {
@@ -17,7 +13,7 @@ namespace ABADiversityAPI.Entities
     public int InitiativeQuestionID { get; set; }
     public bool IfYes { get; set; }
     public string Comments { get; set; }
-    public int Year { get; set; }
     public int CompanyProfileID { get; set; }
+    public int Year { get; set; }
   }
 }

@@ -3,17 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ABADiversityAPI.Entities
 {
-  [Table("ABA_FirmLeaderships")]
-  public class FirmLeaderships
+  [Table("ABA_HomegrownPartners")]
+  public class HomegrownPartners
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int FirmLeadershipID { get; set; }
-    public string Category { get; set; }
-    public int MinorityFemale { get; set; }
-    public int MinorityMale { get; set; }
-    public int WhiteFemale { get; set; }
-    public int WhiteMale { get; set; }
+    public int HomegrownPartnersID { get; set; }
+    public string Gender { get; set; }
+    public int Minority { get; set; }
+    public int White { get; set; }
     public int LGBT { get; set; }
     public int Disabled { get; set; }
 

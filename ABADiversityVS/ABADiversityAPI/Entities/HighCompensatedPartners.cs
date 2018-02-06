@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ABADiversityAPI.Entities
 {
@@ -13,10 +9,10 @@ namespace ABADiversityAPI.Entities
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int HighCompensatedPartnerID { get; set; }
-    public string Role { get; set; }
-    public string Gender { get; set; }
-    public int Value { get; set; }
-    public int Year { get; set; }
+    public string Race { get; set; }
+    public int Men { get; set; }
+    public int Women { get; set; }
     public int CompanyProfileID { get; set; }
+    public int Year { get; set; }
   }
 }
