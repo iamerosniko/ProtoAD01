@@ -26,6 +26,60 @@ export class SurveysController {
     }
 
     async postSurvey(surveys:Surveys){
-        //var cpRes = await this.companyProfilesService
+        var cpRes =<aba.CompanyProfiles> await this.companyProfilesService.postCompanyProfiles(surveys.CompanyProfile);
+        var fdRes:aba.FirmDemographics[];
+        var flRes:aba.FirmLeaderships[];
+        var hgpRes:aba.HomegrownPartners[];
+        var llRes:aba.LeftLawyers[];
+        var jlRes:aba.JoinedLawyers[];
+        var hrlRes:aba.HoursReducedLawyers[];
+        var hcpRes:aba.HighCompensatedPartners[];
+        var fiRes:aba.FirmInitiatives[];
+        var isComplete:boolean= false;
+        if(cpRes.CompanyProfileID>0){
+            surveys.FIrmDemographics.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                fdRes.push(<aba.FirmDemographics>await this.firmDemographicsService.postFirmDemographics(element))       
+            });
+
+            surveys.FirmLeaderships.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                flRes.push(<aba.FirmLeaderships>await this.firmLeadershipsService.postFirmLeaderships(element))       
+            });
+
+            surveys.HomegrownPartners.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                hgpRes.push(<aba.HomegrownPartners>await this.homeGrownPartnersService.postHomeGrownPartners(element))       
+            });
+
+            surveys.LeftLawyers.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                llRes.push(<aba.LeftLawyers>await this.leftLawyersService.postLeftLawyers(element))       
+            });
+
+            surveys.JoinedLawyers.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                jlRes.push(<aba.JoinedLawyers>await this.joinedLawyersService.postJoinedLawyers(element))       
+            });
+
+            surveys.HoursReducedLawyers.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                hrlRes.push(<aba.HoursReducedLawyers>await this.hoursReducedLawyersService.postHoursReducedLawyers(element))       
+            });
+
+            surveys.HighCompensatedPartners.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                hcpRes.push(<aba.HighCompensatedPartners>await this.highCompensatedPartnersService.postHighCompensatedPartners(element))       
+            });
+
+            surveys.FirmInitiatives.forEach(async (element) => {
+                element.CompanyProfileID=await cpRes.CompanyProfileID
+                fiRes.push(<aba.FirmInitiatives>await this.firmInitiativesService.postFirmInitiatives(element))       
+            });
+
+            isComplete=true;
+        }
+
+        
     }
 }
