@@ -25,8 +25,11 @@ export class SurveysController {
 
     }
 
-    async postSurvey(surveys:Surveys):Promise<boolean>{
-        var cpRes =<aba.CompanyProfiles> await this.companyProfilesService.postCompanyProfiles(surveys.CompanyProfile);
+    async saveSurvey(surveys:Surveys,isNew:boolean):Promise<boolean>{
+        var cpRes = isNew 
+        ? <aba.CompanyProfiles> await this.companyProfilesService.postCompanyProfiles(surveys.CompanyProfile)
+        : <aba.CompanyProfiles> await this.companyProfilesService.putCompanyProfiles(surveys.CompanyProfile);
+        
         var fdRes:aba.FirmDemographics[];
         var flRes:aba.FirmLeaderships[];
         var hgpRes:aba.HomegrownPartners[];
@@ -36,45 +39,88 @@ export class SurveysController {
         var hcpRes:aba.HighCompensatedPartners[];
         var fiRes:aba.FirmInitiatives[];
         var isComplete:boolean= false;
-        if(cpRes.CompanyProfileID>0){
+        if(cpRes.CompanyProfileID>0||surveys.CompanyProfile.CompanyProfileID>0){
             surveys.FIrmDemographics.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                fdRes.push(<aba.FirmDemographics>await this.firmDemographicsService.postFirmDemographics(element))       
+                isNew 
+                ?
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID,
+                    fdRes.push(<aba.FirmDemographics>await this.firmDemographicsService.postFirmDemographics(element)))
+                : 
+                    fdRes.push(<aba.FirmDemographics>await this.firmDemographicsService.postFirmDemographics(element))                           
+                ;
             });
 
             surveys.FirmLeaderships.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                flRes.push(<aba.FirmLeaderships>await this.firmLeadershipsService.postFirmLeaderships(element))       
+                isNew
+                ?
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID,
+                    flRes.push(<aba.FirmLeaderships>await this.firmLeadershipsService.postFirmLeaderships(element)) )
+                : 
+                    flRes.push(<aba.FirmLeaderships>await this.firmLeadershipsService.postFirmLeaderships(element))                         
+                ;
+                       
             });
 
             surveys.HomegrownPartners.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                hgpRes.push(<aba.HomegrownPartners>await this.homeGrownPartnersService.postHomeGrownPartners(element))       
+                isNew 
+                ? 
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID,
+                    hgpRes.push(<aba.HomegrownPartners>await this.homeGrownPartnersService.postHomeGrownPartners(element))) 
+                : 
+                    hgpRes.push(<aba.HomegrownPartners>await this.homeGrownPartnersService.postHomeGrownPartners(element))                        
+                ;
             });
 
             surveys.LeftLawyers.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                llRes.push(<aba.LeftLawyers>await this.leftLawyersService.postLeftLawyers(element))       
+                isNew 
+                ? 
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID,
+                    llRes.push(<aba.LeftLawyers>await this.leftLawyersService.postLeftLawyers(element))) 
+                : 
+                    llRes.push(<aba.LeftLawyers>await this.leftLawyersService.postLeftLawyers(element))                        
+                ;
             });
 
             surveys.JoinedLawyers.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                jlRes.push(<aba.JoinedLawyers>await this.joinedLawyersService.postJoinedLawyers(element))       
+                isNew 
+                ? 
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID,
+                    jlRes.push(<aba.JoinedLawyers>await this.joinedLawyersService.postJoinedLawyers(element)))
+                : 
+                    jlRes.push(<aba.JoinedLawyers>await this.joinedLawyersService.putJoinedLawyers(element))                        
+                ;
             });
 
             surveys.HoursReducedLawyers.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                hrlRes.push(<aba.HoursReducedLawyers>await this.hoursReducedLawyersService.postHoursReducedLawyers(element))       
+                isNew 
+                ?
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID, 
+                    hrlRes.push(<aba.HoursReducedLawyers>await this.hoursReducedLawyersService.postHoursReducedLawyers(element)))
+                : 
+                    hrlRes.push(<aba.HoursReducedLawyers>await this.hoursReducedLawyersService.putHoursReducedLawyers(element))
+                
+                ;
             });
 
             surveys.HighCompensatedPartners.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                hcpRes.push(<aba.HighCompensatedPartners>await this.highCompensatedPartnersService.postHighCompensatedPartners(element))       
+                isNew 
+                ? 
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID, 
+                    hcpRes.push(<aba.HighCompensatedPartners>await this.highCompensatedPartnersService.postHighCompensatedPartners(element)))
+                : 
+                    hcpRes.push(<aba.HighCompensatedPartners>await this.highCompensatedPartnersService.putHighCompensatedPartners(element))
+                
+                ;
             });
 
             surveys.FirmInitiatives.forEach(async (element) => {
-                element.CompanyProfileID=await cpRes.CompanyProfileID
-                fiRes.push(<aba.FirmInitiatives>await this.firmInitiativesService.postFirmInitiatives(element))       
+                isNew 
+                ? 
+                    (element.CompanyProfileID=await cpRes.CompanyProfileID,
+                    fiRes.push(<aba.FirmInitiatives>await this.firmInitiativesService.postFirmInitiatives(element)))
+                : 
+                    fiRes.push(<aba.FirmInitiatives>await this.firmInitiativesService.putFirmInitiatives(element))
+                ;
             });
 
             isComplete=true;
