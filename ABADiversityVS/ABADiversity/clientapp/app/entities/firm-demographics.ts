@@ -6,6 +6,6 @@ export interface FirmDemographics {
     Associates : number,
     Counsels : number,
     OtherLawyers : number,
-    CompanyProfileID : number,
+    CompanyProfileID : string,
 }
 

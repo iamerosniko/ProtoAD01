@@ -3,5 +3,5 @@ export interface HighCompensatedPartners {
     Race :string,
     Men :number,
     Women :number,
-    CompanyProfileID :number
+    CompanyProfileID :string
 }

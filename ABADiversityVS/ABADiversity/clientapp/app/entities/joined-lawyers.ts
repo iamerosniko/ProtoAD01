@@ -6,5 +6,5 @@ export interface JoinedLawyers {
     Associates :number,
     Counsels :number,
     OtherLawyers :number,
-    CompanyProfileID :number,
+    CompanyProfileID :string,
 }

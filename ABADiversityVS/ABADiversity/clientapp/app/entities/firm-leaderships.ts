@@ -7,7 +7,7 @@ export interface FirmLeaderships {
     WhiteMale : number,
     LGBT : number,
     Disabled : number,
-    CompanyProfileID : number,
+    CompanyProfileID : string,
 
 }
 

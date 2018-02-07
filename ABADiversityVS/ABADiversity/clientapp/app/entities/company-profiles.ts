@@ -1,5 +1,5 @@
 export interface CompanyProfiles {
-    CompanyProfileID : number,
+    CompanyProfileID : string,
     FirmName : string,
     FirmHead :string,
     CompletionDate : Date,

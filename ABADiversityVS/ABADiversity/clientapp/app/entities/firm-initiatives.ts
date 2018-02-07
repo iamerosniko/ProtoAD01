@@ -3,6 +3,6 @@ export interface FirmInitiatives {
     InitiativeQuestionID:number,
     IfYes : boolean,
     Comments:string,
-    CompanyProfileID:number
+    CompanyProfileID:string
 
 }

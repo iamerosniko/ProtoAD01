@@ -6,6 +6,6 @@ export interface HomegrownPartners {
     LGBT :number,
     Disabled :number,
 
-    CompanyProfileID :number,
+    CompanyProfileID :string,
 }
 
