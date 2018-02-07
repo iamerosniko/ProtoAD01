@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +14,6 @@ namespace ABADiversityAPI.Entities
     public int InitiativeQuestionID { get; set; }
     public bool IfYes { get; set; }
     public string Comments { get; set; }
-    public int CompanyProfileID { get; set; }
+    public Guid CompanyProfileID { get; set; }
   }
 }
