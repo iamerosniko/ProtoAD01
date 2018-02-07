@@ -14,6 +14,10 @@ export class CompanyProfilesService {
     return this.api.getAll();
   }
 
+  getCompanyProfile(companyProfileID:string){
+    return this.api.getOne(companyProfileID);
+  }
+
   postCompanyProfiles(companyProfile:CompanyProfiles){
     var body = JSON.stringify(companyProfile);
     return this.api.postData(body);  

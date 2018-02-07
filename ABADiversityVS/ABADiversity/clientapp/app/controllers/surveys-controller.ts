@@ -8,7 +8,18 @@ import { CompanyProfilesService,FirmDemographicsService,
 
 import * as aba from '../entities/aba-entities';
 import { Surveys } from '../entities/surveys';
+
 export class SurveysController {
+
+    fdRes:aba.FirmDemographics[];
+    flRes:aba.FirmLeaderships[];
+    hgpRes:aba.HomegrownPartners[];
+    llRes:aba.LeftLawyers[];
+    jlRes:aba.JoinedLawyers[];
+    hrlRes:aba.HoursReducedLawyers[];
+    hcpRes:aba.HighCompensatedPartners[];
+    fiRes:aba.FirmInitiatives[];
+    companyProfileID : string ='';
 
     constructor( private companyProfilesService: CompanyProfilesService, private firmDemographicsService : FirmDemographicsService,
         private firmInitiativesService:FirmInitiativesService, private firmLeadershipsService : FirmLeadershipsService,
@@ -20,7 +31,7 @@ export class SurveysController {
 
     }
 
-    async saveSurvey(surveys:Surveys,isNew:boolean):Promise<boolean>{
+    public async saveSurvey(surveys:Surveys,isNew:boolean):Promise<boolean>{
         var cpRes = isNew 
         ? <aba.CompanyProfiles> await this.companyProfilesService.postCompanyProfiles(surveys.CompanyProfile)
         : <aba.CompanyProfiles> await this.companyProfilesService.putCompanyProfiles(surveys.CompanyProfile);
@@ -111,5 +122,36 @@ export class SurveysController {
         isComplete=await true;
     
         return new Promise<boolean>((res)=>res(isComplete));
+    }
+
+
+    public async getSurvey(companyProfileID:string):Promise<Surveys>{
+        this.companyProfileID= await companyProfileID;
+        var cpRes =<aba.CompanyProfiles> await this.companyProfilesService.getCompanyProfile(companyProfileID);
+        await this.getDependencies();
+
+        var surveys:Surveys =await {
+            CompanyProfile : cpRes,
+            FIrmDemographics : this.fdRes,
+            FirmInitiatives : this.fiRes,
+            FirmLeaderships :this.flRes,
+            HighCompensatedPartners : this.hcpRes,
+            HomegrownPartners : this.hgpRes,
+            HoursReducedLawyers : this.hrlRes,
+            JoinedLawyers : this.jlRes,
+            LeftLawyers : this.llRes 
+        };
+        return new Promise<Surveys>((res)=>res(surveys));
+    }
+
+    private async getDependencies(){
+        this.fdRes =(<aba.FirmDemographics[]> await this.firmDemographicsService.getFirmDemographics()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
+        this.flRes =(<aba.FirmLeaderships[]> await this.firmLeadershipsService.getFirmLeaderships()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
+        this.hgpRes =(<aba.HomegrownPartners[]> await this.homeGrownPartnersService.getHomeGrownPartners()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
+        this.llRes =(<aba.LeftLawyers[]> await this.leftLawyersService.getLeftLawyers()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
+        this.jlRes =(<aba.JoinedLawyers[]> await this.joinedLawyersService.getJoinedLawyers()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
+        this.hrlRes =(<aba.HoursReducedLawyers[]> await this.hoursReducedLawyersService.getHoursReducedLawyers()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
+        this.hcpRes =(<aba.HighCompensatedPartners[]> await this.highCompensatedPartnersService.getHighCompensatedPartners()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
+        this.fiRes =(<aba.FirmInitiatives[]> await this.firmInitiativesService.getFirmInitiatives()).filter(x=>x.CompanyProfileID==this.companyProfileID); 
     }
 }
