@@ -4,7 +4,7 @@ namespace ABADiversityClient.Models
 {
   public class CompanyProfiles
   {
-    public int CompanyProfileID { get; set; }
+    public Guid CompanyProfileID { get; set; }
     public string FirmName { get; set; }
     public string FirmHead { get; set; }
     public DateTime CompletionDate { get; set; }

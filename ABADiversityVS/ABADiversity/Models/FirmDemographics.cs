@@ -1,3 +1,5 @@
+using System;
+
 namespace ABADiversityClient.Models
 {
   public class FirmDemographics
@@ -10,7 +12,7 @@ namespace ABADiversityClient.Models
     public int Counsels { get; set; }
     public int OtherLawyers { get; set; }
 
-    public int CompanyProfileID { get; set; }
+    public Guid CompanyProfileID { get; set; }
   }
 
 }

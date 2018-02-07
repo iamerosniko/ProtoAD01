@@ -1,3 +1,5 @@
+using System;
+
 namespace ABADiversityClient.Models
 {
   public class HighCompensatedPartners
@@ -6,6 +8,6 @@ namespace ABADiversityClient.Models
     public string Race { get; set; }
     public int Men { get; set; }
     public int Women { get; set; }
-    public int CompanyProfileID { get; set; }
+    public Guid CompanyProfileID { get; set; }
   }
 }

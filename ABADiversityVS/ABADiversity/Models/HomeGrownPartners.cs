@@ -1,3 +1,5 @@
+using System;
+
 namespace ABADiversityClient.Models
 {
   public class HomegrownPartners
@@ -9,6 +11,6 @@ namespace ABADiversityClient.Models
     public int LGBT { get; set; }
     public int Disabled { get; set; }
 
-    public int CompanyProfileID { get; set; }
+    public Guid CompanyProfileID { get; set; }
   }
 }

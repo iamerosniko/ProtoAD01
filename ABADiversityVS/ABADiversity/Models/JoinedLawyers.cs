@@ -1,3 +1,5 @@
+using System;
+
 namespace ABADiversityClient.Models
 {
   public class JoinedLawyers
@@ -9,6 +11,6 @@ namespace ABADiversityClient.Models
     public int Associates { get; set; }
     public int Counsels { get; set; }
     public int OtherLawyers { get; set; }
-    public int CompanyProfileID { get; set; }
+    public Guid CompanyProfileID { get; set; }
   }
 }

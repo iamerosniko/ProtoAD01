@@ -1,3 +1,5 @@
+using System;
+
 namespace ABADiversityClient.Models
 {
   public class FirmInitiatives
@@ -7,6 +9,6 @@ namespace ABADiversityClient.Models
     public int InitiativeQuestionID { get; set; }
     public bool IfYes { get; set; }
     public string Comments { get; set; }
-    public int CompanyProfileID { get; set; }
+    public Guid CompanyProfileID { get; set; }
   }
 }
