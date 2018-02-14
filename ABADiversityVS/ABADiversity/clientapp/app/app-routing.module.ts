@@ -11,18 +11,21 @@ import { RedirectingComponent } from './views/others/redirecting/redirecting.com
 
 import { AuthGuard } from './auth-guard.services';
 const routes: Routes = [
-  { path: '', redirectTo:'/Survey', pathMatch:"full" },
-  { path: 'Reports', component : ReportsComponent },
-  { path: 'Survey', component : SurveysComponent},
+  // { path: '', redirectTo:'/Survey', pathMatch:"full" },
+  // { path: 'Reports', component : ReportsComponent },
+  // { path: 'Survey', component : SurveysComponent},
+ 
+
+  { path: '', redirectTo:'/Login', pathMatch:"full" },
+  { path: 'Login', component:LoginComponent},
   { path: 'Redirecting', component : RedirectingComponent},
   { path: 'Logout', component:LogoutComponent},
-  { path: 'Login', component:LoginComponent},
   { path: 'Noaccess', component:NoaccessComponent},
-  { path: '**', redirectTo :'/Survey' }
-  // { path: '', redirectTo:'/Login', pathMatch:"full" },
-  // { path: '**', redirectTo :'/Login' }
-  // { path: 'Survey', component : SurveysComponent, canActivate:[AuthGuard] },
-  // { path: 'Reports', component : ReportsComponent, canActivate:[AuthGuard] },
+  { path: '**', redirectTo :'/Survey' },
+  { path: 'Survey', component : SurveysComponent, canActivate:[AuthGuard] },
+  { path: 'Reports', component : ReportsComponent, canActivate:[AuthGuard] },
+
+  { path: '**', redirectTo :'/Login' },
 ];
 
 @NgModule({

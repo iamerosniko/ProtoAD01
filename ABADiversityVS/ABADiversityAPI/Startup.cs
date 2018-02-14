@@ -76,6 +76,7 @@ namespace ABADiversityAPI
       }
       catch (Exception ex)
       {
+        
         System.Diagnostics.Debug.WriteLine(ex, "Failed to migrate or seed database");
       }
 

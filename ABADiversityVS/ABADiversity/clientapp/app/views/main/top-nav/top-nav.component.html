@@ -9,7 +9,7 @@
         <li [routerLinkActive]="['active']" role="presentation"><a [routerLink]="['./Reports']">Reports</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-user-circle"></i>&nbsp;Hello, Albert Rick Martires</a></li>
+        <li><a href="#"><i class="fa fa-user-circle"></i>&nbsp;Hello, {{currentUser.FirstName+' '+currentUser.LastName}}</a></li>
       </ul>
     </div>
   </div> 

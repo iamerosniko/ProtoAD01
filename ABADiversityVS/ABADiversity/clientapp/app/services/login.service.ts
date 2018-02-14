@@ -9,32 +9,32 @@ export class LoginService {
   }
 
   getCurrentToken(){
-    this.api.apiUrl=ClientApiSettings.GETAPIURL("GetCurrentToken");
+    this.api.apiUrl=ClientApiSettings.GETCLIENTAPIURL("GetCurrentToken");
     var res = this.api.getAll()
     return res;
   }
 
   GetAuthenticationToken(){
-    this.api.apiUrl=ClientApiSettings.GETAPIURL("ProvideAuthenticationToken");
+    this.api.apiUrl=ClientApiSettings.GETCLIENTAPIURL("ProvideAuthenticationToken");
     var res = this.api.getAll()
     // console.log(<MyToken>res);
     return res;
   }
 
   GetAuthorizationToken(){
-    this.api.apiUrl=ClientApiSettings.GETAPIURL("ProvideAuthorizationToken");
+    this.api.apiUrl=ClientApiSettings.GETCLIENTAPIURL("ProvideAuthorizationToken");
     var res = this.api.getAll()
     // console.log(<MyToken>res);
     return res;
   }
 
   Logout(){
-    this.api.apiUrl=ClientApiSettings.GETAPIURL("Logout");
+    this.api.apiUrl=ClientApiSettings.GETCLIENTAPIURL("Logout");
     this.api.getAll();
   }
   
   GetCurrentUser(token:string){
-    this.api.apiUrl=ClientApiSettings.GETAPIURL("TokenToRoles");
+    this.api.apiUrl=ClientApiSettings.GETCLIENTAPIURL("TokenToDetails");
     var token1 = {'Token':token}
     var currentUser = this.api.postData(JSON.stringify(token1));
 
