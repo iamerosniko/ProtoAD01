@@ -8,3 +8,4 @@ C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversityAPI\obj\A
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversityAPI\obj\Any CPU\Debug\netcoreapp2.0\ABADiversityAPI.AssemblyInfo.cs
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversityAPI\obj\Any CPU\Debug\netcoreapp2.0\ABADiversityAPI.dll
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversityAPI\obj\Any CPU\Debug\netcoreapp2.0\ABADiversityAPI.pdb
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversityAPI\obj\Any CPU\Debug\netcoreapp2.0\ABADiversityAPI.csprojResolveAssemblyReference.cache
