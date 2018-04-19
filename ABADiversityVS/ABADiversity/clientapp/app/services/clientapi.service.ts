@@ -11,7 +11,7 @@ export class ClientApiService {
 
   public authorizedHeader(){
     this.headers=new Headers([
-      {'authorization':'Nearer '+sessionStorage.getItem('Cache1')},
+      {'authorization':'Bearer '+sessionStorage.getItem('Cache1')},
       {'Content-Type': 'application/json'}
     ]);
   }
