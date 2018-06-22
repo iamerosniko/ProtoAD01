@@ -16,16 +16,16 @@ const routes: Routes = [
   // { path: 'Survey', component : SurveysComponent},
  
 
-  { path: '', redirectTo:'/Login', pathMatch:"full" },
+  { path: '', redirectTo:'/Survey', pathMatch:"full" },
   { path: 'Login', component:LoginComponent},
   { path: 'Redirecting', component : RedirectingComponent},
   { path: 'Logout', component:LogoutComponent},
   { path: 'Noaccess', component:NoaccessComponent},
   { path: '**', redirectTo :'/Survey' },
-  { path: 'Survey', component : SurveysComponent, canActivate:[AuthGuard] },
+  { path: 'Survey', component : SurveysComponent},
   { path: 'Reports', component : ReportsComponent, canActivate:[AuthGuard] },
 
-  { path: '**', redirectTo :'/Login' },
+  { path: '**', redirectTo :'/Survey' },
 ];
 
 @NgModule({
