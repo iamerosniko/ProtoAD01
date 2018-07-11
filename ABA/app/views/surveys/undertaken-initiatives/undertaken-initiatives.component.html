@@ -1,0 +1,350 @@
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm col-md-12">Firm has a written diversity strategy that has been communicated to all firm attorneys.</label>
+      <ul class="nav">
+        <li id="q1" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb1yesclick()" value="Yes" name="q1"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb1noclick()" value="No" name="q1"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb1Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm gives billable credit for work that is directly related to diversity efforts (but is not pro bonowork).</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb2yesclick()" value="Yes" name="q2"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb2noclick()" value="No" name="q2"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb2Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <label class="control-label input-sm">Firm ties a component of partner compensation to diversity efforts.</label>
+      <ul class="nav">
+        <li id="q2" class="input-group">
+            <div class="row">
+              <div class="col-md-1">
+                <label class="control-label input-sm"><input type="radio" (click)="rdb3yesclick()" value="Yes" name="q3"/>&nbsp;Yes</label>
+              </div>
+              <div class="col-md-1">
+                <label class="control-label input-sm"><input type="radio" (click)="rdb3noclick()" value="No" name="q3"/>&nbsp;No</label>
+              </div>
+              <div class="col-md-10">
+                <input type="text" [disabled]="rdb3Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              </div>
+            </div>
+        </li>
+      </ul>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm has a diversity committee that includes senior partners and that reports to the firm’s highest governing body.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb4yesclick()" value="Yes" name="q4"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb4noclick()" value="No" name="q4"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb4Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- Firm has a written diversity strategy that has been communicated to all firm attorneys. -->
+    <label class="control-label input-sm">Firm has a full or part-time diversity professional who performs diversity-related tasks.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb5yesclick()" value="Yes" name="q5"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb5noclick()" value="No" name="q5"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb5Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm has affinity or employee resource groups for its diverse/minority (as defined in instructions) attorneys, which meet at least quarterly.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb6yesclick()" value="Yes" name="q6"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb6noclick()" value="No" name="q6"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb6Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm has a succession plan that specifically emphasizes greater inclusion of diverse/minority (as defined in instructions) lawyers.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb7yesclick()" value="Yes" name="q7"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb7noclick()" value="No" name="q7"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb7Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm mandates and monitors that minority and women attorneys have equal access to clients, quality work assignments, committee appointments, marketing efforts and firm events.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb8yesclick()" value="Yes" name="q8"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb8noclick()" value="No" name="q8"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb8Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm requires inclusion of at least one diverse/minority (as defined in instructions) candidate in all hiring decisions.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb9yesclick()" value="Yes" name="q9"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb9noclick()" value="No" name="q9"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb9Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm policy specifically prohibits discrimination based on disability, sexual orientation, gender identity, and gender expression.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb10yesclick()" value="Yes" name="q10"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb10noclick()" value="No" name="q10"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb10Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm provides opportunity for attorneys to voluntarily disclose their disability and sexual orientation, gender identity, and gender expression through Firm data collection procedures.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb11yesclick()" value="Yes" name="q11"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb11noclick()" value="No" name="q11"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb11Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <label class="control-label input-sm">Firm policy specifically provides for paid maternity leave.</label>
+      <ul class="nav">
+        <li id="q2" class="input-group">
+            <div class="row">
+              <div class="col-md-1">
+                <label class="control-label input-sm"><input type="radio" (click)="rdb12yesclick()" value="Yes" name="q12"/>&nbsp;Yes</label>
+              </div>
+              <div class="col-md-1">
+                <label class="control-label input-sm"><input type="radio" (click)="rdb12noclick()" value="No" name="q12"/>&nbsp;No</label>
+              </div>
+              <div class="col-md-10">
+                <input type="text" [disabled]="rdb12Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              </div>
+            </div>
+        </li>
+      </ul>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm policy specifically provides for paid paternity leave.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb13yesclick()" value="Yes" name="q13"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb13noclick()" value="No" name="q13"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb13Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm has a formal, written part-time policy that permits partners to be part-time.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb14yesclick()" value="Yes" name="q14"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb14noclick()" value="No" name="q14"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb14Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm has a flex-time policy.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb15yesclick()" value="Yes" name="q15"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb15noclick()" value="No" name="q15"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb15Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm provides for or mandates diversity training for all lawyers and staff.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb16yesclick()" value="Yes" name="q16"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb16noclick()" value="No" name="q16"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb16Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="control-label input-sm">Firm has a supplier diversity program.</label>
+    <ul class="nav">
+      <li id="q2" class="input-group">
+          <div class="row">
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb17yesclick()" value="Yes" name="q17"/>&nbsp;Yes</label>
+            </div>
+            <div class="col-md-1">
+              <label class="control-label input-sm"><input type="radio" (click)="rdb17noclick()" value="No" name="q17"/>&nbsp;No</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [disabled]="rdb17Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <!-- Firm has a written diversity strategy that has been communicated to all firm attorneys. -->
+      <label class="control-label input-sm">Comments:</label>
+      <div class="col-md-12">
+          <textarea id="comments" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Input Comments"></textarea>
+      </div>
+    </div>
+  </div>
