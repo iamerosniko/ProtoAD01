@@ -13,8 +13,8 @@ namespace ABADiversityAPI.Entities
     public string FirmName { get; set; }
     public string FirmHead { get; set; }
     public DateTime CompletionDate { get; set; }
-    public string SurveyContactPerson { get; set; }
-    public string SurveyContactTitle { get; set; }
+    public string SurveyRespondent { get; set; }
+    public string SurveyRespondentTitle { get; set; }
     public string SurveyContactEmail { get; set; }
     public int TotalLawyers { get; set; }
     public int TotalUSLawyers { get; set; }

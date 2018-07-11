@@ -20,3 +20,5 @@ C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debu
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.AssemblyInfo.cs
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.dll
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\obj\Debug\netcoreapp2.0\ABADiversityClient.pdb
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\bin\Debug\netcoreapp2.0\ABADiversityAPI.dll
+C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversity\bin\Debug\netcoreapp2.0\ABADiversityAPI.pdb
