@@ -11,6 +11,13 @@ sizecat?:number;
 firmown?:string;
 catown?:string;
 firmcert?:string;
+certificate?:Certificates[];
 // firmcertdet?:{};
 
+}
+
+export interface Certificates{
+    id?:string,
+    name?:string,
+    dateCert?:Date
 }
