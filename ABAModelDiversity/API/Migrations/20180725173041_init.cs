@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
 namespace API.Migrations
 {
-    public partial class initialtables : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,7 +51,13 @@ namespace API.Migrations
                 columns: table => new
                 {
                     FirmDemographicID = table.Column<Guid>(nullable: false),
-                    CompanyProfileID = table.Column<Guid>(nullable: false)
+                    Associates = table.Column<string>(nullable: true),
+                    CompanyProfileID = table.Column<Guid>(nullable: false),
+                    Counsel = table.Column<string>(nullable: true),
+                    EquityPartners = table.Column<string>(nullable: true),
+                    NonEquityPartners = table.Column<string>(nullable: true),
+                    OtherLawyers = table.Column<string>(nullable: true),
+                    RegionName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -74,7 +81,13 @@ namespace API.Migrations
                 columns: table => new
                 {
                     JoinedLawyerID = table.Column<Guid>(nullable: false),
-                    CompanyProfileID = table.Column<Guid>(nullable: false)
+                    Associates = table.Column<string>(nullable: true),
+                    CompanyProfileID = table.Column<Guid>(nullable: false),
+                    Counsel = table.Column<string>(nullable: true),
+                    EquityPartners = table.Column<string>(nullable: true),
+                    NonEquityPartners = table.Column<string>(nullable: true),
+                    OtherLawyers = table.Column<string>(nullable: true),
+                    RegionName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,8 +98,16 @@ namespace API.Migrations
                 name: "AD_LeadershipDemographics",
                 columns: table => new
                 {
-                    LeadershipDemographicID = table.Column<Guid>(nullable: false),
-                    CompanyProfileID = table.Column<Guid>(nullable: false)
+                    LeadershipDemographicID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CompanyProfileID = table.Column<Guid>(nullable: false),
+                    Disabled = table.Column<string>(nullable: true),
+                    Lgbt = table.Column<string>(nullable: true),
+                    MinorityFemale = table.Column<string>(nullable: true),
+                    MinorityMale = table.Column<string>(nullable: true),
+                    NumberQuestion = table.Column<string>(nullable: true),
+                    WhiteFemale = table.Column<string>(nullable: true),
+                    WhiteMale = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -98,7 +119,13 @@ namespace API.Migrations
                 columns: table => new
                 {
                     LeftLawyerID = table.Column<Guid>(nullable: false),
-                    CompanyProfileID = table.Column<Guid>(nullable: false)
+                    Associates = table.Column<string>(nullable: true),
+                    CompanyProfileID = table.Column<Guid>(nullable: false),
+                    Counsel = table.Column<string>(nullable: true),
+                    EquityPartners = table.Column<string>(nullable: true),
+                    NonEquityPartners = table.Column<string>(nullable: true),
+                    OtherLawyers = table.Column<string>(nullable: true),
+                    RegionName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -110,7 +137,13 @@ namespace API.Migrations
                 columns: table => new
                 {
                     PromotionsAssociatePartnerID = table.Column<Guid>(nullable: false),
-                    CompanyProfileID = table.Column<Guid>(nullable: false)
+                    Associates = table.Column<string>(nullable: true),
+                    CompanyProfileID = table.Column<Guid>(nullable: false),
+                    Counsel = table.Column<string>(nullable: true),
+                    EquityPartners = table.Column<string>(nullable: true),
+                    NonEquityPartners = table.Column<string>(nullable: true),
+                    OtherLawyers = table.Column<string>(nullable: true),
+                    RegionName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,7 +155,13 @@ namespace API.Migrations
                 columns: table => new
                 {
                     ReducedHoursLawyerID = table.Column<Guid>(nullable: false),
-                    CompanyProfileID = table.Column<Guid>(nullable: false)
+                    Associates = table.Column<string>(nullable: true),
+                    CompanyProfileID = table.Column<Guid>(nullable: false),
+                    Counsel = table.Column<string>(nullable: true),
+                    EquityPartners = table.Column<string>(nullable: true),
+                    NonEquityPartners = table.Column<string>(nullable: true),
+                    OtherLawyers = table.Column<string>(nullable: true),
+                    RegionName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -134,7 +173,13 @@ namespace API.Migrations
                 columns: table => new
                 {
                     TopTenHighestCompensationID = table.Column<Guid>(nullable: false),
-                    CompanyProfileID = table.Column<Guid>(nullable: false)
+                    Associates = table.Column<string>(nullable: true),
+                    CompanyProfileID = table.Column<Guid>(nullable: false),
+                    Counsel = table.Column<string>(nullable: true),
+                    EquityPartners = table.Column<string>(nullable: true),
+                    NonEquityPartners = table.Column<string>(nullable: true),
+                    OtherLawyers = table.Column<string>(nullable: true),
+                    RegionName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -187,127 +232,6 @@ namespace API.Migrations
                 {
                     table.PrimaryKey("PK_AD_UntertakenInitiatives", x => x.UndertakenInitiativeID);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "AD_Genders",
-                columns: table => new
-                {
-                    GenderID = table.Column<Guid>(nullable: false),
-                    Disabled = table.Column<string>(nullable: true),
-                    FirmLeadershipID = table.Column<Guid>(nullable: false),
-                    LeadershipDemographicsLeadershipDemographicID = table.Column<Guid>(nullable: true),
-                    Lgbt = table.Column<string>(nullable: true),
-                    MinorityFemale = table.Column<string>(nullable: true),
-                    MinorityMale = table.Column<string>(nullable: true),
-                    NumberQuestion = table.Column<string>(nullable: true),
-                    WhiteFemale = table.Column<string>(nullable: true),
-                    WhiteMale = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AD_Genders", x => x.GenderID);
-                    table.ForeignKey(
-                        name: "FK_AD_Genders_AD_LeadershipDemographics_LeadershipDemographicsLeadershipDemographicID",
-                        column: x => x.LeadershipDemographicsLeadershipDemographicID,
-                        principalTable: "AD_LeadershipDemographics",
-                        principalColumn: "LeadershipDemographicID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AD_Regions",
-                columns: table => new
-                {
-                    RegionID = table.Column<Guid>(nullable: false),
-                    Associates = table.Column<string>(nullable: true),
-                    Counsel = table.Column<string>(nullable: true),
-                    EquityPartners = table.Column<string>(nullable: true),
-                    FirmDemographicsFirmDemographicID = table.Column<Guid>(nullable: true),
-                    JoinedLawyersJoinedLawyerID = table.Column<Guid>(nullable: true),
-                    LeftLawyersLeftLawyerID = table.Column<Guid>(nullable: true),
-                    MasterID = table.Column<Guid>(nullable: false),
-                    NonEquityPartners = table.Column<string>(nullable: true),
-                    OtherLawyers = table.Column<string>(nullable: true),
-                    PromotionsAssociatePartnersPromotionsAssociatePartnerID = table.Column<Guid>(nullable: true),
-                    ReducedHoursLawyersReducedHoursLawyerID = table.Column<Guid>(nullable: true),
-                    RegionName = table.Column<string>(nullable: true),
-                    TopTenHighestCompensationsTopTenHighestCompensationID = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AD_Regions", x => x.RegionID);
-                    table.ForeignKey(
-                        name: "FK_AD_Regions_AD_FirmDemographics_FirmDemographicsFirmDemographicID",
-                        column: x => x.FirmDemographicsFirmDemographicID,
-                        principalTable: "AD_FirmDemographics",
-                        principalColumn: "FirmDemographicID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AD_Regions_AD_JoinedLawyers_JoinedLawyersJoinedLawyerID",
-                        column: x => x.JoinedLawyersJoinedLawyerID,
-                        principalTable: "AD_JoinedLawyers",
-                        principalColumn: "JoinedLawyerID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AD_Regions_AD_LeftLawyers_LeftLawyersLeftLawyerID",
-                        column: x => x.LeftLawyersLeftLawyerID,
-                        principalTable: "AD_LeftLawyers",
-                        principalColumn: "LeftLawyerID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AD_Regions_AD_PromotionsAssociatePartners_PromotionsAssociatePartnersPromotionsAssociatePartnerID",
-                        column: x => x.PromotionsAssociatePartnersPromotionsAssociatePartnerID,
-                        principalTable: "AD_PromotionsAssociatePartners",
-                        principalColumn: "PromotionsAssociatePartnerID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AD_Regions_AD_ReducedHoursLawyers_ReducedHoursLawyersReducedHoursLawyerID",
-                        column: x => x.ReducedHoursLawyersReducedHoursLawyerID,
-                        principalTable: "AD_ReducedHoursLawyers",
-                        principalColumn: "ReducedHoursLawyerID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AD_Regions_AD_TopTenHighestCompensations_TopTenHighestCompensationsTopTenHighestCompensationID",
-                        column: x => x.TopTenHighestCompensationsTopTenHighestCompensationID,
-                        principalTable: "AD_TopTenHighestCompensations",
-                        principalColumn: "TopTenHighestCompensationID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AD_Genders_LeadershipDemographicsLeadershipDemographicID",
-                table: "AD_Genders",
-                column: "LeadershipDemographicsLeadershipDemographicID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AD_Regions_FirmDemographicsFirmDemographicID",
-                table: "AD_Regions",
-                column: "FirmDemographicsFirmDemographicID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AD_Regions_JoinedLawyersJoinedLawyerID",
-                table: "AD_Regions",
-                column: "JoinedLawyersJoinedLawyerID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AD_Regions_LeftLawyersLeftLawyerID",
-                table: "AD_Regions",
-                column: "LeftLawyersLeftLawyerID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AD_Regions_PromotionsAssociatePartnersPromotionsAssociatePartnerID",
-                table: "AD_Regions",
-                column: "PromotionsAssociatePartnersPromotionsAssociatePartnerID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AD_Regions_ReducedHoursLawyersReducedHoursLawyerID",
-                table: "AD_Regions",
-                column: "ReducedHoursLawyersReducedHoursLawyerID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AD_Regions_TopTenHighestCompensationsTopTenHighestCompensationID",
-                table: "AD_Regions",
-                column: "TopTenHighestCompensationsTopTenHighestCompensationID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -319,25 +243,16 @@ namespace API.Migrations
                 name: "AD_CompanyProfiles");
 
             migrationBuilder.DropTable(
-                name: "AD_Firms");
-
-            migrationBuilder.DropTable(
-                name: "AD_Genders");
-
-            migrationBuilder.DropTable(
-                name: "AD_Regions");
-
-            migrationBuilder.DropTable(
-                name: "AD_UntertakenInitiatives");
-
-            migrationBuilder.DropTable(
-                name: "AD_LeadershipDemographics");
-
-            migrationBuilder.DropTable(
                 name: "AD_FirmDemographics");
 
             migrationBuilder.DropTable(
+                name: "AD_Firms");
+
+            migrationBuilder.DropTable(
                 name: "AD_JoinedLawyers");
+
+            migrationBuilder.DropTable(
+                name: "AD_LeadershipDemographics");
 
             migrationBuilder.DropTable(
                 name: "AD_LeftLawyers");
@@ -350,6 +265,9 @@ namespace API.Migrations
 
             migrationBuilder.DropTable(
                 name: "AD_TopTenHighestCompensations");
+
+            migrationBuilder.DropTable(
+                name: "AD_UntertakenInitiatives");
         }
     }
 }

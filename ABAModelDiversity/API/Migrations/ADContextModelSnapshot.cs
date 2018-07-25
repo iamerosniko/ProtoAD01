@@ -75,7 +75,19 @@ namespace API.Migrations
                     b.Property<Guid>("FirmDemographicID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Associates");
+
                     b.Property<Guid>("CompanyProfileID");
+
+                    b.Property<string>("Counsel");
+
+                    b.Property<string>("EquityPartners");
+
+                    b.Property<string>("NonEquityPartners");
+
+                    b.Property<string>("OtherLawyers");
+
+                    b.Property<string>("RegionName");
 
                     b.HasKey("FirmDemographicID");
 
@@ -94,16 +106,38 @@ namespace API.Migrations
                     b.ToTable("AD_Firms");
                 });
 
-            modelBuilder.Entity("API.Tables.Genders", b =>
+            modelBuilder.Entity("API.Tables.JoinedLawyers", b =>
                 {
-                    b.Property<Guid>("GenderID")
+                    b.Property<Guid>("JoinedLawyerID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Associates");
+
+                    b.Property<Guid>("CompanyProfileID");
+
+                    b.Property<string>("Counsel");
+
+                    b.Property<string>("EquityPartners");
+
+                    b.Property<string>("NonEquityPartners");
+
+                    b.Property<string>("OtherLawyers");
+
+                    b.Property<string>("RegionName");
+
+                    b.HasKey("JoinedLawyerID");
+
+                    b.ToTable("AD_JoinedLawyers");
+                });
+
+            modelBuilder.Entity("API.Tables.LeadershipDemographics", b =>
+                {
+                    b.Property<int>("LeadershipDemographicID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CompanyProfileID");
+
                     b.Property<string>("Disabled");
-
-                    b.Property<Guid>("FirmLeadershipID");
-
-                    b.Property<Guid?>("LeadershipDemographicsLeadershipDemographicID");
 
                     b.Property<string>("Lgbt");
 
@@ -117,32 +151,6 @@ namespace API.Migrations
 
                     b.Property<string>("WhiteMale");
 
-                    b.HasKey("GenderID");
-
-                    b.HasIndex("LeadershipDemographicsLeadershipDemographicID");
-
-                    b.ToTable("AD_Genders");
-                });
-
-            modelBuilder.Entity("API.Tables.JoinedLawyers", b =>
-                {
-                    b.Property<Guid>("JoinedLawyerID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("CompanyProfileID");
-
-                    b.HasKey("JoinedLawyerID");
-
-                    b.ToTable("AD_JoinedLawyers");
-                });
-
-            modelBuilder.Entity("API.Tables.LeadershipDemographics", b =>
-                {
-                    b.Property<Guid>("LeadershipDemographicID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("CompanyProfileID");
-
                     b.HasKey("LeadershipDemographicID");
 
                     b.ToTable("AD_LeadershipDemographics");
@@ -153,7 +161,19 @@ namespace API.Migrations
                     b.Property<Guid>("LeftLawyerID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Associates");
+
                     b.Property<Guid>("CompanyProfileID");
+
+                    b.Property<string>("Counsel");
+
+                    b.Property<string>("EquityPartners");
+
+                    b.Property<string>("NonEquityPartners");
+
+                    b.Property<string>("OtherLawyers");
+
+                    b.Property<string>("RegionName");
 
                     b.HasKey("LeftLawyerID");
 
@@ -165,7 +185,19 @@ namespace API.Migrations
                     b.Property<Guid>("PromotionsAssociatePartnerID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Associates");
+
                     b.Property<Guid>("CompanyProfileID");
+
+                    b.Property<string>("Counsel");
+
+                    b.Property<string>("EquityPartners");
+
+                    b.Property<string>("NonEquityPartners");
+
+                    b.Property<string>("OtherLawyers");
+
+                    b.Property<string>("RegionName");
 
                     b.HasKey("PromotionsAssociatePartnerID");
 
@@ -177,59 +209,23 @@ namespace API.Migrations
                     b.Property<Guid>("ReducedHoursLawyerID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("CompanyProfileID");
-
-                    b.HasKey("ReducedHoursLawyerID");
-
-                    b.ToTable("AD_ReducedHoursLawyers");
-                });
-
-            modelBuilder.Entity("API.Tables.Regions", b =>
-                {
-                    b.Property<Guid>("RegionID")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<string>("Associates");
+
+                    b.Property<Guid>("CompanyProfileID");
 
                     b.Property<string>("Counsel");
 
                     b.Property<string>("EquityPartners");
 
-                    b.Property<Guid?>("FirmDemographicsFirmDemographicID");
-
-                    b.Property<Guid?>("JoinedLawyersJoinedLawyerID");
-
-                    b.Property<Guid?>("LeftLawyersLeftLawyerID");
-
-                    b.Property<Guid>("MasterID");
-
                     b.Property<string>("NonEquityPartners");
 
                     b.Property<string>("OtherLawyers");
 
-                    b.Property<Guid?>("PromotionsAssociatePartnersPromotionsAssociatePartnerID");
-
-                    b.Property<Guid?>("ReducedHoursLawyersReducedHoursLawyerID");
-
                     b.Property<string>("RegionName");
 
-                    b.Property<Guid?>("TopTenHighestCompensationsTopTenHighestCompensationID");
+                    b.HasKey("ReducedHoursLawyerID");
 
-                    b.HasKey("RegionID");
-
-                    b.HasIndex("FirmDemographicsFirmDemographicID");
-
-                    b.HasIndex("JoinedLawyersJoinedLawyerID");
-
-                    b.HasIndex("LeftLawyersLeftLawyerID");
-
-                    b.HasIndex("PromotionsAssociatePartnersPromotionsAssociatePartnerID");
-
-                    b.HasIndex("ReducedHoursLawyersReducedHoursLawyerID");
-
-                    b.HasIndex("TopTenHighestCompensationsTopTenHighestCompensationID");
-
-                    b.ToTable("AD_Regions");
+                    b.ToTable("AD_ReducedHoursLawyers");
                 });
 
             modelBuilder.Entity("API.Tables.TopTenHighestCompensations", b =>
@@ -237,7 +233,19 @@ namespace API.Migrations
                     b.Property<Guid>("TopTenHighestCompensationID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Associates");
+
                     b.Property<Guid>("CompanyProfileID");
+
+                    b.Property<string>("Counsel");
+
+                    b.Property<string>("EquityPartners");
+
+                    b.Property<string>("NonEquityPartners");
+
+                    b.Property<string>("OtherLawyers");
+
+                    b.Property<string>("RegionName");
 
                     b.HasKey("TopTenHighestCompensationID");
 
@@ -324,40 +332,6 @@ namespace API.Migrations
                     b.HasKey("UndertakenInitiativeID");
 
                     b.ToTable("AD_UntertakenInitiatives");
-                });
-
-            modelBuilder.Entity("API.Tables.Genders", b =>
-                {
-                    b.HasOne("API.Tables.LeadershipDemographics")
-                        .WithMany("Genders")
-                        .HasForeignKey("LeadershipDemographicsLeadershipDemographicID");
-                });
-
-            modelBuilder.Entity("API.Tables.Regions", b =>
-                {
-                    b.HasOne("API.Tables.FirmDemographics")
-                        .WithMany("Regions")
-                        .HasForeignKey("FirmDemographicsFirmDemographicID");
-
-                    b.HasOne("API.Tables.JoinedLawyers")
-                        .WithMany("Regions")
-                        .HasForeignKey("JoinedLawyersJoinedLawyerID");
-
-                    b.HasOne("API.Tables.LeftLawyers")
-                        .WithMany("Regions")
-                        .HasForeignKey("LeftLawyersLeftLawyerID");
-
-                    b.HasOne("API.Tables.PromotionsAssociatePartners")
-                        .WithMany("Regions")
-                        .HasForeignKey("PromotionsAssociatePartnersPromotionsAssociatePartnerID");
-
-                    b.HasOne("API.Tables.ReducedHoursLawyers")
-                        .WithMany("Regions")
-                        .HasForeignKey("ReducedHoursLawyersReducedHoursLawyerID");
-
-                    b.HasOne("API.Tables.TopTenHighestCompensations")
-                        .WithMany("Regions")
-                        .HasForeignKey("TopTenHighestCompensationsTopTenHighestCompensationID");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,15 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Tables
 {
   [Table("AD_UntertakenInitiatives")]
-
   public class UndertakenInitiatives
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid UndertakenInitiativeID { get; set; }
-
     public Guid CompanyProfileID { get; set; }
-
     public string Answer1 { get; set; }
     public string Answer2 { get; set; }
     public string Answer3 { get; set; }
@@ -31,7 +28,6 @@ namespace API.Tables
     public string Answer15 { get; set; }
     public string Answer16 { get; set; }
     public string Answer17 { get; set; }
-
     public string Comment1 { get; set; }
     public string Comment2 { get; set; }
     public string Comment3 { get; set; }
@@ -49,7 +45,6 @@ namespace API.Tables
     public string Comment15 { get; set; }
     public string Comment16 { get; set; }
     public string Comment17 { get; set; }
-
     public string MainComment { get; set; }
 
   }

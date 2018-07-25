@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Tables
 {
   [Table("AD_Firms")]
-
   public class Firms
   {
     [Key]
