@@ -27,21 +27,22 @@ namespace API.Controllers
 
     // GET: api/Certificates/5
     [HttpGet("{companyProfileID}")]
-    public IActionResult GetCertificates([FromRoute] Guid companyProfileID)
+    //public IEnumerable<Certificates> GetCertificates([FromRoute] Guid companyProfileID)
+    public IEnumerable<Certificates> GetCertificates([FromRoute] Guid companyProfileID)
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest(ModelState);
+        return null;
       }
 
       var certificates = _context.Certificates.Where(m => m.CompanyProfileID == companyProfileID);
 
       if (certificates == null)
       {
-        return NotFound();
+        return null;
       }
 
-      return Ok(certificates);
+      return certificates;
     }
 
     // PUT: api/Certificates/5

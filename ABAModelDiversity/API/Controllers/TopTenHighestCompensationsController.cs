@@ -27,21 +27,21 @@ namespace API.Controllers
 
     // GET: api/TopTenHighestCompensations/5
     [HttpGet("{companyProfileID}")]
-    public IActionResult GetTopTenHighestCompensations([FromRoute] Guid companyProfileID)
+    public IEnumerable<TopTenHighestCompensations> GetTopTenHighestCompensations([FromRoute] Guid companyProfileID)
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest(ModelState);
+        return null;
       }
 
       var topTenHighestCompensations = _context.TopTenHighestCompensations.Where(m => m.CompanyProfileID == companyProfileID);
 
       if (topTenHighestCompensations == null)
       {
-        return NotFound();
+        return null;
       }
 
-      return Ok(topTenHighestCompensations);
+      return topTenHighestCompensations;
     }
 
     // PUT: api/TopTenHighestCompensations/5

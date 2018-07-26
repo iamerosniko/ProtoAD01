@@ -1,6 +1,9 @@
 using API.DTO;
 using API.Tables;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -58,6 +61,56 @@ namespace API.Controllers
       var cp = await companyProfilesController.PostCompanyProfiles(survey.CompanyProfile);
       var ui = await undertakenInitiativesController.PostUndertakenInitiatives(survey.UndertakenInitiatives);
 
+      return Ok();
+    }
+
+    [HttpGet("GetYears/{firmID}")]
+    public IActionResult GetYears([FromRoute] Guid firmID)
+    {
+      var companyProfiles = companyProfilesController.GetCompanyProfiles(firmID);
+      return Ok(companyProfiles);
+    }
+
+    [HttpGet("GetSurvey/{companyID}")]
+    public async Task<IActionResult> GetSurvey([FromRoute] Guid companyID)
+    {
+      try
+      {
+        var companyProfile = await _context.CompanyProfiles.SingleOrDefaultAsync(m => m.CompanyProfileID == companyID);
+        //if (companyProfile == null)
+        //{
+        //  return NotFound();
+        //}
+        var fd = firmDemographicsController.GetFirmDemographics(companyID);
+        var jl = joinedLawyersController.GetJoinedLawyers(companyID);
+        var ll = leftLawyersController.GetLeftLawyers(companyID);
+        var pap = promotionsAssociatePartnersController.GetPromotionsAssociatePartners(companyID);
+        var rhl = reducedHoursLawyersController.GetReducedHoursLawyers(companyID);
+        var thc = topTenHighestCompensationsController.GetTopTenHighestCompensations(companyID);
+        var cert = certificatesController.GetCertificates(companyID);
+        var ld = leadershipDemographicsController.GetLeadershipDemographics(companyID);
+        var ui = await undertakenInitiativesController.GetUndertakenInitiatives(companyID);
+
+        Survey survey = new Survey
+        {
+          Certificates = cert.ToList(),
+          FirmDemographics = fd.ToList(),
+          JoinedLawyers = jl.ToList(),
+          LeftLawyers = ll.ToList(),
+          PromotionsAssociatePartners = pap.ToList(),
+          ReducedHoursLawyers = rhl.ToList(),
+          TopTenHighestCompensations = thc.ToList(),
+          LeadershipDemographics = ld.ToList(),
+          UndertakenInitiatives = ui
+
+        };
+
+        return Ok(survey);
+      }
+      catch (Exception ex)
+      {
+        System.Diagnostics.Debug.Write(ex.ToString());
+      }
       return Ok();
     }
   }

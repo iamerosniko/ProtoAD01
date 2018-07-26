@@ -1,0 +1,39 @@
+{
+    "firm": null,
+    "companyProfile": null,
+    "undertakenInitiatives": null,
+    "firmDemographics": [],
+    "joinedLawyers": [],
+    "leadershipDemographics": [],
+    "leftLawyers": [],
+    "promotionsAssociatePartners": [],
+    "reducedHoursLawyers": [],
+    "certificates": [
+        {
+            "certificateID": "8c5af45b-d446-40d9-9c0e-12e17d646308",
+            "companyProfileID": "1de4dcbf-de17-4dd5-a756-8997547dd2b5",
+            "name": "Alvarez",
+            "dateCert": "2018-07-27T00:00:00"
+        },
+        {
+            "certificateID": "5f505670-c74d-4a10-8161-7cd7c8dfd9f1",
+            "companyProfileID": "1de4dcbf-de17-4dd5-a756-8997547dd2b5",
+            "name": "Eros",
+            "dateCert": "2018-07-27T00:00:00"
+        },
+        {
+            "certificateID": "17be33ef-fe5a-4f30-9b34-915c99a3d652",
+            "companyProfileID": "1de4dcbf-de17-4dd5-a756-8997547dd2b5",
+            "name": "Niko",
+            "dateCert": "2018-07-27T00:00:00"
+        },
+        {
+            "certificateID": "cdc82181-8e97-4c96-b2bc-bd8abd1bcd37",
+            "companyProfileID": "1de4dcbf-de17-4dd5-a756-8997547dd2b5",
+            "name": "Cas",
+            "dateCert": "2018-07-27T00:00:00"
+        }
+    ],
+    "topTenHighestCompensations": [],
+    "isNewFIrm": false
+}

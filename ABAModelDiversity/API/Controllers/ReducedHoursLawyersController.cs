@@ -27,21 +27,21 @@ namespace API.Controllers
 
     // GET: api/ReducedHoursLawyers/5
     [HttpGet("{companyProfileID}")]
-    public IActionResult GetReducedHoursLawyers([FromRoute] Guid companyProfileID)
+    public IEnumerable<ReducedHoursLawyers> GetReducedHoursLawyers([FromRoute] Guid companyProfileID)
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest(ModelState);
+        return null;
       }
 
       var reducedHoursLawyers = _context.ReducedHoursLawyers.Where(m => m.CompanyProfileID == companyProfileID);
 
       if (reducedHoursLawyers == null)
       {
-        return NotFound();
+        return null;
       }
 
-      return Ok(reducedHoursLawyers);
+      return reducedHoursLawyers;
     }
 
     // PUT: api/ReducedHoursLawyers/5

@@ -10,6 +10,7 @@ namespace API.Tables
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid CompanyProfileID { get; set; }
+    public Guid FirmID { get; set; }
     public string Firmname { get; set; }
     public string Firmhead { get; set; }
     public DateTime Datecomp { get; set; }

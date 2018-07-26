@@ -27,21 +27,21 @@ namespace API.Controllers
 
     // GET: api/LeadershipDemographics/5
     [HttpGet("{companyProfileID}")]
-    public IActionResult GetLeadershipDemographics([FromRoute] Guid companyProfileID)
+    public IEnumerable<LeadershipDemographics> GetLeadershipDemographics([FromRoute] Guid companyProfileID)
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest(ModelState);
+        return null;
       }
 
       var leadershipDemographics = _context.LeadershipDemographics.Where(m => m.CompanyProfileID == companyProfileID);
 
       if (leadershipDemographics == null)
       {
-        return NotFound();
+        return null;
       }
 
-      return Ok(leadershipDemographics);
+      return leadershipDemographics;
     }
 
     // PUT: api/LeadershipDemographics/5

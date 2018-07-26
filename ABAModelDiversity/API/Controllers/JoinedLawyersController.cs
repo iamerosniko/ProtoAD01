@@ -27,21 +27,21 @@ namespace API.Controllers
 
     // GET: api/JoinedLawyers/5
     [HttpGet("{companyProfileID}")]
-    public IActionResult GetJoinedLawyers([FromRoute] Guid companyProfileID)
+    public IEnumerable<JoinedLawyers> GetJoinedLawyers([FromRoute] Guid companyProfileID)
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest(ModelState);
+        return null;
       }
 
       var joinedLawyers = _context.JoinedLawyers.Where(m => m.CompanyProfileID == companyProfileID);
 
       if (joinedLawyers == null)
       {
-        return NotFound();
+        return null;
       }
 
-      return Ok(joinedLawyers);
+      return joinedLawyers;
     }
 
     // PUT: api/JoinedLawyers/5

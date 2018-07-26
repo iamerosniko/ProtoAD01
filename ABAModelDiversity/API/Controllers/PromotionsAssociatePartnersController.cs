@@ -27,21 +27,21 @@ namespace API.Controllers
 
     // GET: api/PromotionsAssociatePartners/5
     [HttpGet("{companyProfileID}")]
-    public IActionResult GetPromotionsAssociatePartners([FromRoute] Guid companyProfileID)
+    public IEnumerable<PromotionsAssociatePartners> GetPromotionsAssociatePartners([FromRoute] Guid companyProfileID)
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest(ModelState);
+        return null;
       }
 
       var promotionsAssociatePartners = _context.PromotionsAssociatePartners.Where(m => m.CompanyProfileID == companyProfileID);
 
       if (promotionsAssociatePartners == null)
       {
-        return NotFound();
+        return null;
       }
 
-      return Ok(promotionsAssociatePartners);
+      return promotionsAssociatePartners;
     }
 
     // PUT: api/PromotionsAssociatePartners/5
