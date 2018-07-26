@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,7 +11,6 @@ namespace BW.Controllers
   {
 
     private string _apiURL;
-    private string _apiToken;
     private HttpClient _client;
     // GET: api/Default
     [HttpGet]
@@ -39,7 +37,7 @@ namespace BW.Controllers
 
         return null;
       }
-      catch (Exception ex)
+      catch
       {
         return null;
       }

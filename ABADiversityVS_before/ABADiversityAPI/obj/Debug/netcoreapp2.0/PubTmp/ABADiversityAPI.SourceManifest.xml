@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<sitemanifest>
-  <IisApp path="C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversityAPI\obj\Debug\netcoreapp2.0\PubTmp\Out\" />
-  <dbfullsql path="C:\Users\alverer\Documents\GitHub\ProtoAD01\ABADiversityVS\ABADiversityAPI\obj\Debug\netcoreapp2.0\PubTmp\EFSQLScripts\ABADiversityAPI.Entities.ABAContext.sql" />
-</sitemanifest>

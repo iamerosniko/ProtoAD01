@@ -9,3 +9,14 @@ C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netco
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\bin\Debug\netcoreapp2.0\BW.pdb
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.dll
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.pdb
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\bin\Debug\netcoreapp2.0\BW.deps.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\bin\Debug\netcoreapp2.0\BW.runtimeconfig.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\bin\Debug\netcoreapp2.0\BW.runtimeconfig.dev.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\bin\Debug\netcoreapp2.0\BW.dll
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\bin\Debug\netcoreapp2.0\BW.pdb
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.csprojResolveAssemblyReference.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.csproj.CoreCompileInputs.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.AssemblyInfoInputs.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.AssemblyInfo.cs
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.dll
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\BW\obj\Debug\netcoreapp2.0\BW.pdb

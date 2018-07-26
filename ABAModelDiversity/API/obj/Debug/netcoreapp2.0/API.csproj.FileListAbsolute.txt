@@ -9,3 +9,14 @@ C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netc
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.dll
 C:\Users\alverer\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.pdb
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\bin\Debug\netcoreapp2.0\API.deps.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.dev.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\bin\Debug\netcoreapp2.0\API.dll
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\bin\Debug\netcoreapp2.0\API.pdb
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.csprojResolveAssemblyReference.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.csproj.CoreCompileInputs.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.AssemblyInfoInputs.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.dll
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\ABAModelDiversity\API\obj\Debug\netcoreapp2.0\API.pdb
