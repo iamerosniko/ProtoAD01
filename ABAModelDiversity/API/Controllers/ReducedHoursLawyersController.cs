@@ -38,7 +38,7 @@ namespace API.Controllers
 
       if (reducedHoursLawyers == null)
       {
-        return null;
+        return new List<ReducedHoursLawyers>();
       }
 
       return reducedHoursLawyers;

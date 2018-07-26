@@ -38,7 +38,7 @@ namespace API.Controllers
 
       if (topTenHighestCompensations == null)
       {
-        return null;
+        return new List<TopTenHighestCompensations>();
       }
 
       return topTenHighestCompensations;

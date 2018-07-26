@@ -93,6 +93,7 @@ namespace API.Controllers
 
         Survey survey = new Survey
         {
+          CompanyProfile = companyProfile,
           Certificates = cert.ToList(),
           FirmDemographics = fd.ToList(),
           JoinedLawyers = jl.ToList(),
@@ -102,9 +103,7 @@ namespace API.Controllers
           TopTenHighestCompensations = thc.ToList(),
           LeadershipDemographics = ld.ToList(),
           UndertakenInitiatives = ui
-
         };
-
         return Ok(survey);
       }
       catch (Exception ex)

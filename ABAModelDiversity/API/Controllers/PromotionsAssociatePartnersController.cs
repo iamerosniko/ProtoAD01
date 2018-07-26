@@ -38,7 +38,7 @@ namespace API.Controllers
 
       if (promotionsAssociatePartners == null)
       {
-        return null;
+        return new List<PromotionsAssociatePartners>();
       }
 
       return promotionsAssociatePartners;

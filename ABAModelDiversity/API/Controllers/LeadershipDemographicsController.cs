@@ -38,7 +38,7 @@ namespace API.Controllers
 
       if (leadershipDemographics == null)
       {
-        return null;
+        return new List<LeadershipDemographics>();
       }
 
       return leadershipDemographics;

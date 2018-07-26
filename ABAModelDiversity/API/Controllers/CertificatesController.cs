@@ -39,7 +39,7 @@ namespace API.Controllers
 
       if (certificates == null)
       {
-        return null;
+        return new List<Certificates>();
       }
 
       return certificates;

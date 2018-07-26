@@ -38,7 +38,7 @@ namespace API.Controllers
 
       if (leftLawyers == null)
       {
-        return null;
+        return new List<LeftLawyers>();
       }
 
       return leftLawyers;
