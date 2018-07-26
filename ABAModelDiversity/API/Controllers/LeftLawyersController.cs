@@ -95,7 +95,25 @@ namespace API.Controllers
     }
 
     // DELETE: api/LeftLawyers/5
+    //[HttpDelete("{id}")]
+    //public async Task<IActionResult> DeleteLeftLawyers([FromRoute] Guid id)
+    //{
+    //  if (!ModelState.IsValid)
+    //  {
+    //    return BadRequest(ModelState);
+    //  }
 
+    //  var leftLawyers = await _context.LeftLawyers.SingleOrDefaultAsync(m => m.LeftLawyerID == id);
+    //  if (leftLawyers == null)
+    //  {
+    //    return NotFound();
+    //  }
+
+    //  _context.LeftLawyers.Remove(leftLawyers);
+    //  await _context.SaveChangesAsync();
+
+    //  return Ok(leftLawyers);
+    //}
 
 
 
