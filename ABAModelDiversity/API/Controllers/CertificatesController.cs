@@ -1,125 +1,123 @@
-﻿using System;
+using API.Tables;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using API.Tables;
 
 namespace API.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Certificates")]
-    public class CertificatesController : Controller
+  [Produces("application/json")]
+  [Route("api/Certificates")]
+  public class CertificatesController : Controller
+  {
+    private readonly ADContext _context;
+
+    public CertificatesController(ADContext context)
     {
-        private readonly ADContext _context;
-
-        public CertificatesController(ADContext context)
-        {
-            _context = context;
-        }
-
-        // GET: api/Certificates
-        [HttpGet]
-        public IEnumerable<Certificates> GetCertificates()
-        {
-            return _context.Certificates;
-        }
-
-        // GET: api/Certificates/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCertificates([FromRoute] Guid id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var certificates = await _context.Certificates.SingleOrDefaultAsync(m => m.CertificateID == id);
-
-            if (certificates == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(certificates);
-        }
-
-        // PUT: api/Certificates/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCertificates([FromRoute] Guid id, [FromBody] Certificates certificates)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != certificates.CertificateID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(certificates).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CertificatesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Certificates
-        [HttpPost]
-        public async Task<IActionResult> PostCertificates([FromBody] Certificates certificates)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.Certificates.Add(certificates);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCertificates", new { id = certificates.CertificateID }, certificates);
-        }
-
-        // DELETE: api/Certificates/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCertificates([FromRoute] Guid id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var certificates = await _context.Certificates.SingleOrDefaultAsync(m => m.CertificateID == id);
-            if (certificates == null)
-            {
-                return NotFound();
-            }
-
-            _context.Certificates.Remove(certificates);
-            await _context.SaveChangesAsync();
-
-            return Ok(certificates);
-        }
-
-        private bool CertificatesExists(Guid id)
-        {
-            return _context.Certificates.Any(e => e.CertificateID == id);
-        }
+      _context = context;
     }
+
+    // GET: api/Certificates
+    //[HttpGet]
+    //public IEnumerable<Certificates> GetCertificates()
+    //{
+    //    return _context.Certificates;
+    //}
+
+    // GET: api/Certificates/5
+    [HttpGet("{companyProfileID}")]
+    public IActionResult GetCertificates([FromRoute] Guid companyProfileID)
+    {
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
+
+      var certificates = _context.Certificates.Where(m => m.CompanyProfileID == companyProfileID);
+
+      if (certificates == null)
+      {
+        return NotFound();
+      }
+
+      return Ok(certificates);
+    }
+
+    // PUT: api/Certificates/5
+    //[HttpPut("{id}")]
+    //public async Task<IActionResult> PutCertificates([FromRoute] Guid id, [FromBody] Certificates certificates)
+    //{
+    //  if (!ModelState.IsValid)
+    //  {
+    //    return BadRequest(ModelState);
+    //  }
+
+    //  if (id != certificates.CertificateID)
+    //  {
+    //    return BadRequest();
+    //  }
+
+    //  _context.Entry(certificates).State = EntityState.Modified;
+
+    //  try
+    //  {
+    //    await _context.SaveChangesAsync();
+    //  }
+    //  catch (DbUpdateConcurrencyException)
+    //  {
+    //    if (!CertificatesExists(id))
+    //    {
+    //      return NotFound();
+    //    }
+    //    else
+    //    {
+    //      throw;
+    //    }
+    //  }
+
+    //  return NoContent();
+    //}
+
+    // POST: api/Certificates
+    [HttpPost("{companyProfileID}")]
+    public async Task<IActionResult> PostCertificates([FromBody]List<Certificates> certificates, [FromRoute] Guid companyProfileID)
+    {
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
+
+      _context.Certificates.AddRange(certificates);
+      await _context.SaveChangesAsync();
+
+      return CreatedAtAction("GetCertificates", new { companyProfileID = companyProfileID }, certificates);
+    }
+
+    // DELETE: api/Certificates/5
+    //[HttpDelete("{id}")]
+    //public async Task<IActionResult> DeleteCertificates([FromRoute] Guid id)
+    //{
+    //  if (!ModelState.IsValid)
+    //  {
+    //    return BadRequest(ModelState);
+    //  }
+
+    //  var certificates = await _context.Certificates.SingleOrDefaultAsync(m => m.CertificateID == id);
+    //  if (certificates == null)
+    //  {
+    //    return NotFound();
+    //  }
+
+    //  _context.Certificates.Remove(certificates);
+    //  await _context.SaveChangesAsync();
+
+    //  return Ok(certificates);
+    //}
+
+    private bool CertificatesExists(Guid id)
+    {
+      return _context.Certificates.Any(e => e.CertificateID == id);
+    }
+  }
 }
