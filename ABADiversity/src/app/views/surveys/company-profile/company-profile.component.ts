@@ -18,19 +18,41 @@ export class CompanyProfileComponent implements OnInit {
 
   
   constructor( private fb:FormBuilder) {
+
+    // EROS : Joe, this code will work on get not on post
+    // this.myForm = this.fb.group({
+    //   firmname:[this.CPdata.firmname, Validators.required],
+    //   firmhead:[this.CPdata.firmhead, Validators.required],
+    //   datecomp:[this.CPdata.datecomp, Validators.required],
+    //   srcname :[this.CPdata.srcname, Validators.required],
+    //   srctitle:[this.CPdata.srctitle, Validators.required],
+    //   srcemail:[this.CPdata.srcemail, Validators.required],
+    //   totalfw:[this.CPdata.totalfw, Validators.required],
+    //   totalusfw:[this.CPdata.totalusfw, Validators.required],
+    //   sizecat:[this.CPdata.sizecat, Validators.required],
+    //   firmown:[this.CPdata.firmown, Validators.required],
+    //   catown:[this.CPdata.catown, Validators.required],
+    //   firmcert:[this.CPdata.firmcert, Validators.required],
+    //   certificate:[this.certform = this.fb.group({
+    //     certificates : [ 
+    //       this.tempCertificates
+    //     ]
+    //   })]
+    // });
+
     this.myForm = this.fb.group({
-      firmname:[this.CPdata.firmname, Validators.required],
-      firmhead:[this.CPdata.firmhead, Validators.required],
-      datecomp:[this.CPdata.datecomp, Validators.required],
-      srcname :[this.CPdata.srcname, Validators.required],
-      srctitle:[this.CPdata.srctitle, Validators.required],
-      srcemail:[this.CPdata.srcemail, Validators.required],
-      totalfw:[this.CPdata.totalfw, Validators.required],
-      totalusfw:[this.CPdata.totalusfw, Validators.required],
-      sizecat:[this.CPdata.sizecat, Validators.required],
-      firmown:[this.CPdata.firmown, Validators.required],
-      catown:[this.CPdata.catown, Validators.required],
-      firmcert:[this.CPdata.firmcert, Validators.required],
+      firmname:[null, Validators.required],
+      firmhead:[null, Validators.required],
+      datecomp:[null, Validators.required],
+      srcname :[null, Validators.required],
+      srctitle:[null, Validators.required],
+      srcemail:[null, Validators.required],
+      totalfw:[null, Validators.required],
+      totalusfw:[null, Validators.required],
+      sizecat:[null, Validators.required],
+      firmown:[null, Validators.required],
+      catown:[null, Validators.required],
+      firmcert:[null, Validators.required],
       certificate:[this.certform = this.fb.group({
         certificates : [ 
           this.tempCertificates
