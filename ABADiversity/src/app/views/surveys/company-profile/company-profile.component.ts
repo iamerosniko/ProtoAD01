@@ -1,6 +1,7 @@
 import { Component, OnInit,Output,EventEmitter,Input  } from '@angular/core';
-import { CPEntities,Certificates } from '../entities/companyProfile';
-import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
+// import { CPEntities,Certificates } from '../entities/companyProfile';
+import { Certificates, CompanyProfiles } from '../../../entities/entities';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UUID } from 'angular2-uuid'
 @Component({
   selector: 'app-company-profile',
@@ -9,7 +10,7 @@ import { UUID } from 'angular2-uuid'
 })
 export class CompanyProfileComponent implements OnInit {
   @Output() updateChildFormToParent = new EventEmitter<any>();
-  CPdata:CPEntities={};
+  CPdata:CompanyProfiles={};
   myForm: FormGroup;
   certform: FormGroup;
   tempCertificate:Certificates={}
@@ -39,26 +40,16 @@ export class CompanyProfileComponent implements OnInit {
     this.myForm.valueChanges.subscribe(()=>{
       this.sendthistoparent();
     });
-    // setInterval(()=>{
-    //   this.sendthistoparent();
-    // },1000)
    }
 
   ngOnInit() {
-    // this.myForm.setValue(()=>{
-    //   this.sendthistoparent();
-    // });
-    // this.myForm.valueChanges.subscribe(()=>{
-    //   this.sendthistoparent();
-    // });
   }
 
   sendthistoparent(){
     this.updateChildFormToParent.emit(this.myForm)
-    // this.updateChildFormToParent.emit(this.certform)
     }
   addcert(cert:Certificates){
-    cert.id=UUID.UUID();
+    cert.certificateID=UUID.UUID();
     this.tempCertificates.push(cert);
     this.tempCertificate={};
     console.log(this.myForm.value)
