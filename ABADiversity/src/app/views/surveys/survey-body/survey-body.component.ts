@@ -82,20 +82,20 @@ constructor( private fb:FormBuilder) {
     // console.log(this.formFromChild6.value)
     // console.log(this.formFromChild7.value)
     // console.log(this.formFromChild8.value)
-    console.log(this.formFromChild.valid)
   }
 
   isValid():boolean{
 
-    var a = this.formFromChild.valid
-      // this.formFromChild.valid && 
-      // this.formFromChild1.valid && 
-      // this.formFromChild2.valid && 
-      // this.formFromChild3.valid && 
-      // this.formFromChild4.valid &&
-      // this.formFromChild5.valid && 
-      // this.formFromChild6.valid && 
-      // this.formFromChild7.valid; 
-    return a;
+    var a =
+      this.formFromChild.valid && 
+      this.formFromChild1.valid && 
+      this.formFromChild2.valid && 
+      this.formFromChild3.valid && 
+      this.formFromChild4.valid &&
+      this.formFromChild5.valid && 
+      this.formFromChild6.valid && 
+      this.formFromChild7.valid && 
+      this.formFromChild8.valid; 
+    return !a;
   }
 }

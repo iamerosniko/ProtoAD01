@@ -175,29 +175,31 @@ export class UndertakenInitiativesComponent implements OnInit {
       answer16:[this.initData.answer16,Validators.required],
       answer17:[this.initData.answer17,Validators.required],
       mainComment:[this.initData.mainComment,Validators.required],
-      comment1:[this.initData.comment1,Validators.required],
-      comment2:[this.initData.comment2,Validators.required],
-      comment3:[this.initData.comment3,Validators.required],
-      comment4:[this.initData.comment4,Validators.required],
-      comment5:[this.initData.comment5,Validators.required],
-      comment6:[this.initData.comment6,Validators.required],
-      comment7:[this.initData.comment7,Validators.required],
-      comment8:[this.initData.comment8,Validators.required],
-      comment9:[this.initData.comment9,Validators.required],
-      comment10:[this.initData.comment10,Validators.required],
-      comment11:[this.initData.comment11,Validators.required],
-      comment12:[this.initData.comment12,Validators.required],
-      comment13:[this.initData.comment13,Validators.required],
-      comment14:[this.initData.comment14,Validators.required],
-      comment15:[this.initData.comment15,Validators.required],
-      comment16:[this.initData.comment16,Validators.required],
-      comment17:[this.initData.comment17,Validators.required],
+      comment1:[this.initData.comment1],
+      comment2:[this.initData.comment2],
+      comment3:[this.initData.comment3],
+      comment4:[this.initData.comment4],
+      comment5:[this.initData.comment5],
+      comment6:[this.initData.comment6],
+      comment7:[this.initData.comment7],
+      comment8:[this.initData.comment8],
+      comment9:[this.initData.comment9],
+      comment10:[this.initData.comment10],
+      comment11:[this.initData.comment11],
+      comment12:[this.initData.comment12],
+      comment13:[this.initData.comment13],
+      comment14:[this.initData.comment14],
+      comment15:[this.initData.comment15],
+      comment16:[this.initData.comment16],
+      comment17:[this.initData.comment17],
     });
+
     this.myForm.valueChanges.subscribe(()=>{
       this.sendthistoparent();
     });
    }
   ngOnInit() {
+    this.sendthistoparent();
     
   }
   sendthistoparent(){
