@@ -1,5 +1,5 @@
 export interface FirmDemographics{
-    firmDemographicsID?:string;
+    firmDemographicID?:string;
     certificateID ?:string,
     regionName?:string;
     equityPartners?:string;

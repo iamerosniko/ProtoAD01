@@ -10,6 +10,7 @@ import { UUID } from 'angular2-uuid'
 })
 export class CompanyProfileComponent implements OnInit {
   @Output() updateChildFormToParent = new EventEmitter<any>();
+  @Input() companyProfileID:string;
   CPdata:CompanyProfiles={};
   myForm: FormGroup;
   certform: FormGroup;
@@ -17,30 +18,12 @@ export class CompanyProfileComponent implements OnInit {
   tempCertificates:Certificates[]=[]
 
   
-  constructor( private fb:FormBuilder) {
+  constructor( private fb:FormBuilder) {   
+  }
 
-    // EROS : Joe, this code will work on get not on post
-    // this.myForm = this.fb.group({
-    //   firmname:[this.CPdata.firmname, Validators.required],
-    //   firmhead:[this.CPdata.firmhead, Validators.required],
-    //   datecomp:[this.CPdata.datecomp, Validators.required],
-    //   srcname :[this.CPdata.srcname, Validators.required],
-    //   srctitle:[this.CPdata.srctitle, Validators.required],
-    //   srcemail:[this.CPdata.srcemail, Validators.required],
-    //   totalfw:[this.CPdata.totalfw, Validators.required],
-    //   totalusfw:[this.CPdata.totalusfw, Validators.required],
-    //   sizecat:[this.CPdata.sizecat, Validators.required],
-    //   firmown:[this.CPdata.firmown, Validators.required],
-    //   catown:[this.CPdata.catown, Validators.required],
-    //   firmcert:[this.CPdata.firmcert, Validators.required],
-    //   certificate:[this.certform = this.fb.group({
-    //     certificates : [ 
-    //       this.tempCertificates
-    //     ]
-    //   })]
-    // });
-
+  ngOnInit() {
     this.myForm = this.fb.group({
+      compantProfileID:[this.companyProfileID,Validators.required],
       firmname:[null, Validators.required],
       firmhead:[null, Validators.required],
       datecomp:[null, Validators.required],
@@ -62,15 +45,12 @@ export class CompanyProfileComponent implements OnInit {
     this.myForm.valueChanges.subscribe(()=>{
       this.sendthistoparent();
     });
-   }
-
-  ngOnInit() {
     this.sendthistoparent();
   }
 
   sendthistoparent(){
     this.updateChildFormToParent.emit(this.myForm)
-    }
+  }
   addcert(cert:Certificates){
     cert.certificateID=UUID.UUID();
     this.tempCertificates.push(cert);

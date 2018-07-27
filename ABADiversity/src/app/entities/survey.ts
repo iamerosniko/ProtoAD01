@@ -4,16 +4,15 @@ import {Certificates,CompanyProfiles,FirmDemographics,
     TopTenHighestCompensations,UndertakenInitiatives} from './entities'
     
 export interface Survey{
-    firm:Firms;
-    companyprofiles:CompanyProfiles;
-    undertakenInitiatives : UndertakenInitiatives;
-
-    firmDemographics : FirmDemographics[],
-    joinedLawyers : JoinedLawyers[],
-    leadershipDemographics : LeadershipDemographics[];
-    leftLawyers : LeftLawyers[];
-    promotionsAssociatePartners : PromotionsAssociatePartners[];
-    reducedhoursLawyers : ReducedHoursLawyers[];
-    certificates : Certificates[];
-    topTenHighestCompensations : TopTenHighestCompensations[];
+    firm?:Firms;
+    companyprofiles?:CompanyProfiles;
+    undertakenInitiatives ?: UndertakenInitiatives;
+    firmDemographics ?: FirmDemographics[],
+    joinedLawyers ?: JoinedLawyers[],
+    leadershipDemographics ?: LeadershipDemographics[];
+    leftLawyers ?: LeftLawyers[];
+    promotionsAssociatePartners ?: PromotionsAssociatePartners[];
+    reducedhoursLawyers ?: ReducedHoursLawyers[];
+    certificates ?: Certificates[];
+    topTenHighestCompensations ?: TopTenHighestCompensations[];
 }

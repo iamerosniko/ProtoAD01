@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-promotions-assoc-partner',
@@ -8,7 +9,7 @@ import { isNumber } from 'util';
   styleUrls: ['./promotions-assoc-partner.component.css']
 })
 export class PromotionsAssocPartnerComponent implements OnInit {
-  @Input() companyProfileID : string = "GUID";
+  @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmPromo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Total']
   firmPromoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
@@ -79,6 +80,7 @@ export class PromotionsAssocPartnerComponent implements OnInit {
     // Here, we make the form for each day
     return this.fb.group({
       region:[name],
+      promotionsAssociatePartnerID:[UUID.UUID(),Validators.required],
       'companyProfileID': [this.companyProfileID,Validators.required],
       'EquityPartners':[0,Validators.required],
       'NonEquityPartners': [0,Validators.required ],

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-top-ten-highest-compensated-partners',
@@ -8,7 +9,7 @@ import { isNumber } from 'util';
   styleUrls: ['./top-ten-highest-compensated-partners.component.css']
 })
 export class TopTenHighestCompensatedPartnersComponent implements OnInit {
-  @Input() companyProfileID : string = "GUID";
+  @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmDemoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
@@ -78,6 +79,7 @@ export class TopTenHighestCompensatedPartnersComponent implements OnInit {
     // Here, we make the form for each day
     return this.fb.group({
       region:[name],
+      topTenHighestCompensationID:[UUID.UUID(),Validators.required],
       'companyProfileID': [this.companyProfileID,Validators.required],
       'EquityPartners':[0,Validators.required],
       'NonEquityPartners': [0,Validators.required ],

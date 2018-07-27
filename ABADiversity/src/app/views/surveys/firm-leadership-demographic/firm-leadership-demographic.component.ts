@@ -1,14 +1,14 @@
 import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
-
+import { UUID } from 'angular2-uuid';
 @Component({
   selector: 'app-firm-leadership-demographic',
   templateUrl: './firm-leadership-demographic.component.html',
   styleUrls: ['./firm-leadership-demographic.component.css']
 })
 export class FirmLeadershipDemographicComponent implements OnInit {
-  @Input() companyProfileID : string = "GUID";
+  @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmLead:string[]=['Minority Female','Minority Male','White Female','White Male','LGBT','Disabled','Total']
   firmLeadassign:string[]=['MinorityFemale','MinorityMale','WhiteFemale','WhiteMale','LGBT','Disabled','Totals']
@@ -73,6 +73,7 @@ export class FirmLeadershipDemographicComponent implements OnInit {
     // Here, we make the form for each day
     return this.fb.group({
       'companyProfileID': [this.companyProfileID,Validators.required],
+      leadershipDemographicID:[UUID.UUID(),Validators.required],
       number:[name],
       'MinorityFemale':[0,Validators.required],
       'MinorityMale': [0,Validators.required ],

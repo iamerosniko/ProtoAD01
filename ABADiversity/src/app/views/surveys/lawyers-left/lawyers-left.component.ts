@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-lawyers-left',
@@ -8,7 +9,7 @@ import { isNumber } from 'util';
   styleUrls: ['./lawyers-left.component.css']
 })
 export class LawyersLeftComponent implements OnInit {
-  @Input() companyProfileID : string = "GUID";
+  @Input() companyProfileID : string;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmLeft:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmLeftassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
@@ -79,7 +80,7 @@ export class LawyersLeftComponent implements OnInit {
     return this.fb.group({
       region:[name],
       'companyProfileID': [this.companyProfileID,Validators.required],
-
+      leftLawyerID:[UUID.UUID(),Validators.required],
       'EquityPartners':[0,Validators.required],
       'NonEquityPartners': [0,Validators.required ],
       'Associates': [0, Validators.required ],

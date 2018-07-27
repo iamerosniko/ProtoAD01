@@ -1,6 +1,7 @@
-import { Component, OnInit,Output,EventEmitter,Input, state  } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter,Input  } from '@angular/core';
 import { UndertakenInitiatives } from '../../../entities/entities';
 import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-undertaken-initiatives',
@@ -8,6 +9,7 @@ import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
   styleUrls: ['./undertaken-initiatives.component.css']
 })
 export class UndertakenInitiativesComponent implements OnInit {
+  @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   initData:UndertakenInitiatives={};
   myForm: FormGroup;
@@ -156,7 +158,12 @@ export class UndertakenInitiativesComponent implements OnInit {
   }
   
   constructor(private fb:FormBuilder) { 
+   
+  }
+  ngOnInit() {
     this.myForm = this.fb.group({
+      undertakenInitiativeID:[UUID.UUID(),Validators.required],
+      'companyProfileID': [this.companyProfileID,Validators.required],
       answer1:[this.initData.answer1,Validators.required],
       answer2:[this.initData.answer2,Validators.required],
       answer3:[this.initData.answer3,Validators.required],
@@ -197,8 +204,6 @@ export class UndertakenInitiativesComponent implements OnInit {
     this.myForm.valueChanges.subscribe(()=>{
       this.sendthistoparent();
     });
-   }
-  ngOnInit() {
     this.sendthistoparent();
     
   }
