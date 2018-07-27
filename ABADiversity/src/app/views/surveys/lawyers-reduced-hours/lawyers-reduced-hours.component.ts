@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 
@@ -8,6 +8,7 @@ import { isNumber } from 'util';
   styleUrls: ['./lawyers-reduced-hours.component.css']
 })
 export class LawyersReducedHoursComponent implements OnInit {
+  @Input() companyProfileID : string = "GUID";
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Total']
   firmDemoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
@@ -91,6 +92,7 @@ export class LawyersReducedHoursComponent implements OnInit {
     // Here, we make the form for each day
     return this.fb.group({
       region:[name],
+      'companyProfileID': [this.companyProfileID,Validators.required],
       'EquityPartners':[0,Validators.required],
       'NonEquityPartners': [0,Validators.required ],
       'Associates': [0, Validators.required ],

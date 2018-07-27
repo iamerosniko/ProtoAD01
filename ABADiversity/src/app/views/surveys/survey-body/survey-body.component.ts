@@ -88,7 +88,7 @@ constructor( private fb:FormBuilder) {
       JoinedLawyers:[this.formFromChild5, Validators.required],
       ReducedHoursLawyers:[this.formFromChild6, Validators.required],
       TopTenHighestCompensations:[this.formFromChild7, Validators.required],
-      UndertakenInitiatives:[this.formFromChild8, Validators.required]      
+      // UndertakenInitiatives:[this.formFromChild8, Validators.required]      
     });
    }
   ngOnInit() {

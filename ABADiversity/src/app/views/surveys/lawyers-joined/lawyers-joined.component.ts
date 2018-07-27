@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 
@@ -8,6 +8,7 @@ import { isNumber } from 'util';
   styleUrls: ['./lawyers-joined.component.css']
 })
 export class LawyersJoinedComponent implements OnInit {
+  @Input() companyProfileID : string = "GUID";
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmDemoassign:string[]=['EP','NEP','AS','CO','OL','Totals']
@@ -76,6 +77,7 @@ export class LawyersJoinedComponent implements OnInit {
   initItems(name:string): FormGroup{
     // Here, we make the form for each day
     return this.fb.group({
+      'companyProfileID': [this.companyProfileID,Validators.required],
       region:[name],
       'EP':[0,Validators.required],
       'NEP': [0,Validators.required ],
