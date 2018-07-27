@@ -11,7 +11,7 @@ export interface firmDetails {
     otherLawyers?:string;
 }
 export interface firmDetailsLead {
-    regionName?:string;
+    numbersName?:string;
     minorityFemale?:string;
     minorityMale?:string;
     whiteFemale?:string;

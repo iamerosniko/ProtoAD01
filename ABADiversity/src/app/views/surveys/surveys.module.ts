@@ -15,13 +15,15 @@ import { UndertakenInitiativesComponent } from './undertaken-initiatives/underta
 import { PromotionsAssocPartnerComponent } from './promotions-assoc-partner/promotions-assoc-partner.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { SurveyBodyComponent } from './survey-body/survey-body.component';
+import { RouterModule } from '@angular/router'
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
-  declarations: [SurveysComponent,SideNavComponent,SaveBarComponent,CompanyProfileComponent,FirmDemographicsComponent, FirmLeadershipDemographicComponent, LawyersLeftComponent, LawyersJoinedComponent, LawyersReducedHoursComponent, TopTenHighestCompensatedPartnersComponent, UndertakenInitiativesComponent, PromotionsAssocPartnerComponent]
+  declarations: [SurveysComponent,SideNavComponent,SaveBarComponent,CompanyProfileComponent,FirmDemographicsComponent, FirmLeadershipDemographicComponent, LawyersLeftComponent, LawyersJoinedComponent, LawyersReducedHoursComponent, TopTenHighestCompensatedPartnersComponent, UndertakenInitiativesComponent, PromotionsAssocPartnerComponent, SurveyBodyComponent]
 })
 export class SurveysModule { }

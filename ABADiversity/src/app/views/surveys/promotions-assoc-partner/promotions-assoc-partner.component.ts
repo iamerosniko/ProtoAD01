@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 
@@ -8,8 +8,9 @@ import { isNumber } from 'util';
   styleUrls: ['./promotions-assoc-partner.component.css']
 })
 export class PromotionsAssocPartnerComponent implements OnInit {
-  firmPromo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
-  firmPromoassign:string[]=['EP','NEP','AS','CO','OL','Totals']
+  @Output() updateChildFormToParent = new EventEmitter<any>();
+  firmPromo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Total']
+  firmPromoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
 
   items:string[]=
   [
@@ -37,6 +38,8 @@ export class PromotionsAssocPartnerComponent implements OnInit {
     this.addRow();
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
+
+      this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
         const demographics =<FormGroup> control.at(i);
@@ -75,11 +78,11 @@ export class PromotionsAssocPartnerComponent implements OnInit {
     // Here, we make the form for each day
     return this.fb.group({
       region:[name],
-      'EP':[0,Validators.required],
-      'NEP': [0,Validators.required ],
-      'AS': [0, Validators.required ],
-      'CO': [0,Validators.required ],
-      'OL': [0,Validators.required],
+      'EquityPartners':[0,Validators.required],
+      'NonEquityPartners': [0,Validators.required ],
+      'Associates': [0, Validators.required ],
+      'Counsel': [0,Validators.required ],
+      'OtherLawyers': [0,Validators.required],
     });
   }
 

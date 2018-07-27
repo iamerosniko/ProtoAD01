@@ -1,25 +1,26 @@
+<form [formGroup]="myForm">
 <div class="row">
   <!-- <div class="panel panel-primary">
     <div class="panel-body"> -->
+      <form [formGroup]="myForm">
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
             <label class="control-label input-sm">Firm Name</label>
-            <input type="text" [(ngModel)]="CPdata.firmname" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]" />
-            <button (click)="print()">PRINT</button>
+            <input type="text" formControlName="firmname" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]" />
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label class="control-label input-sm">Head of Firm/CEO/Firm-wide Managing Partner</label>
-            <input type="text" [(ngModel)]="CPdata.firmhead" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+            <input type="text" formControlName="firmhead" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label class="control-label input-sm">Date of Survey Completion</label>
             <div class="input-group">
-              <input type="date" [(ngModel)]="CPdata.datecomp" class="form-control input-sm"/> <!--date filter-->
+              <input type="date" formControlName="datecomp" class="form-control input-sm"/> <!--date filter-->
               <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
           </div>
@@ -29,7 +30,7 @@
           <div class="row">
             <div class="col-md-12">
               <label class="control-label input-sm">Survey Respondent Contact Name</label>
-              <input type="text" [(ngModel)]="CPdata.srcname" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+              <input type="text" formControlName="srcname"  class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
               <!-- <select class="form-control input-sm">
                 <option value="">--Select Category--</option>
               </select> -->
@@ -38,13 +39,13 @@
           <div class="row">
             <div class="col-md-12">
               <label class="control-label input-sm">Survey Respondent Contact Title</label>
-              <input type="text" [(ngModel)]="CPdata.title" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+              <input type="text" formControlName="srctitle" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <label class="control-label input-sm">Survey Respondent Contact Email</label>
-              <input type="text" [(ngModel)]="CPdata.srcemail" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+              <input type="text" formControlName="srcemail" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
             </div>
           </div>
       </div>
@@ -52,13 +53,13 @@
         <div class="row">
           <div class="col-md-12">
             <label class="control-label input-sm">Total number of lawyer firm-wide, As of December 31, 2017</label>
-            <input type="text" [(ngModel)]="CPdata.totalfw" class="form-control input-sm" onkeypress='return event.charCode >= 48 && event.charCode <=57' pattern="[a-zA-Z ]*"/>
+            <input type="text" formControlName="totalfw" class="form-control input-sm" onkeypress='return event.charCode >= 48 && event.charCode <=57' pattern="[a-zA-Z ]*"/>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label class="control-label input-sm">Total number of U.S. lawyer firm-wide, As of December 31, 2017</label>
-            <input type="text" [(ngModel)]="CPdata.totalusfw" class="form-control input-sm" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[a-zA-Z ]*"/>
+            <input type="text" formControlName="totalusfw" class="form-control input-sm" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[a-zA-Z ]*"/>
           </div>
         </div>
         <div class="row">
@@ -66,11 +67,11 @@
               <label class="control-label input-sm">Based on your answer to the previous question, Please check the size category that fits your firm</label>
               <ul class="nav">
                 <li class="input-group">
-                  <label class="control-label input-sm"><input (click)="sizecat1()" type="radio" value="1" name="cq1"/>&nbsp;1 Attorney</label>&nbsp;
-                  <label class="control-label input-sm"><input (click)="sizecat2()" type="radio" value="2-20" name="cq1"/>&nbsp;2-20 Attorney</label>
-                  <label class="control-label input-sm"><input (click)="sizecat3()" type="radio" value="1" name="cq1"/>&nbsp;21-100 Attorney</label>&nbsp;
-                  <label class="control-label input-sm"><input (click)="sizecat4()" type="radio" value="2-20" name="cq1"/>&nbsp;101-300 Attorney</label>
-                  <label class="control-label input-sm"><input (click)="sizecat5()" type="radio" value="2-20" name="cq1"/>&nbsp;301+ Attorney</label>
+                  <label class="control-label input-sm"><input formControlName="sizecat" type="radio" value="1" />&nbsp;1 Attorney</label>&nbsp;
+                  <label class="control-label input-sm"><input formControlName="sizecat" type="radio" value="2" />&nbsp;2-20 Attorney</label>
+                  <label class="control-label input-sm"><input formControlName="sizecat" type="radio" value="3" />&nbsp;21-100 Attorney</label>&nbsp;
+                  <label class="control-label input-sm"><input formControlName="sizecat" type="radio" value="4" />&nbsp;101-300 Attorney</label>
+                  <label class="control-label input-sm"><input formControlName="sizecat" type="radio" value="5" />&nbsp;301+ Attorney</label>
                 </li>
               </ul>
             </div>
@@ -82,8 +83,8 @@
             <label class="control-label input-sm">Is firm women-owned, minority-owned, disabled-owner or LGBT-owned?</label>
             <ul class="nav">
               <li class="input-group">
-                <label class="control-label input-sm"><input type="radio" value="Yes" name="cq2"/>&nbsp;Yes</label>&nbsp;
-                <label class="control-label input-sm"><input type="radio" value="No" name="cq2"/>&nbsp;No</label>
+                <label class="control-label input-sm"><input type="radio" value="Yes" formControlName="firmown"/>&nbsp;Yes</label>&nbsp;
+                <label class="control-label input-sm"><input type="radio" value="No" formControlName="firmown"/>&nbsp;No</label>
               </li>
             </ul>
           </div>
@@ -91,20 +92,23 @@
         <div class="row">
           <div class="col-md-6">
             <label class="control-label input-sm">If yes, What is the category of ownership?</label>
-            <input type="text" class="form-control input-sm"/>
+            <input type="text" formControlName="catown" class="form-control input-sm"/>
           </div>
           <div class="col-md-6">
             <label class="control-label input-sm">If yes, Is the firm Certified?</label>
             <div class="col-md-12">
-              <label class="control-label input-sm"><input type="radio" value="Yes" name="cq3"/>&nbsp;Yes</label>&nbsp;
-              <label class="control-label input-sm"><input type="radio" value="No" name="cq3"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" value="Yes" formControlName="firmcert"/>&nbsp;Yes</label>&nbsp;
+              <label class="control-label input-sm"><input type="radio" value="No" formControlName="firmcert"/>&nbsp;No</label>
             </div>
           </div>
         </div>
       </div>
+    </form>
+    
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-12">
+            <form [formGroup]="certform">
                 <label class="control-label input-sm">If the firm is Certified, Please name the certifying entity(ies) and date of certification(s):</label>
                 <table class="table table-bordered table-striped table-hover input-sm">
                   <!-- table table-bordered table-striped table-hover input-sm -->
@@ -116,9 +120,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td></td>
-                      <td></td>
+                    <tr *ngFor="let Certificates of tempCertificates">
+                      <td>{{Certificates.Name}}</td>
+                      <td>{{Certificates.DateCert | date:'MM/dd/yyy' }}</td>
                       <td align="center">
                         <div class="btn-group">
                           <!-- <a (click)="mainDetails()"  class="btn btn-default btn-xs" data-toggle="tab" data-target="#dep_editor" title="More Details"><i class="fa fa-search-plus"></i></a> -->
@@ -129,15 +133,16 @@
                     </tr>
                   </tbody>
                 </table>
-                <div class="col-md-12">
-                  <label class="control-label input-sm">Name:</label>
-                  <input type="text" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
-                  <label class="control-label input-sm">Date of certification:</label>
-                  <input type="date" class="form-control input-sm"/><br>
-                  <button type="submit" class="btn btn-success btn-sm" data-dismiss="modal">
-                      <i class="fa fa-plus"></i>&nbsp;Add
-                  </button>
-                </div>
+              </form>
+              <div class="col-md-12">
+                <label class="control-label input-sm">Name:</label>
+                <input [(ngModel)]="tempCertificate.Name" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm"/>
+                <label class="control-label input-sm">Date of certification:</label>
+                <input [(ngModel)]="tempCertificate.DateCert" [ngModelOptions]="{standalone: true}" type="date"  class="form-control input-sm"/><br>
+                <button (click)='addcert(tempCertificate)' type="submit"  class="btn btn-success btn-sm" data-dismiss="modal">
+                    <i class="fa fa-plus"></i>&nbsp;Add
+                </button>
+              </div>
           </div>
         </div>
       </div>

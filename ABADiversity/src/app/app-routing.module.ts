@@ -10,6 +10,8 @@ import { LogoutComponent } from './views/others/logout/logout.component';
 import { RedirectingComponent } from './views/others/redirecting/redirecting.component';
 
 import { AuthGuard } from './auth-guard.services';
+import { SideNavComponent } from './views/surveys/side-nav/side-nav.component';
+import { SurveyBodyComponent } from './views/surveys/survey-body/survey-body.component';
 const routes: Routes = [
   // { path: '', redirectTo:'/Survey', pathMatch:"full" },
   // { path: 'Reports', component : ReportsComponent },
@@ -21,9 +23,13 @@ const routes: Routes = [
   { path: 'Redirecting', component : RedirectingComponent},
   { path: 'Logout', component:LogoutComponent},
   { path: 'Noaccess', component:NoaccessComponent},
-  { path: '**', redirectTo :'/Survey' },
-  { path: 'Survey', component : SurveysComponent},
   { path: 'Reports', component : ReportsComponent, canActivate:[AuthGuard] },
+  {
+    path:'Survey', component:SurveysComponent,
+    children:[
+      { path: 'NewSurvey', component : SurveyBodyComponent, outlet:'surveyroute'}
+    ]
+  },
 
   { path: '**', redirectTo :'/Survey' },
 ];

@@ -1,0 +1,133 @@
+<app-save-bar></app-save-bar>
+
+{{myForm.status}}
+<div class="row col-md-12">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_CP">Company Profile</a> 
+              </h4>
+          </div>
+          <div id="collapse_CP" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                  <app-company-profile (updateChildFormToParent)= getChild($event)></app-company-profile>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_OFD">Overall Firm Demographics</a> 
+              </h4>
+          </div>
+          <div id="collapse_OFD" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                  <app-firm-demographics (updateChildFormToParent)= getChild1($event)></app-firm-demographics>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_FLMDP">Firm Leadership/Management Demographic Profile</a> 
+              </h4>
+          </div>
+          <div id="collapse_FLMDP" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                  <app-firm-leadership-demographic (updateChildFormToParent)= getChild2($event)></app-firm-leadership-demographic>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_PAP">Number of Promotions from Associate to Partner</a> 
+              </h4>
+          </div>
+          <div id="collapse_PAP" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                  <app-promotions-assoc-partner (updateChildFormToParent)= getChild3($event)></app-promotions-assoc-partner>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_LWLTF">Lawyers Who Left The Firm</a> 
+              </h4>
+          </div>
+          <div id="collapse_LWLTF" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                    <app-lawyers-left (updateChildFormToParent)= getChild4($event)></app-lawyers-left>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_H">Hires</a> 
+              </h4>
+          </div>
+          <div id="collapse_H" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                    <app-lawyers-joined (updateChildFormToParent)= getChild5($event)></app-lawyers-joined>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_LWRHS">Lawyers Working Reduced Hours Schedule</a> 
+              </h4>
+          </div>
+          <div id="collapse_LWRHS" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                    <app-lawyers-reduced-hours (updateChildFormToParent)= getChild6($event)></app-lawyers-reduced-hours>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_HCP">Top 10% Highest Compensated Partners</a> 
+              </h4>
+          </div>
+          <div id="collapse_HCP" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                    <app-top-ten-highest-compensated-partners (updateChildFormToParent)= getChild7($event)></app-top-ten-highest-compensated-partners>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <div class="panel panel-primary" id="accordion">
+          <div class="panel-heading"> 
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_UIA">Undertaken Initiatives/Actions</a> 
+              </h4>
+          </div>
+          <div id="collapse_UIA" class="panel-collapse collapse"> 
+              <div class="panel-body">
+                <div class="container-fluid">
+                    <app-undertaken-initiatives (updateChildFormToParent)= getChild8($event)></app-undertaken-initiatives>
+                </div> 
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

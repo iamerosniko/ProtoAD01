@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util'; 
+import { FDdetails,FDInfo } from '../entities/firmdemographics'
 
 @Component({
   selector: 'app-firm-demographics',
@@ -8,14 +9,28 @@ import { isNumber } from 'util';
   styleUrls: ['./firm-demographics.component.css']
 })
 export class FirmDemographicsComponent implements OnInit {
-  // @Output() updateChildFormToParent = new EventEmitter<any>();
+  @Output() updateChildFormToParent = new EventEmitter<any>();
   // application:Applications={}
   // myForm: FormGroup;
-
-  public msg2:string = 'HERE!';
+  sampledata:FDdetails[]=[
+    {equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Hispanic/Latino",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Alaska Native/American Indian",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Asian",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Native Hawaiian/Other Pacific Islander",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Multiracial",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"White",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"LGBT",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Disabled",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Women",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
+    {regionName:"Men",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"}
+]
+sampledata1:FDdetails[]=[{regionName:"African American/Black(not Hispanic/Latino)"}]
+  // sampledata1:string = this.sampledata.associates
   
+
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
-  firmDemoassign:string[]=['EP','NEP','AS','CO','OL','Totals']
+  firmDemoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
 
   items:string[]=
   [
@@ -33,24 +48,19 @@ export class FirmDemographicsComponent implements OnInit {
   ]
   myForm: FormGroup;
   constructor(private fb:FormBuilder) {
-    // this.counterValue = 2;
+    
   }
-  // getChild(event:any){
-  //   this.formFromChild = event;
-  //   console.log('parent here')
-  //   console.log(this.formFromChild.value)
-  // }
   ngOnInit() {
-    console.log('ngoninit')
-    this.msg2 = 'happy';
     this.myForm = this.fb.group
     ({
       regions: this.fb.array([]),
       firmID:[1001,Validators.required]
     })
     this.addRow();
+
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
+      this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
         const demographics =<FormGroup> control.at(i);
@@ -84,17 +94,21 @@ export class FirmDemographicsComponent implements OnInit {
 
    
   }
-
+  
   initItems(name:string): FormGroup{
     // Here, we make the form for each day
     return this.fb.group({
       region:[name],
-      'EP':[0,Validators.required],
-      'NEP': [0,Validators.required ],
-      'AS': [0, Validators.required ],
-      'CO': [0,Validators.required ],
-      'OL': [0,Validators.required],
+      'EquityPartners':[0,Validators.required],
+      'NonEquityPartners': [0,Validators.required],
+      'Associates': [0, Validators.required ],
+      'Counsel': [0,Validators.required ],
+      'OtherLawyers': [0,Validators.required],
+      // add firmid
     });
+
+    // var samp : any = {regionName : 'america', equityPartners : "1"}
+    
   }
 
   sample(index:number){

@@ -1,3 +1,4 @@
 export interface firmlist {
-    firmcode?:string
+    firmcode?:string;
+    firmSearch?:string;
 }

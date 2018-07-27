@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {FirmDemographicsComponent} from '../firm-demographics/firm-demographics.component';
-import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { SurveyBodyComponent } from '../survey-body/survey-body.component'
 
 @Component({
   selector: 'app-save-bar',
@@ -8,19 +7,36 @@ import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
   styleUrls: ['./save-bar.component.css']
 })
 export class SaveBarComponent implements OnInit {
-  @ViewChild(FirmDemographicsComponent) FDComponent;
+  // formFromChild:FormGroup;
+  // getChild(event:any){
+  //   this.formFromChild = event;
+  //   console.log('parent here')
+  //   console.log(this.formFromChild.value)
+  // }
+
+  // CPdata:CPEntities={};
+  // myForm: FormGroup;
+  // @Output() saveEmitter = new EventEmitter<>();
+
+
+
+  // @ViewChild(FirmDemographicsComponent) FDComponent;
   
-  msg1:string;
+  // msg1:string;
 
 savebtn(){
-  // console.log(FirmDemographicsComponent)
-  this.msg1 = 'stop';
-  console.log(this.msg1)
-  this.msg1= this.FDComponent.msg2
-  console.log(this.msg1)
+  console.log(this.result.myForm.value)
+  // console.log(this.result.formFromChild1.value)
+  // console.log(this.result.formFromChild2.value)
+  // console.log(this.result.formFromChild3.value)
+  // console.log(this.result.formFromChild4.value)
+  // console.log(this.result.formFromChild5.value)
+  // console.log(this.result.formFromChild6.value)
+  // console.log(this.result.formFromChild7.value)
+  // console.log(this.result.formFromChild8.value)
 }
-  // constructor(private team:) {
-  //  }
+  constructor(private result:SurveyBodyComponent) {
+   }
 
   ngOnInit() {
     

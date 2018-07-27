@@ -105,19 +105,19 @@
                             <th *ngFor="let title of firmLead">{{title}}</th>
                         </tr>
                     </thead>
-                    <tbody formArrayName="regions">
-                        <tr *ngFor="let address of myForm.controls.regions.controls; let i=index" [formGroupName]="i">
+                    <tbody formArrayName="numbers">
+                        <tr *ngFor="let address of myForm.controls.numbers.controls; let i=index" [formGroupName]="i">
                             <th>
                                 <!-- -->
                                 {{sample(i)}} 
                                 <!-- {{i}} -->
                             </th>
-                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="MF"></td>
-                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="MM"></td>
-                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="WF"></td>
-                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="WM"></td>
+                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="MinorityFemale"></td>
+                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="MinorityMale"></td>
+                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="WhiteFemale"></td>
+                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="WhiteMale"></td>
                             <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="LGBT"></td>
-                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="D"></td>
+                            <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="Disabled"></td>
                             <td>{{compute(i)}}</td>
                         </tr>
                     </tbody>

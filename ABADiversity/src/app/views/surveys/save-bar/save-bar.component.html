@@ -1,6 +1,18 @@
-<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_confirm"  (click)="savebtn()">
-    <i class="fa fa-save"></i> Submit
-</button>
+<div class="row col-md-2">
+    <div>
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_confirm"  (click)="savebtn()">
+            <i class="fa fa-save"></i> Submit
+        </button>
+    </div>
+    <div class="row col-md-12">
+        <div class="input-group">
+            <!-- <br/> -->
+            <label class="control-label">Year: </label>
+            <select type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Input"></select>
+        </div>
+    </div>
+</div>
+<div class="row col-md-12"></div>
 <div id="modal_confirm" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">

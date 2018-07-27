@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 
@@ -8,6 +8,7 @@ import { isNumber } from 'util';
   styleUrls: ['./lawyers-joined.component.css']
 })
 export class LawyersJoinedComponent implements OnInit {
+  @Output() updateChildFormToParent = new EventEmitter<any>();
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmDemoassign:string[]=['EP','NEP','AS','CO','OL','Totals']
 
@@ -37,6 +38,7 @@ export class LawyersJoinedComponent implements OnInit {
     this.addRow();
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
+      this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
         const demographics =<FormGroup> control.at(i);
