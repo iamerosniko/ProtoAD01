@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util'; 
 import { FirmDemographics } from '../../../entities/entities';
@@ -10,24 +10,7 @@ import { FirmDemographics } from '../../../entities/entities';
 })
 export class FirmDemographicsComponent implements OnInit {
   @Output() updateChildFormToParent = new EventEmitter<any>();
-  // application:Applications={}
-  // myForm: FormGroup;
-  sampledata:FirmDemographics[]=[
-    {equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Hispanic/Latino",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Alaska Native/American Indian",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Asian",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Native Hawaiian/Other Pacific Islander",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Multiracial",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"White",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"LGBT",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Disabled",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Women",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"},
-    {regionName:"Men",equityPartners:"1",nonEquityPartners:"2",associates:"3",counsel:"4",otherLawyers:"5"}
-]
-sampledata1:FirmDemographics[]=[{regionName:"African American/Black(not Hispanic/Latino)"}]
-  // sampledata1:string = this.sampledata.associates
-  
+  @Input() companyProfileID : string = "GUID";
 
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmDemoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
@@ -48,8 +31,8 @@ sampledata1:FirmDemographics[]=[{regionName:"African American/Black(not Hispanic
   ]
   myForm: FormGroup;
   constructor(private fb:FormBuilder) {
-    
   }
+
   ngOnInit() {
     this.myForm = this.fb.group
     ({
@@ -90,13 +73,13 @@ sampledata1:FirmDemographics[]=[{regionName:"African American/Black(not Hispanic
     this.items.forEach(element => {
       control.push(this.initItems(element));
     });
-
-   
+    
   }
   
   initItems(name:string): FormGroup{
     // Here, we make the form for each day
     return this.fb.group({
+      'companyProfileID': [this.companyProfileID,Validators.required],
       region:[name],
       'EquityPartners':[0,Validators.required],
       'NonEquityPartners': [0,Validators.required],

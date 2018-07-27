@@ -1,11 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
-import { FirmDemographicsComponent } from '../firm-demographics/firm-demographics.component';
 import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
-import { CompanyProfileComponent } from '../company-profile/company-profile.component';
-import { CPEntities } from '../entities/companyProfile';
-import { firmlist } from '../entities/firm';
-import { Router } from '@angular/router';
-import { FDdetails,FDInfo } from '../entities/firmdemographics';
 
 @Component({
   selector: 'app-survey-body',

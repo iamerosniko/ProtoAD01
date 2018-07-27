@@ -1,5 +1,5 @@
 import { Component, OnInit,Output,EventEmitter,Input, state  } from '@angular/core';
-import { initiatives, commentsdata } from '../entities/undertakeninitiatives';
+import { UndertakenInitiatives } from '../../../entities/entities';
 import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
 
 @Component({
@@ -9,12 +9,10 @@ import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
 })
 export class UndertakenInitiativesComponent implements OnInit {
   @Output() updateChildFormToParent = new EventEmitter<any>();
-  initData:initiatives={};
+  initData:UndertakenInitiatives={};
   myForm: FormGroup;
   commentsForm: FormGroup;
   // tempComment:commentsdata={}
-  tempComments:commentsdata={};
-
   rdb1Condition:boolean = true;
   rdb2Condition:boolean = true;
   rdb3Condition:boolean = true;
@@ -38,7 +36,7 @@ export class UndertakenInitiativesComponent implements OnInit {
   // }
   rdb1yesclick(){
     this.rdb1Condition = true;
-    this.tempComments.q1c = null;
+    this.initData.comment1 = null;
   }
   rdb1noclick(){
     this.rdb1Condition = false;
@@ -46,112 +44,112 @@ export class UndertakenInitiativesComponent implements OnInit {
   }
   rdb2yesclick(){
     this.rdb2Condition = true;
-    this.tempComments.q2c = null;
+    this.initData.comment1 = null;
   }
   rdb2noclick(){
     this.rdb2Condition = false;
   }
   rdb3yesclick(){
     this.rdb3Condition = true;
-    this.tempComments.q3c = null;
+    this.initData.comment1 = null;
   }
   rdb3noclick(){
     this.rdb3Condition = false;
   }
   rdb4yesclick(){
     this.rdb4Condition = true;
-    this.tempComments.q4c = null;
+    this.initData.comment1 = null;
   }
   rdb4noclick(){
     this.rdb4Condition = false;
   }
   rdb5yesclick(){
     this.rdb5Condition = true;
-    this.tempComments.q5c = null;
+    this.initData.comment1 = null;
   }
   rdb5noclick(){
     this.rdb5Condition = false;
   }
   rdb6yesclick(){
     this.rdb6Condition = true;
-    this.tempComments.q6c = null;
+    this.initData.comment1 = null;
   }
   rdb6noclick(){
     this.rdb6Condition = false;
   }
   rdb7yesclick(){
     this.rdb7Condition = true;
-    this.tempComments.q7c = null;
+    this.initData.comment1 = null;
   }
   rdb7noclick(){
     this.rdb7Condition = false;
   }
   rdb8yesclick(){
     this.rdb8Condition = true;
-    this.tempComments.q8c = null;
+    this.initData.comment1 = null;
   }
   rdb8noclick(){
     this.rdb8Condition = false;
   }
   rdb9yesclick(){
     this.rdb9Condition = true;
-    this.tempComments.q9c = null;
+    this.initData.comment1 = null;
   }
   rdb9noclick(){
     this.rdb9Condition = false;
   }
   rdb10yesclick(){
     this.rdb10Condition = true;
-    this.tempComments.q10c = null;
+    this.initData.comment1 = null;
   }
   rdb10noclick(){
     this.rdb10Condition = false;
   }
   rdb11yesclick(){
     this.rdb11Condition = true;
-    this.tempComments.q11c = null;
+    this.initData.comment1 = null;
   }
   rdb11noclick(){
     this.rdb11Condition = false;
   }
   rdb12yesclick(){
     this.rdb12Condition = true;
-    this.tempComments.q12c = null;
+    this.initData.comment1 = null;
   }
   rdb12noclick(){
     this.rdb12Condition = false;
   }
   rdb13yesclick(){
     this.rdb13Condition = true;
-    this.tempComments.q13c = null;
+    this.initData.comment1 = null;
   }
   rdb13noclick(){
     this.rdb13Condition = false;
   }
   rdb14yesclick(){
     this.rdb14Condition = true;
-    this.tempComments.q14c = null;
+    this.initData.comment1 = null;
   }
   rdb14noclick(){
     this.rdb14Condition = false;
   }
   rdb15yesclick(){
     this.rdb15Condition = true;
-    this.tempComments.q15c = null;
+    this.initData.comment1 = null;
   }
   rdb15noclick(){
     this.rdb15Condition = false
   }
   rdb16yesclick(){
     this.rdb16Condition = true;;
-    this.tempComments.q16c = null;
+    this.initData.comment1 = null;
   }
   rdb16noclick(){
     this.rdb16Condition = false;
   }
   rdb17yesclick(){
     this.rdb17Condition = true;
-    this.tempComments.q17c = null;
+    this.initData.comment1 = null;
   }
   rdb17noclick(){
     this.rdb17Condition = false;
@@ -159,46 +157,41 @@ export class UndertakenInitiativesComponent implements OnInit {
   
   constructor(private fb:FormBuilder) { 
     this.myForm = this.fb.group({
-      q1:[this.initData.q1,Validators.required],
-      q2:[this.initData.q2,Validators.required],
-      q3:[this.initData.q3,Validators.required],
-      q4:[this.initData.q4,Validators.required],
-      q5:[this.initData.q5,Validators.required],
-      q6:[this.initData.q6,Validators.required],
-      q7:[this.initData.q7,Validators.required],
-      q8:[this.initData.q8,Validators.required],
-      q9:[this.initData.q9,Validators.required],
-      q10:[this.initData.q10,Validators.required],
-      q11:[this.initData.q11,Validators.required],
-      q12:[this.initData.q12,Validators.required],
-      q13:[this.initData.q13,Validators.required],
-      q14:[this.initData.q14,Validators.required],
-      q15:[this.initData.q15,Validators.required],
-      q16:[this.initData.q16,Validators.required],
-      q17:[this.initData.q17,Validators.required],
-      comments:[this.initData.comments,Validators.required],
-
-      qComment:[this.commentsForm = this.fb.group({
-        qComments : [ 
-          this.tempComments
-        ]
-      })],
-      // q2c:[this.tempComments.q2c,Validators.required],
-      // q3c:[this.tempComments.q3c,Validators.required],
-      // q4c:[this.tempComments.q4c,Validators.required],
-      // q5c:[this.tempComments.q5c,Validators.required],
-      // q6c:[this.tempComments.q6c,Validators.required],
-      // q7c:[this.tempComments.q7c,Validators.required],
-      // q8c:[this.tempComments.q8c,Validators.required],
-      // q9c:[this.tempComments.q9c,Validators.required],
-      // q10c:[this.tempComments.q10c,Validators.required],
-      // q11c:[this.tempComments.q11c,Validators.required],
-      // q12c:[this.tempComments.q12c,Validators.required],
-      // q13c:[this.tempComments.q13c,Validators.required],
-      // q14c:[this.tempComments.q14c,Validators.required],
-      // q15c:[this.tempComments.q15c,Validators.required],
-      // q16c:[this.tempComments.q16c,Validators.required],
-      // q17c:[this.tempComments.q17c,Validators.required],
+      answer1:[this.initData.answer1,Validators.required],
+      answer2:[this.initData.answer2,Validators.required],
+      answer3:[this.initData.answer3,Validators.required],
+      answer4:[this.initData.answer4,Validators.required],
+      answer5:[this.initData.answer5,Validators.required],
+      answer6:[this.initData.answer6,Validators.required],
+      answer7:[this.initData.answer7,Validators.required],
+      answer8:[this.initData.answer8,Validators.required],
+      answer9:[this.initData.answer9,Validators.required],
+      answer10:[this.initData.answer10,Validators.required],
+      answer11:[this.initData.answer11,Validators.required],
+      answer12:[this.initData.answer12,Validators.required],
+      answer13:[this.initData.answer13,Validators.required],
+      answer14:[this.initData.answer14,Validators.required],
+      answer15:[this.initData.answer15,Validators.required],
+      answer16:[this.initData.answer16,Validators.required],
+      answer17:[this.initData.answer17,Validators.required],
+      mainComment:[this.initData.mainComment,Validators.required],
+      comment1:[this.initData.comment1,Validators.required],
+      comment2:[this.initData.comment2,Validators.required],
+      comment3:[this.initData.comment3,Validators.required],
+      comment4:[this.initData.comment4,Validators.required],
+      comment5:[this.initData.comment5,Validators.required],
+      comment6:[this.initData.comment6,Validators.required],
+      comment7:[this.initData.comment7,Validators.required],
+      comment8:[this.initData.comment8,Validators.required],
+      comment9:[this.initData.comment9,Validators.required],
+      comment10:[this.initData.comment10,Validators.required],
+      comment11:[this.initData.comment11,Validators.required],
+      comment12:[this.initData.comment12,Validators.required],
+      comment13:[this.initData.comment13,Validators.required],
+      comment14:[this.initData.comment14,Validators.required],
+      comment15:[this.initData.comment15,Validators.required],
+      comment16:[this.initData.comment16,Validators.required],
+      comment17:[this.initData.comment17,Validators.required],
     });
     this.myForm.valueChanges.subscribe(()=>{
       this.sendthistoparent();
@@ -209,6 +202,6 @@ export class UndertakenInitiativesComponent implements OnInit {
   }
   sendthistoparent(){
     this.updateChildFormToParent.emit(this.myForm)
-      }
+  }
 
 }

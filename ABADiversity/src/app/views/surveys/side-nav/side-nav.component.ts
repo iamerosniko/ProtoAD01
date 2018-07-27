@@ -1,9 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, NgModule} from '@angular/core';
-import { FirmDemographicsComponent } from '../firm-demographics/firm-demographics.component';
-import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
-import { CompanyProfileComponent } from '../company-profile/company-profile.component';
-import { CPEntities } from '../entities/companyProfile';
-import { firmlist } from '../entities/firm';
+import { Firms } from '../../../entities/entities';
 import { Router } from '@angular/router';
 import { SurveyBodyComponent } from '../survey-body/survey-body.component'
 
@@ -13,20 +9,20 @@ import { SurveyBodyComponent } from '../survey-body/survey-body.component'
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
-  firmlist:firmlist[]=[
-    {firmcode: 'MNULFE1001'},
-    {firmcode: 'PSSCPH1001'},
-    {firmcode: 'BDOMPH1001'},
-    {firmcode: 'SECBPH1001'}
+  firmlist:Firms[]=[
+    {firmID: 'MNULFE1001'},
+    {firmID: 'PSSCPH1001'},
+    {firmID: 'BDOMPH1001'},
+    {firmID: 'SECBPH1001'}
 ]
-firmlistoriginal:firmlist[]=[
-  {firmcode: 'MNULFE1001'},
-  {firmcode: 'PSSCPH1001'},
-  {firmcode: 'BDOMPH1001'},
-  {firmcode: 'SECBPH1001'}
+firmlistoriginal:Firms[]=[
+  {firmID: 'MNULFE1001'},
+  {firmID: 'PSSCPH1001'},
+  {firmID: 'BDOMPH1001'},
+  {firmID: 'SECBPH1001'}
 ]
-  firmSearchList:firmlist[]=[]
-  firmSearch:firmlist={}
+  firmSearchList:Firms[]=[]
+  firmSearch:Firms={}
   // firmSearch1:
   // CPdata:CPEntities={};
   // myForm: FormGroup;
@@ -39,14 +35,14 @@ firmlistoriginal:firmlist[]=[
     console.log("Search")
 
     this.firmlist.forEach(element => {
-      if(element.firmcode == this.firmSearch.firmSearch){
+      if(element.firmID == this.firmSearch.firmName){
         console.log("happy")
         this.firmlist = this.firmSearchList
-        this.firmlist.forEach(element =>(element.firmcode =  this.firmSearch.firmSearch))
+        this.firmlist.forEach(element =>(element.firmID =  this.firmSearch.firmName))
       }
       else{console.log("sad")}
     });
-    console.log(this.firmSearch.firmSearch)
+    console.log(this.firmSearch.firmName)
     console.log(this.firmlist)
     
   }
