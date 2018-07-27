@@ -86,11 +86,7 @@ export class FirmDemographicsComponent implements OnInit {
       'Associates': [0, Validators.required ],
       'Counsel': [0,Validators.required ],
       'OtherLawyers': [0,Validators.required],
-      // add firmid
     });
-
-    // var samp : any = {regionName : 'america', equityPartners : "1"}
-    
   }
 
   sample(index:number){
