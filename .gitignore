@@ -45,3 +45,5 @@ node_modules/
 Network Trash Folder
 Temporary Items
 .apdisk
+ABAModelDiversity/.vs/ABAModelDiversity/v15/Server/sqlite3/storage.ide-shm
+*.ide-shm
