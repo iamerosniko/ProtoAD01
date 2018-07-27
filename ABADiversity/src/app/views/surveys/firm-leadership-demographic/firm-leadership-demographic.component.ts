@@ -74,7 +74,7 @@ export class FirmLeadershipDemographicComponent implements OnInit {
     return this.fb.group({
       'companyProfileID': [this.companyProfileID,Validators.required],
       leadershipDemographicID:[UUID.UUID(),Validators.required],
-      number:[name],
+      NumberQuestion:[name],
       'MinorityFemale':[0,Validators.required],
       'MinorityMale': [0,Validators.required ],
       'WhiteFemale': [0, Validators.required ],
@@ -88,7 +88,7 @@ export class FirmLeadershipDemographicComponent implements OnInit {
     const control = <FormArray>this.myForm.controls['numbers'];
     const formb=<FormGroup>control.at(index)
     // console.log((formb.controls['numbers'].value))
-    return (formb.controls['number'].value)
+    return (formb.controls['NumberQuestion'].value)
     // console.log(formbuild)
     // return formbuild.control['validate'].value
     //return control[index].controls['validate'].value

@@ -9,14 +9,14 @@ namespace API.Tables
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int LeadershipDemographicID { get; set; }
+    public Guid LeadershipDemographicID { get; set; }
     public Guid CompanyProfileID { get; set; }
     public string NumberQuestion { get; set; }
     public string MinorityFemale { get; set; }
     public string MinorityMale { get; set; }
     public string WhiteFemale { get; set; }
     public string WhiteMale { get; set; }
-    public string Lgbt { get; set; }
+    public string LGBT { get; set; }
     public string Disabled { get; set; }
     //public List<Genders> Genders { get; set; }
   }

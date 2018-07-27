@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { ClientApiService } from './clientapi.service'; 
 import { ClientApiSettings } from './clientapi.settings'; 
-
+import { Survey } from '../entities/survey';
 
 @Injectable()
 export class SurveyService {
@@ -21,23 +21,23 @@ export class SurveyService {
 
   getSurvey(applicationID: string) {
     this.api.normalHeader();
-    this.api.apiUrl=ClientApiSettings.GETBWURL("FESurvey")
+    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey")
     return this.api.getOne(applicationID);
   }
 
-  postSurvey(application: any) {
+  postSurvey(surveyObj: Survey) {
     this.api.normalHeader();
-    this.api.apiUrl=ClientApiSettings.GETBWURL("FESurvey")
-    var body = JSON.stringify(application);
+    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey")
+    var body = JSON.stringify(surveyObj);
     return this.api.postData(body);
   } 
 
-  putSurvey(application: any) {
-    this.api.normalHeader();
-    this.api.apiUrl=ClientApiSettings.GETBWURL("FESurvey")
-    var body = JSON.stringify(application);
-    return this.api.putData(application.AppID.toString(),body );
-  }
+  // putSurvey(application: any) {
+  //   this.api.normalHeader();
+  //   this.api.apiUrl=ClientApiSettings.GETBWURL("Survey")
+  //   var body = JSON.stringify(application);
+  //   return this.api.putData(application.AppID.toString(),body );
+  // }
 
   // deleteSurvey(applicationID: string) {
   //   this.api.normalHeader();

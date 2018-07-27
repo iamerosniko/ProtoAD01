@@ -42,7 +42,7 @@
           <div id="collapse_CP" class="panel-collapse collapse"> 
               <div class="panel-body">
                 <div class="container-fluid">
-                  <app-company-profile [companyProfileID]="companyProfileID" (updateChildFormToParent)= getChild($event)></app-company-profile>
+                  <app-company-profile [companyProfileID]="companyProfileID" [firmID]="firm.firmID" (updateCertFormToParent)="getCertificateForm($event)" (updateChildFormToParent)= getChild($event)></app-company-profile>
                 </div>  
               </div>
           </div>

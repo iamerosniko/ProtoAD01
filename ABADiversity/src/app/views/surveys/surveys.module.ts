@@ -17,6 +17,8 @@ import { PromotionsAssocPartnerComponent } from './promotions-assoc-partner/prom
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SurveyBodyComponent } from './survey-body/survey-body.component';
 import { RouterModule } from '@angular/router'
+
+import { SurveyService } from '../../services/survey.service'
 @NgModule({
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { RouterModule } from '@angular/router'
     FormsModule,
     RouterModule
   ],
-  declarations: [SurveysComponent,SideNavComponent,SaveBarComponent,CompanyProfileComponent,FirmDemographicsComponent, FirmLeadershipDemographicComponent, LawyersLeftComponent, LawyersJoinedComponent, LawyersReducedHoursComponent, TopTenHighestCompensatedPartnersComponent, UndertakenInitiativesComponent, PromotionsAssocPartnerComponent, SurveyBodyComponent]
+  declarations: [SurveysComponent,SideNavComponent,SaveBarComponent,CompanyProfileComponent,FirmDemographicsComponent, FirmLeadershipDemographicComponent, LawyersLeftComponent, LawyersJoinedComponent, LawyersReducedHoursComponent, TopTenHighestCompensatedPartnersComponent, UndertakenInitiativesComponent, PromotionsAssocPartnerComponent, SurveyBodyComponent],
+  providers:[SurveyService]
 })
 export class SurveysModule { }

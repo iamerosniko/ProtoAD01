@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
@@ -30,6 +29,7 @@ namespace API.Migrations
                     CompanyProfileID = table.Column<Guid>(nullable: false),
                     Catown = table.Column<string>(nullable: true),
                     Datecomp = table.Column<DateTime>(nullable: false),
+                    FirmID = table.Column<Guid>(nullable: false),
                     Firmcert = table.Column<string>(nullable: true),
                     Firmhead = table.Column<string>(nullable: true),
                     Firmname = table.Column<string>(nullable: true),
@@ -98,11 +98,10 @@ namespace API.Migrations
                 name: "AD_LeadershipDemographics",
                 columns: table => new
                 {
-                    LeadershipDemographicID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LeadershipDemographicID = table.Column<Guid>(nullable: false),
                     CompanyProfileID = table.Column<Guid>(nullable: false),
                     Disabled = table.Column<string>(nullable: true),
-                    Lgbt = table.Column<string>(nullable: true),
+                    LGBT = table.Column<string>(nullable: true),
                     MinorityFemale = table.Column<string>(nullable: true),
                     MinorityMale = table.Column<string>(nullable: true),
                     NumberQuestion = table.Column<string>(nullable: true),

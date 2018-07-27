@@ -115,7 +115,7 @@ namespace API.Controllers
     //  return Ok(leadershipDemographics);
     //}
 
-    private bool LeadershipDemographicsExists(int id)
+    private bool LeadershipDemographicsExists(Guid id)
     {
       return _context.LeadershipDemographics.Any(e => e.LeadershipDemographicID == id);
     }

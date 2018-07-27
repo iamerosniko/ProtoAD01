@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
-import { Survey,Firms } from '../../../entities/entities'
+import { Survey,Firms,CompanyProfiles } from '../../../entities/entities'
+import { SurveyService } from '../../../services/survey.service'
 import { UUID } from 'angular2-uuid'
 @Component({
   selector: 'app-survey-body',
@@ -9,7 +10,9 @@ import { UUID } from 'angular2-uuid'
 })
 export class SurveyBodyComponent implements OnInit {
   survey:Survey={};
+  companyForm:CompanyProfiles={};
   formFromChild:FormGroup;
+  certificateForm:FormGroup;
   formFromChild1:FormGroup;
   formFromChild2:FormGroup;
   formFromChild3:FormGroup;
@@ -23,6 +26,11 @@ export class SurveyBodyComponent implements OnInit {
   companyProfileID : string = '';
   getChild(event:any){
     this.formFromChild = event;
+    // console.log('Company Profile')
+    // console.log(this.formFromChild.value)
+  }
+  getCertificateForm(event:any){
+    this.certificateForm = event;
     // console.log('Company Profile')
     // console.log(this.formFromChild.value)
   }
@@ -67,7 +75,7 @@ export class SurveyBodyComponent implements OnInit {
     // console.log(this.formFromChild8.value)
   }
 
-constructor( private fb:FormBuilder) {
+constructor( private fb:FormBuilder , private surveySvc:SurveyService) {
    
   }
   ngOnInit() {
@@ -75,41 +83,39 @@ constructor( private fb:FormBuilder) {
     this.companyProfileID = UUID.UUID();
   }
   
-  save(){
-    // console.log(this.formFromChild.value)
-    // console.log(this.formFromChild1.value)
-    // console.log(this.formFromChild2.value)
-    // console.log(this.formFromChild3.value)
-    // console.log(this.formFromChild4.value)
-    // console.log(this.formFromChild5.value)
-    // console.log(this.formFromChild6.value)
-    // console.log(this.formFromChild7.value)
-    // console.log(this.formFromChild8.value)
-
-    this.survey.firmDemographics = this.formFromChild1.controls['regions'].value;
-    this.survey.leadershipDemographics = this.formFromChild2.controls['numbers'].value;
-    this.survey.promotionsAssociatePartners = this.formFromChild3.controls['regions'].value;
-    this.survey.leftLawyers = this.formFromChild4.controls['regions'].value;
-    this.survey.joinedLawyers = this.formFromChild5.controls['regions'].value;
-    this.survey.reducedhoursLawyers = this.formFromChild6.controls['regions'].value;
-    this.survey.topTenHighestCompensations = this.formFromChild7.controls['regions'].value;
-    this.survey.undertakenInitiatives = this.formFromChild8.value;
-  
+  async save(){
+    this.companyForm = this.formFromChild.value;
+    this.survey.Companyprofile=  this.companyForm;
+    this.firm.firmName=this.companyForm.firmname
+    
+    this.survey.FirmDemographics = this.formFromChild1.controls['regions'].value;
+    this.survey.PromotionsAssociatePartners = this.formFromChild3.controls['regions'].value;
+    this.survey.LeftLawyers = this.formFromChild4.controls['regions'].value;
+    this.survey.JoinedLawyers = this.formFromChild5.controls['regions'].value;
+    this.survey.ReducedhoursLawyers = this.formFromChild6.controls['regions'].value;
+    this.survey.TopTenHighestCompensations = this.formFromChild7.controls['regions'].value;
+    this.survey.UndertakenInitiatives = this.formFromChild8.value;
+    this.survey.Firm = this.firm;
+    this.survey.IsNewFirm=true;
+    this.survey.Certificates=this.certificateForm.controls['certificates'].value;
+    this.survey.LeadershipDemographics = this.formFromChild2.controls['numbers'].value;
     console.log(this.survey)
+    this.surveySvc.postSurvey(this.survey);
   }
 
   isValid():boolean{
 
-    var a =
-      this.formFromChild.valid && 
-      this.formFromChild1.valid && 
-      this.formFromChild2.valid && 
-      this.formFromChild3.valid && 
-      this.formFromChild4.valid &&
-      this.formFromChild5.valid && 
-      this.formFromChild6.valid && 
-      this.formFromChild7.valid && 
-      this.formFromChild8.valid; 
+    var a = true
+      // this.formFromChild.valid 
+      // && 
+      // this.formFromChild1.valid && 
+      // this.formFromChild2.valid && 
+      // this.formFromChild3.valid && 
+      // this.formFromChild4.valid &&
+      // this.formFromChild5.valid && 
+      // this.formFromChild6.valid && 
+      // this.formFromChild7.valid && 
+      // this.formFromChild8.valid; 
     return !a;
   }
 }

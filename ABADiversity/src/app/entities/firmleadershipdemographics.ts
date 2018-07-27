@@ -6,6 +6,6 @@ export interface LeadershipDemographics{
     minorityMale?:string;
     whiteFemale?:string;
     whiteMale?:string;
-    lgbt?:string;
+    LGBT?:string;
     disabled?:string;
 }

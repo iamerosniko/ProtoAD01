@@ -42,10 +42,16 @@ namespace API.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> SaveSUrvey(Survey survey)
+    public async Task<IActionResult> SaveSUrvey([FromBody]Survey survey)
     {
+      if (!ModelState.IsValid)
+      {
+        return null;
+      }
+
       if (survey.IsNewFIrm)
       {
+        survey.Firm.FirmName = survey.CompanyProfile.Firmname;
         var firm = await firmsController.PostFirms(survey.Firm);
       }
 

@@ -134,14 +134,14 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Tables.LeadershipDemographics", b =>
                 {
-                    b.Property<int>("LeadershipDemographicID")
+                    b.Property<Guid>("LeadershipDemographicID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid>("CompanyProfileID");
 
                     b.Property<string>("Disabled");
 
-                    b.Property<string>("Lgbt");
+                    b.Property<string>("LGBT");
 
                     b.Property<string>("MinorityFemale");
 
