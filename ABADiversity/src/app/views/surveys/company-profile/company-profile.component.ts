@@ -65,6 +65,7 @@ export class CompanyProfileComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.sendthistoparent();
   }
 
   sendthistoparent(){

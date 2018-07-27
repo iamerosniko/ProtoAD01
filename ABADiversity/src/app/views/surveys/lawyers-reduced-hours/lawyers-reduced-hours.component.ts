@@ -48,9 +48,9 @@ export class LawyersReducedHoursComponent implements OnInit {
     this.myForm = this.fb.group
     ({
       regions: this.fb.array([]),
-      firmID:[1001,Validators.required]
     })
     this.addRow();
+    this.updateChildFormToParent.emit(this.myForm)
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
       this.updateChildFormToParent.emit(this.myForm)

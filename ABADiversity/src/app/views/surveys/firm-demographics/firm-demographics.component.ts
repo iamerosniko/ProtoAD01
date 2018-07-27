@@ -39,6 +39,7 @@ export class FirmDemographicsComponent implements OnInit {
       regions: this.fb.array([]),
     })
     this.addRow();
+    this.updateChildFormToParent.emit(this.myForm)
 
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
