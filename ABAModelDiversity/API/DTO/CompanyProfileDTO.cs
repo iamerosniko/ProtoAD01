@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace API.DTO
 {
-  public class Survey
+  public class CompanyProfileDTO
   {
     public Firms Firm { get; set; }
-    public CompanyProfiles CompanyProfile { get; set; }
+    public CompanyProfileDTO CompanyProfile { get; set; }
     public UndertakenInitiatives UndertakenInitiatives { get; set; }
     public List<FirmDemographics> FirmDemographics { get; set; }
     public List<JoinedLawyers> JoinedLawyers { get; set; }
