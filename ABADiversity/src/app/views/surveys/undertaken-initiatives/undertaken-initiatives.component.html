@@ -6,13 +6,13 @@
         <li id="q1" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb1yesclick()" value="Yes" formControlName="q1"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb1yesclick()" value="Yes" formControlName="answer1"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb1noclick()" value="No" formControlName="q1"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb1noclick()" value="No" formControlName="answer1"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb1noclick()" [(ngModel)]="tempComments.q1c" [ngModelOptions]="{standalone: true}" [disabled]="rdb1Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment1" [disabled]="rdb1Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
         </li>
@@ -26,13 +26,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb2yesclick()" value="Yes" formControlName="q2"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb2yesclick()" value="Yes" formControlName="answer2"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb2noclick()" value="No" formControlName="q2"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb2noclick()" value="No" formControlName="answer2"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb2noclick()" [(ngModel)]="tempComments.q2c" [ngModelOptions]="{standalone: true}" [disabled]="rdb2Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment2" [disabled]="rdb2Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -46,13 +46,13 @@
         <li id="q2" class="input-group">
             <div class="row">
               <div class="col-md-1">
-                <label class="control-label input-sm"><input type="radio" (click)="rdb3yesclick()" value="Yes" formControlName="q3"/>&nbsp;Yes</label>
+                <label class="control-label input-sm"><input type="radio" (click)="rdb3yesclick()" value="Yes" formControlName="answer3"/>&nbsp;Yes</label>
               </div>
               <div class="col-md-1">
-                <label class="control-label input-sm"><input type="radio" (click)="rdb3noclick()" value="No" formControlName="q3"/>&nbsp;No</label>
+                <label class="control-label input-sm"><input type="radio" (click)="rdb3noclick()" value="No" formControlName="answer3"/>&nbsp;No</label>
               </div>
               <div class="col-md-10">
-                <input type="text" (change)="rdb3noclick()" [(ngModel)]="tempComments.q3c" [ngModelOptions]="{standalone: true}" [disabled]="rdb3Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+                <input type="text" formControlName="answer3" [disabled]="rdb3Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
               </div>
             </div>
         </li>
@@ -66,13 +66,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb4yesclick()" value="Yes" formControlName="q4"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb4yesclick()" value="Yes" formControlName="answer4"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb4noclick()" value="No" formControlName="q4"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb4noclick()" value="No" formControlName="answer4"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rd4noclick()" [(ngModel)]="tempComments.q4c" [ngModelOptions]="{standalone: true}" [disabled]="rdb4Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment4" [disabled]="rdb4Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -87,13 +87,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb5yesclick()" value="Yes" formControlName="q5"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb5yesclick()" value="Yes" formControlName="answer5"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb5noclick()" value="No" formControlName="q5"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb5noclick()" value="No" formControlName="answer5"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb5noclick()" [(ngModel)]="tempComments.q5c" [ngModelOptions]="{standalone: true}" [disabled]="rdb5Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment5" [disabled]="rdb5Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -107,13 +107,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb6yesclick()" value="Yes" formControlName="q6"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb6yesclick()" value="Yes" formControlName="answer6"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb6noclick()" value="No" formControlName="q6"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb6noclick()" value="No" formControlName="answer6"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb6noclick()" [(ngModel)]="tempComments.q6c" [ngModelOptions]="{standalone: true}" [disabled]="rdb6Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment6" [disabled]="rdb6Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -127,13 +127,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb7yesclick()" value="Yes" formControlName="q7"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb7yesclick()" value="Yes" formControlName="answer7"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb7noclick()" value="No" formControlName="q7"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb7noclick()" value="No" formControlName="answer7"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb7noclick()" [(ngModel)]="tempComments.q7c" [ngModelOptions]="{standalone: true}" [disabled]="rdb7Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment7" [disabled]="rdb7Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -147,13 +147,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb8yesclick()" value="Yes" formControlName="q8"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb8yesclick()" value="Yes" formControlName="answer8"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb8noclick()" value="No" formControlName="q8"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb8noclick()" value="No" formControlName="answer8"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb8noclick()" [(ngModel)]="tempComments.q8c" [ngModelOptions]="{standalone: true}" [disabled]="rdb8Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment8" [disabled]="rdb8Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -167,13 +167,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb9yesclick()" value="Yes" formControlName="q9"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb9yesclick()" value="Yes" formControlName="answer9"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb9noclick()" value="No" formControlName="q9"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb9noclick()" value="No" formControlName="answer9"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb9noclick()" [(ngModel)]="tempComments.q9c" [ngModelOptions]="{standalone: true}" [disabled]="rdb9Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" formControlName="comment9" [disabled]="rdb9Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -187,13 +187,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb10yesclick()" value="Yes" formControlName="q10"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb10yesclick()" value="Yes" formControlName="answer10"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb10noclick()" value="No" formControlName="q10"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb10noclick()" value="No" formControlName="answer10"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb10noclick()" [(ngModel)]="tempComments.q10c" [ngModelOptions]="{standalone: true}" [disabled]="rdb10Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" (change)="rdb10noclick()" formControlName="comment10" [disabled]="rdb10Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -207,13 +207,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb11yesclick()" value="Yes" formControlName="q11"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb11yesclick()" value="Yes" formControlName="answer11"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb11noclick()" value="No" formControlName="q11"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb11noclick()" value="No" formControlName="answer11"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb11noclick()" [(ngModel)]="tempComments.q11c" [ngModelOptions]="{standalone: true}" [disabled]="rdb11Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" (change)="rdb11noclick()" formControlName="comment11" [disabled]="rdb11Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -227,13 +227,13 @@
         <li id="q2" class="input-group">
             <div class="row">
               <div class="col-md-1">
-                <label class="control-label input-sm"><input type="radio" (click)="rdb12yesclick()" value="Yes" formControlName="q12"/>&nbsp;Yes</label>
+                <label class="control-label input-sm"><input type="radio" (click)="rdb12yesclick()" value="Yes" formControlName="answer12"/>&nbsp;Yes</label>
               </div>
               <div class="col-md-1">
-                <label class="control-label input-sm"><input type="radio" (click)="rdb12noclick()" value="No" formControlName="q12"/>&nbsp;No</label>
+                <label class="control-label input-sm"><input type="radio" (click)="rdb12noclick()" value="No" formControlName="answer12"/>&nbsp;No</label>
               </div>
               <div class="col-md-10">
-                <input type="text" (change)="rdb12noclick()" [(ngModel)]="tempComments.q12c" [ngModelOptions]="{standalone: true}" [disabled]="rdb12Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+                <input type="text" (change)="rdb12noclick()" formControlName="comment12" [disabled]="rdb12Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
               </div>
             </div>
         </li>
@@ -247,13 +247,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb13yesclick()" value="Yes" formControlName="q13"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb13yesclick()" value="Yes" formControlName="answer13"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb13noclick()" value="No" formControlName="q13"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb13noclick()" value="No" formControlName="answer13"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb13noclick()" [(ngModel)]="tempComments.q13c" [ngModelOptions]="{standalone: true}" [disabled]="rdb13Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" (change)="rdb13noclick()" formControlName="comment13" [disabled]="rdb13Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -267,13 +267,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb14yesclick()" value="Yes" formControlName="q14"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb14yesclick()" value="Yes" formControlName="answer14"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb14noclick()" value="No" formControlName="q14"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb14noclick()" value="No" formControlName="answer14"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb14noclick()" [(ngModel)]="tempComments.q14c" [ngModelOptions]="{standalone: true}" [disabled]="rdb14Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" (change)="rdb14noclick()" formControlName="comment14" [disabled]="rdb14Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -287,13 +287,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb15yesclick()" value="Yes" formControlName="q15"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb15yesclick()" value="Yes" formControlName="answer15"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb15noclick()" value="No" formControlName="q15"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb15noclick()" value="No" formControlName="answer15"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb15noclick()" [(ngModel)]="tempComments.q15c" [ngModelOptions]="{standalone: true}" [disabled]="rdb15Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" (change)="rdb15noclick()" formControlName="answer15" [disabled]="rdb15Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -307,13 +307,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb16yesclick()" value="Yes" formControlName="q16"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb16yesclick()" value="Yes" formControlName="answer16"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb16noclick()" value="No" formControlName="q16"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb16noclick()" value="No" formControlName="answer16"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb16noclick()" [(ngModel)]="tempComments.q16c" [ngModelOptions]="{standalone: true}" [disabled]="rdb16Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" (change)="rdb16noclick()" formControlName="comment16" [disabled]="rdb16Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -327,13 +327,13 @@
       <li id="q2" class="input-group">
           <div class="row">
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb17yesclick()" value="Yes" formControlName="q17"/>&nbsp;Yes</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb17yesclick()" value="Yes" formControlName="answer17"/>&nbsp;Yes</label>
             </div>
             <div class="col-md-1">
-              <label class="control-label input-sm"><input type="radio" (click)="rdb17noclick()" value="No" formControlName="q17"/>&nbsp;No</label>
+              <label class="control-label input-sm"><input type="radio" (click)="rdb17noclick()" value="No" formControlName="answer17"/>&nbsp;No</label>
             </div>
             <div class="col-md-10">
-              <input type="text" (change)="rdb17noclick()" [(ngModel)]="tempComments.q17c" [ngModelOptions]="{standalone: true}" [disabled]="rdb17Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
+              <input type="text" (change)="rdb17noclick()" formControlName="comment17" [disabled]="rdb17Condition" class="form-control col-md-12 input-sm" placeholder="If No, You can use this space to provide additional explanation as needed."/>
             </div>
           </div>
       </li>
@@ -345,7 +345,7 @@
       <!-- Firm has a written diversity strategy that has been communicated to all firm attorneys. -->
       <label class="control-label input-sm">Comments:</label>
       <div class="col-md-12">
-          <textarea id="comments" formControlName="comments" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Input Comments"></textarea>
+          <textarea id="comments" formControlName="mainComment" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Input Comments"></textarea>
       </div>
     </div>
   </div>
