@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input, NgModule} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Firms } from '../../../entities/entities';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SurveyService } from '../../../services/survey.service';
 @Component({
   selector: 'app-side-nav',
@@ -8,35 +9,31 @@ import { SurveyService } from '../../../services/survey.service';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
+  mainList:Firms[]=[];
   firmlist:Firms[]=[];
-  firmSearchList:Firms[]=[]
-  firmSearch:Firms={}
+  firm:Firms={};
+  myFirm: FormGroup;
 
-  constructor(private router:Router,private surveySvc : SurveyService) { }
+  constructor(private router:Router,private surveySvc : SurveyService,
+    private fb:FormBuilder) { }
 
   async getFirms(){
-    this.firmlist = <Firms[]> await this.surveySvc.getFirms();
-    console.log(this.firmlist)
+    this.mainList = <Firms[]> await this.surveySvc.getFirms();
+    this.firmlist = this.mainList;
   }
 
-  searchFirm(){
-
-    console.log("Search")
-
-    this.firmlist.forEach(element => {
-      if(element.firmID == this.firmSearch.firmName){
-        console.log("happy")
-        this.firmlist = this.firmSearchList
-        this.firmlist.forEach(element =>(element.firmID =  this.firmSearch.firmName))
-      }
-      else{console.log("sad")}
+  async instantiateForm(){
+    this.myFirm = this.fb.group({
+      firmName:['']
     });
-    console.log(this.firmSearch.firmName)
-    console.log(this.firmlist)
-    
+    this.myFirm.statusChanges.subscribe(()=>{
+      this.firm = this.myFirm.value;
+      this.firmlist = this.mainList.filter(x=>x.firmName.match(this.firm.firmName));
+    });
   }
-  
+
   async ngOnInit() {
+    await this.instantiateForm();
     await this.getFirms();
   }
 
