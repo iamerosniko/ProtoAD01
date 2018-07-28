@@ -105,9 +105,8 @@ constructor( private fb:FormBuilder , private surveySvc:SurveyService) {
 
   isValid():boolean{
 
-    var a = true
-      // this.formFromChild.valid 
-      // && 
+    var a = 
+      this.formFromChild.valid  && 
       // this.formFromChild1.valid && 
       // this.formFromChild2.valid && 
       // this.formFromChild3.valid && 
@@ -115,7 +114,7 @@ constructor( private fb:FormBuilder , private surveySvc:SurveyService) {
       // this.formFromChild5.valid && 
       // this.formFromChild6.valid && 
       // this.formFromChild7.valid && 
-      // this.formFromChild8.valid; 
+      this.formFromChild8.valid; 
     return !a;
   }
 }

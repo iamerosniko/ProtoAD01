@@ -78,7 +78,7 @@ export class TopTenHighestCompensatedPartnersComponent implements OnInit {
   initItems(name:string): FormGroup{
     // Here, we make the form for each day
     return this.fb.group({
-      region:[name],
+      regionName:[name],
       topTenHighestCompensationID:[UUID.UUID(),Validators.required],
       'companyProfileID': [this.companyProfileID,Validators.required],
       'EquityPartners':[0,Validators.required],
@@ -92,7 +92,7 @@ export class TopTenHighestCompensatedPartnersComponent implements OnInit {
   sample(index:number){
     const control = <FormArray>this.myForm.controls['regions'];
     const formb=<FormGroup>control.at(index)
-    return (formb.controls['region'].value)
+    return (formb.controls['regionName'].value)
     // console.log(formbuild)
     // return formbuild.control['validate'].value
     //return control[index].controls['validate'].value

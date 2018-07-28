@@ -80,7 +80,7 @@ export class LawyersJoinedComponent implements OnInit {
     return this.fb.group({
       'companyProfileID': [this.companyProfileID,Validators.required],
       joinedLawyerID:[UUID.UUID(),Validators.required],
-      region:[name],
+      regionName:[name],
       'EP':[0,Validators.required],
       'NEP': [0,Validators.required ],
       'AS': [0, Validators.required ],
@@ -92,7 +92,7 @@ export class LawyersJoinedComponent implements OnInit {
   sample(index:number){
     const control = <FormArray>this.myForm.controls['regions'];
     const formb=<FormGroup>control.at(index)
-    return (formb.controls['region'].value)
+    return (formb.controls['regionName'].value)
     // console.log(formbuild)
     // return formbuild.control['validate'].value
     //return control[index].controls['validate'].value

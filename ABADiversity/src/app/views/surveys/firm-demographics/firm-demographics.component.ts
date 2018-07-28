@@ -83,7 +83,7 @@ export class FirmDemographicsComponent implements OnInit {
     return this.fb.group({
       'companyProfileID': [this.companyProfileID,Validators.required],
       firmDemographicID:[UUID.UUID(),Validators.required],
-      region:[name],
+      regionName:[name],
       'EquityPartners':[0,Validators.required],
       'NonEquityPartners': [0,Validators.required],
       'Associates': [0, Validators.required ],
@@ -95,7 +95,7 @@ export class FirmDemographicsComponent implements OnInit {
   sample(index:number){
     const control = <FormArray>this.myForm.controls['regions'];
     const formb=<FormGroup>control.at(index)
-    return (formb.controls['region'].value)
+    return (formb.controls['regionName'].value)
     // console.log(formbuild)
     // return formbuild.control['validate'].value
     //return control[index].controls['validate'].value

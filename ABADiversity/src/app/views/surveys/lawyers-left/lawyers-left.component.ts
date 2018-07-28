@@ -78,7 +78,7 @@ export class LawyersLeftComponent implements OnInit {
   initItems(name:string): FormGroup{
     // Here, we make the form for each day
     return this.fb.group({
-      region:[name],
+      regionName:[name],
       'companyProfileID': [this.companyProfileID,Validators.required],
       leftLawyerID:[UUID.UUID(),Validators.required],
       'EquityPartners':[0,Validators.required],
@@ -92,7 +92,7 @@ export class LawyersLeftComponent implements OnInit {
   sample(index:number){
     const control = <FormArray>this.myForm.controls['regions'];
     const formb=<FormGroup>control.at(index)
-    return (formb.controls['region'].value)
+    return (formb.controls['regionName'].value)
     // console.log(formbuild)
     // return formbuild.control['validate'].value
     //return control[index].controls['validate'].value
