@@ -1,15 +1,20 @@
-<div class="row col-md-2">
-    <div>
-        <button type="button" [disabled]="isValid()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_confirm">
-            <i class="fa fa-save"></i> Submit
-        </button>
-    </div>
-    <div class="row col-md-12">
+<div class="row col-md-12">
+    <div class="col-md-11">
         <div class="input-group">
             <!-- <br/> -->
             <label class="control-label">Year: </label>
-            <select type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Input"></select>
+            <select id="dateBox" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
+                <option>Add New Survey Year</option>
+                <option>2016</option>
+                <option>2017</option>
+                <option>2018</option>
+            </select>
         </div>
+    </div>
+    <div class="col-md-1">
+        <button type="button" [disabled]="isValid()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_confirm">
+            <i class="fa fa-save"></i> Submit
+        </button>
     </div>
 </div>
 <div id="modal_confirm" class="modal fade" role="dialog">
@@ -31,7 +36,7 @@
     </div>
 </div>
 
-<div class="row col-md-12">
+<div class="row col-md-12"><br/>
     <div class="panel-group" id="accordion">
       <div class="panel panel-primary" id="accordion">
           <div class="panel-heading"> 

@@ -23,7 +23,7 @@
           </a>
         </li>
         <li class="divider"></li>
-        <li *ngFor="let firmlist of firmlist"><a><i class="fa fa-university"></i><span class="desc">{{firmlist.firmName}}</span></a></li>
+        <li *ngFor="let firmlist of firmlist" [routerLink]="['./', {outlets: {'surveyroute': ['NewSurvey']}}]" (click)="getFirmData()"><a><i class="fa fa-university"></i><span class="desc">{{firmlist.firmName}}</span></a></li>
       </ul>
     </div>
     <div id="page-content-wrapper">
