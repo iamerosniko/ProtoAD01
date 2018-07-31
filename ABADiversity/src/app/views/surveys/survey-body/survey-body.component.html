@@ -1,9 +1,10 @@
 <div class="row col-md-12">
-    <div class="col-md-11">
-        <div class="input-group">
-            <!-- <br/> -->
-            <label class="control-label">Year: </label>
-            <select id="dateBox" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
+    <div class="col-md-8">
+        <div class="col-md-2">
+            <label>Year: </label>
+        </div>
+        <div class="col-md-6">
+            <select class="form-control"id="dateBox" type="text" maxlength="100" >
                 <option>Add New Survey Year</option>
                 <option>2016</option>
                 <option>2017</option>
@@ -11,12 +12,13 @@
             </select>
         </div>
     </div>
-    <div class="col-md-1">
-        <button type="button" [disabled]="isValid()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_confirm">
+    <div class="col-md-4 ">   
+        <button type="button" [disabled]="isValid()" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#modal_confirm">
             <i class="fa fa-save"></i> Submit
         </button>
     </div>
 </div>
+
 <div id="modal_confirm" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
