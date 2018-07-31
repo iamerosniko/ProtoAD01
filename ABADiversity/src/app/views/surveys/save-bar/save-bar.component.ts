@@ -23,7 +23,9 @@ export class SaveBarComponent implements OnInit {
   // @ViewChild(FirmDemographicsComponent) FDComponent;
   
   // msg1:string;
-
+getFirms(){
+  console.log(" getFirms() is working")
+}
 savebtn(){
   console.log(this.result.myForm.value)
   // console.log(this.result.formFromChild1.value)

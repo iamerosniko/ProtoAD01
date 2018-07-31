@@ -7,13 +7,13 @@
         <div class="row">
           <div class="col-md-12">
             <label class="control-label input-sm">Firm Name</label>
-            <input type="text" formControlName="Firmname" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*" />
+            <input type="text" formControlName="Firmname" class="form-control input-sm" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || ( event.charCode == 32)' pattern="[a-zA-Z ]*" />
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label class="control-label input-sm">Head of Firm/CEO/Firm-wide Managing Partner</label>
-            <input type="text" formControlName="Firmhead" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+            <input type="text" formControlName="Firmhead" class="form-control input-sm" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || ( event.charCode == 32)' pattern="[a-zA-Z ]*"/>
           </div>
         </div>
         <div class="row">
@@ -30,7 +30,7 @@
           <div class="row">
             <div class="col-md-12">
               <label class="control-label input-sm">Survey Respondent Contact Name</label>
-              <input type="text" formControlName="Srcname"  class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+              <input type="text" formControlName="Srcname"  class="form-control input-sm" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || ( event.charCode == 32)' pattern="[a-zA-Z ]*"/>
               <!-- <select class="form-control input-sm">
                 <option value="">--Select Category--</option>
               </select> -->
@@ -39,13 +39,13 @@
           <div class="row">
             <div class="col-md-12">
               <label class="control-label input-sm">Survey Respondent Contact Title</label>
-              <input type="text" formControlName="Srctitle" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+              <input type="text" formControlName="Srctitle" class="form-control input-sm" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || ( event.charCode == 32)' pattern="[a-zA-Z ]*"/>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <label class="control-label input-sm">Survey Respondent Contact Email</label>
-              <input type="text" formControlName="Srcemail" class="form-control input-sm" onkeypress='return event.charCode >= 97 && event.charCode <= 122' pattern="[a-zA-Z ]*"/>
+              <input type="text" formControlName="Srcemail" class="form-control input-sm" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || ( event.charCode == 32)' pattern="[a-zA-Z ]*"/>
             </div>
           </div>
       </div>
