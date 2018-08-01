@@ -19,7 +19,7 @@ namespace API.Tables
     public string Srcemail { get; set; }
     public int Totalfw { get; set; }
     public int Totalusfw { get; set; }
-    public int Sizecat { get; set; }
+    public string Sizecat { get; set; }
     public string Firmown { get; set; }
     public string Catown { get; set; }
     public string Firmcert { get; set; }

@@ -79,7 +79,7 @@ namespace API.Controllers
     }
 
     [HttpGet("GetSurvey/{companyID}")]
-    public async Task<IActionResult> GetSurvey([FromRoute] Guid companyID)
+    public async Task<Survey> GetSurvey([FromRoute] Guid companyID)
     {
       Survey survey = new Survey();
       try
@@ -87,7 +87,7 @@ namespace API.Controllers
         var companyProfile = await _context.CompanyProfiles.SingleOrDefaultAsync(m => m.CompanyProfileID == companyID);
         if (companyProfile == null)
         {
-          return NotFound();
+          return null;
         }
         var fd = firmDemographicsController.GetFirmDemographics(companyID);
         var jl = joinedLawyersController.GetJoinedLawyers(companyID);
@@ -112,13 +112,13 @@ namespace API.Controllers
           LeadershipDemographics = ld.ToList(),
           UndertakenInitiatives = ui
         };
-        return Ok(survey);
+        return survey;
       }
       catch (Exception ex)
       {
         System.Diagnostics.Debug.Write(ex.ToString());
       }
-      return Ok(survey);
+      return new Survey();
     }
   }
 }

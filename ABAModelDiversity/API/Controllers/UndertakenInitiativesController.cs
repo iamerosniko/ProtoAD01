@@ -35,7 +35,7 @@ namespace API.Controllers
         return null;
       }
 
-      var undertakenInitiatives = await _context.UndertakenInitiatives.SingleOrDefaultAsync(m => m.UndertakenInitiativeID == id);
+      var undertakenInitiatives = await _context.UndertakenInitiatives.SingleOrDefaultAsync(m => m.CompanyProfileID == id);
 
       if (undertakenInitiatives == null)
       {

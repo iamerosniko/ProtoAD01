@@ -17,3 +17,17 @@ export interface Survey{
     TopTenHighestCompensations ?: TopTenHighestCompensations[];
     IsNewFirm?:boolean;
 }
+export interface Survey2{
+    firm?:Firms;
+    companyProfile?:CompanyProfiles;
+    undertakenInitiatives ?: UndertakenInitiatives;
+    firmDemographics ?: FirmDemographics[],
+    joinedLawyers ?: JoinedLawyers[],
+    leadershipDemographics ?: LeadershipDemographics[];
+    leftLawyers ?: LeftLawyers[];
+    promotionsAssociatePartners ?: PromotionsAssociatePartners[];
+    reducedhoursLawyers ?: ReducedHoursLawyers[];
+    certificates ?: Certificates[];
+    topTenHighestCompensations ?: TopTenHighestCompensations[];
+    isNewFirm?:boolean;
+}
