@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
   [Produces("application/json")]
-  [Route("api/FirmDemographics")]
+  //[Route("api/FirmDemographics")]
   public class FirmDemographicsController : Controller
   {
     private readonly ADContext _context;

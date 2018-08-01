@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
   [Produces("application/json")]
-  [Route("api/UndertakenInitiatives")]
+  //[Route("api/UndertakenInitiatives")]
   public class UndertakenInitiativesController : Controller
   {
     private readonly ADContext _context;

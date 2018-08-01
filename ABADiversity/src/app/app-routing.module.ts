@@ -10,7 +10,6 @@ import { LogoutComponent } from './views/others/logout/logout.component';
 import { RedirectingComponent } from './views/others/redirecting/redirecting.component';
 
 import { AuthGuard } from './auth-guard.services';
-import { SideNavComponent } from './views/surveys/side-nav/side-nav.component';
 import { SurveyBodyComponent } from './views/surveys/survey-body/survey-body.component';
 const routes: Routes = [
   // { path: '', redirectTo:'/Survey', pathMatch:"full" },
@@ -27,15 +26,21 @@ const routes: Routes = [
   {
     path:'Survey', component:SurveysComponent,
     children:[
-      { path: 'NewSurvey', component : SurveyBodyComponent, outlet:'surveyroute'}
-    ]
+      { path: 'NewSurvey', component : SurveyBodyComponent, outlet:'surveyroute'},
+      { path: 'NewSurvey/:FirmID', component : SurveyBodyComponent, outlet:'surveyroute', runGuardsAndResolvers: 'always', canActivate: [AuthGuard]}
+    ], 
   },
 
   { path: '**', redirectTo :'/Survey' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash:true})],
+  imports: [RouterModule.forRoot(routes, 
+    {
+      useHash:true,
+      onSameUrlNavigation: 'reload',
+      enableTracing: false
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

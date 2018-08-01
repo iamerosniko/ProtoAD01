@@ -67,7 +67,7 @@ namespace API.Controllers
       var cp = await companyProfilesController.PostCompanyProfiles(survey.CompanyProfile);
       var ui = await undertakenInitiativesController.PostUndertakenInitiatives(survey.UndertakenInitiatives);
 
-      return Ok();
+      return Ok(survey);
     }
 
     [HttpGet("GetYears/{firmID}")]
@@ -80,13 +80,14 @@ namespace API.Controllers
     [HttpGet("GetSurvey/{companyID}")]
     public async Task<IActionResult> GetSurvey([FromRoute] Guid companyID)
     {
+      Survey survey = new Survey();
       try
       {
         var companyProfile = await _context.CompanyProfiles.SingleOrDefaultAsync(m => m.CompanyProfileID == companyID);
-        //if (companyProfile == null)
-        //{
-        //  return NotFound();
-        //}
+        if (companyProfile == null)
+        {
+          return NotFound();
+        }
         var fd = firmDemographicsController.GetFirmDemographics(companyID);
         var jl = joinedLawyersController.GetJoinedLawyers(companyID);
         var ll = leftLawyersController.GetLeftLawyers(companyID);
@@ -97,7 +98,7 @@ namespace API.Controllers
         var ld = leadershipDemographicsController.GetLeadershipDemographics(companyID);
         var ui = await undertakenInitiativesController.GetUndertakenInitiatives(companyID);
 
-        Survey survey = new Survey
+        survey = new Survey
         {
           CompanyProfile = companyProfile,
           Certificates = cert.ToList(),
@@ -116,7 +117,7 @@ namespace API.Controllers
       {
         System.Diagnostics.Debug.Write(ex.ToString());
       }
-      return Ok();
+      return Ok(survey);
     }
   }
 }

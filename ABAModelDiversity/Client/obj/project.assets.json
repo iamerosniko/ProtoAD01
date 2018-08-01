@@ -12543,11 +12543,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\alverer\\Documents\\GitHub\\ABAModelDiversity\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABAModelDiversity\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\alverer\\Documents\\GitHub\\ABAModelDiversity\\Client\\Client.csproj",
+      "projectPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABAModelDiversity\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\alverer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alverer\\Documents\\GitHub\\ABAModelDiversity\\Client\\obj\\",
+      "outputPath": "C:\\Users\\alverer\\Documents\\GitHub\\ProtoAD01\\ABAModelDiversity\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
