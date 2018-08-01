@@ -49,3 +49,5 @@ ABAModelDiversity/.vs/ABAModelDiversity/v15/Server/sqlite3/storage.ide-shm
 *.ide-shm
 
 *.vs
+*.suo
+ABAModelDiversity/.vs/ABAModelDiversity/v15/Server/sqlite3/storage.ide
