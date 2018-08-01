@@ -84,10 +84,10 @@ namespace API.Controllers
       try
       {
         var companyProfile = await _context.CompanyProfiles.SingleOrDefaultAsync(m => m.CompanyProfileID == companyID);
-        //if (companyProfile == null)
-        //{
-        //  return NotFound();
-        //}
+        if (companyProfile == null)
+        {
+          return NotFound();
+        }
         var fd = firmDemographicsController.GetFirmDemographics(companyID);
         var jl = joinedLawyersController.GetJoinedLawyers(companyID);
         var ll = leftLawyersController.GetLeftLawyers(companyID);

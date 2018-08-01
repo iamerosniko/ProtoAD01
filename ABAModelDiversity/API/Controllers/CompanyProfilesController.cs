@@ -28,21 +28,21 @@ namespace API.Controllers
 
     // GET: api/CompanyProfiles/5
     [HttpGet("{id}")]
-    public IActionResult GetCompanyProfiles([FromRoute] Guid firmID)
+    public IEnumerable<CompanyProfiles> GetCompanyProfiles([FromRoute] Guid firmID)
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest(ModelState);
+        return null;
       }
 
       var companyProfiles = _context.CompanyProfiles.Where(m => m.FirmID == firmID);
 
       if (companyProfiles == null)
       {
-        return NotFound();
+        return new List<CompanyProfiles>();
       }
 
-      return Ok(companyProfiles);
+      return companyProfiles;
     }
 
     // PUT: api/CompanyProfiles/5

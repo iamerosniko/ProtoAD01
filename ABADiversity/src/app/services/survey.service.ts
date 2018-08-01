@@ -25,10 +25,10 @@ export class SurveyService {
     return this.api.getAll();
   }
 
-  getSurvey(applicationID: string) {
+  getYears(firmID: string) {
     this.api.normalHeader();
-    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey")
-    return this.api.getOne(applicationID);
+    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/GetYears/"+firmID)
+    return this.api.getAll();
   }
 
   postSurvey(surveyObj: Survey) {

@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
 import { Survey,Firms,CompanyProfiles } from '../../../entities/entities'
 import { SurveyService } from '../../../services/survey.service'
 import { UUID } from 'angular2-uuid'
+import { Router,ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-survey-body',
   templateUrl: './survey-body.component.html',
   styleUrls: ['./survey-body.component.css']
 })
-export class SurveyBodyComponent implements OnInit {
+export class SurveyBodyComponent implements OnInit,OnChanges{
   survey:Survey={};
   companyForm:CompanyProfiles={};
   formFromChild:FormGroup;
@@ -23,6 +25,7 @@ export class SurveyBodyComponent implements OnInit {
   formFromChild8:FormGroup;
   myForm:FormGroup;
   firm:Firms={};
+  isNewFirm:boolean=true;
   companyProfileID : string = '';
   getChild(event:any){
     this.formFromChild = event;
@@ -75,14 +78,34 @@ export class SurveyBodyComponent implements OnInit {
     // console.log(this.formFromChild8.value)
   }
 
-constructor( private fb:FormBuilder , private surveySvc:SurveyService) {
-   
+  constructor( private fb:FormBuilder ,private surveySvc:SurveyService,
+  private router:Router,private activatedroute: ActivatedRoute) {
+    
   }
-  ngOnInit() {
-    this.firm = {firmID : UUID.UUID() };
-    this.companyProfileID = UUID.UUID();
+
+   ngOnChanges(){
+    console.log('s')
   }
-  
+
+   ngOnInit(){
+    var firmID = this.activatedroute.snapshot.params['FirmID'];
+      if(firmID!=null){
+        this.isNewFirm=true;
+        this.firm = {firmID : UUID.UUID() };
+        this.companyProfileID = UUID.UUID();
+        console.log('s')
+         this.getYears();
+      }
+      else{
+        this.isNewFirm=false;
+      }
+  }
+
+  async getYears(){
+    var year =await this.surveySvc.getYears(this.firm.firmID);
+    console.log(year)
+  }
+
   async save(){
     this.companyForm = this.formFromChild.value;
     this.survey.Companyprofile=  this.companyForm;
@@ -114,7 +137,8 @@ constructor( private fb:FormBuilder , private surveySvc:SurveyService) {
       // this.formFromChild5.valid && 
       // this.formFromChild6.valid && 
       // this.formFromChild7.valid && 
-      this.formFromChild8.valid; 
+      this.formFromChild8.valid &&
+      this.isNewFirm; 
     return !a;
   }
 }

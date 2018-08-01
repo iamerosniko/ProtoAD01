@@ -9,7 +9,7 @@
         </li>
         <li class="divider"></li>
         <li>
-          <a [routerLink]="['./', {outlets: {'surveyroute': ['NewSurvey']}}]" (click)="addFirm()">
+          <a [routerLink]="['./', {outlets: {'surveyroute': ['NewSurvey']}}]">
             <i class="fa fa-plus"></i><span class="desc">&nbsp;ADD NEW FIRM</span>
           </a>
         </li>
@@ -23,7 +23,7 @@
           </a>
         </li>
         <li class="divider"></li>
-        <li *ngFor="let firmlist of firmlist" [routerLink]="['./', {outlets: {'surveyroute': ['NewSurvey']}}]" (click)="getFirmData()"><a><i class="fa fa-university"></i><span class="desc">{{firmlist.firmName}}</span></a></li>
+        <li *ngFor="let firmlist of firmlist" [routerLink]="['./', {outlets: {'surveyroute': ['NewSurvey',firmlist.firmID]}}]"><a><i class="fa fa-university"></i><span class="desc">{{firmlist.firmName}}</span></a></li>
       </ul>
     </div>
     <div id="page-content-wrapper">
