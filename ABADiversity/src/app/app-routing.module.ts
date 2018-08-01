@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'Redirecting', component : RedirectingComponent},
   { path: 'Logout', component:LogoutComponent},
   { path: 'Noaccess', component:NoaccessComponent},
-  { path: 'Reports', component : ReportsComponent, canActivate:[AuthGuard] },
+  { path: 'Reports', component : ReportsComponent },
+  // , canActivate:[AuthGuard]
   {
     path:'Survey', component:SurveysComponent,
     children:[
