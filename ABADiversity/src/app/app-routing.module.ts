@@ -27,7 +27,7 @@ const routes: Routes = [
     path:'Survey', component:SurveysComponent,
     children:[
       { path: 'NewSurvey', component : SurveyBodyComponent, outlet:'surveyroute'},
-      { path: 'NewSurvey/:FirmID', component : SurveyBodyComponent, outlet:'surveyroute', runGuardsAndResolvers: 'always', canActivate: [AuthGuard]}
+      { path: 'NewSurvey/:FirmID', component : SurveyBodyComponent, outlet:'surveyroute' }
     ], 
   },
 
@@ -37,9 +37,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, 
     {
-      useHash:true,
-      onSameUrlNavigation: 'reload',
-      enableTracing: false
+      useHash:true
     })],
   exports: [RouterModule]
 })

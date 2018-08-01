@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
   [Produces("application/json")]
-  //[Route("api/CompanyProfiles")]
+  [Route("api/CompanyProfiles")]
   public class CompanyProfilesController : Controller
   {
     private readonly ADContext _context;
@@ -27,7 +27,7 @@ namespace API.Controllers
     }
 
     // GET: api/CompanyProfiles/5
-    [HttpGet("{id}")]
+    [HttpGet("{firmID}")]
     public IEnumerable<CompanyProfiles> GetCompanyProfiles([FromRoute] Guid firmID)
     {
       if (!ModelState.IsValid)

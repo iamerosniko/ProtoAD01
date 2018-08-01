@@ -5,10 +5,8 @@
         </div>
         <div class="col-md-6">
             <select class="form-control"id="dateBox" type="text" maxlength="100" >
-                <option>Add New Survey Year</option>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
+                <option >Add New Survey Year</option>
+                <option *ngFor="let c of years" [value]="c.companyProfileID" >{{c.year}}</option>
             </select>
         </div>
     </div>

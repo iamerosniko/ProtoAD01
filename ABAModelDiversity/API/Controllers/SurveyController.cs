@@ -51,6 +51,7 @@ namespace API.Controllers
 
       if (survey.IsNewFIrm)
       {
+        survey.CompanyProfile.FirmID = survey.Firm.FirmID;
         survey.Firm.FirmName = survey.CompanyProfile.Firmname;
         var firm = await firmsController.PostFirms(survey.Firm);
       }

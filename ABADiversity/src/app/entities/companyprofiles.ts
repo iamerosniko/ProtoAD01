@@ -3,7 +3,7 @@ export interface CompanyProfiles {
     firmID?:string;
     firmname?:string;
     firmhead?:string;
-    datecomp?:string;
+    datecomp?:Date;
     srcname?:string;
     srctitle?:string;
     srcemail?:string;
@@ -20,4 +20,9 @@ export interface Certificates{
     companyProfileID?:string;
     name?:string,
     dateCert?:Date
+}
+
+export interface Years{
+  companyProfileID?:string;
+  year:number;   
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
-import { Survey,Firms,CompanyProfiles } from '../../../entities/entities'
+import { Survey,Firms,CompanyProfiles,Years } from '../../../entities/entities'
 import { SurveyService } from '../../../services/survey.service'
 import { UUID } from 'angular2-uuid'
 import { Router,ActivatedRoute } from '@angular/router';
@@ -27,6 +27,9 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   firm:Firms={};
   isNewFirm:boolean=true;
   companyProfileID : string = '';
+  // tempCompanyProfiles : CompanyProfiles[];
+  years:Years[]=[];
+
   getChild(event:any){
     this.formFromChild = event;
     // console.log('Company Profile')
@@ -80,37 +83,46 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
 
   constructor( private fb:FormBuilder ,private surveySvc:SurveyService,
   private router:Router,private activatedroute: ActivatedRoute) {
-    
-  }
-
-   ngOnChanges(){
-    console.log('s')
-  }
-
-   ngOnInit(){
-    var firmID = this.activatedroute.snapshot.params['FirmID'];
+    this.activatedroute.params.subscribe(async ()=>{
+      var firmID = this.activatedroute.snapshot.params['FirmID'];
       if(firmID!=null){
-        this.isNewFirm=true;
-        this.firm = {firmID : UUID.UUID() };
-        this.companyProfileID = UUID.UUID();
-        console.log('s')
-         this.getYears();
+        this.isNewFirm=false;
+        this.getCompanyProfiles(firmID);
       }
       else{
-        this.isNewFirm=false;
+        this.isNewFirm=true;
+        this.firm = { firmID : UUID.UUID() };
       }
+      this.companyProfileID = UUID.UUID();
+    });  
   }
 
-  async getYears(){
-    var year =await this.surveySvc.getYears(this.firm.firmID);
-    console.log(year)
+  ngOnChanges(){
+  }
+
+  ngOnInit(){
+  
+  }
+
+  async getCompanyProfiles(firmID:string){
+    this.years=[];
+    var companyProfiles =<CompanyProfiles[]> await this.surveySvc.getYears(firmID);
+    companyProfiles.forEach(element => {
+      this.years.push({companyProfileID:element.companyProfileID,year:this.getYear(element.datecomp)})
+    });
+  }
+
+  getYear(dateComp : any):number{
+    console.log(dateComp)
+    var a =  new Date(dateComp).getFullYear();
+    console.log(a)
+    return a;
   }
 
   async save(){
     this.companyForm = this.formFromChild.value;
-    this.survey.Companyprofile=  this.companyForm;
-    this.firm.firmName=this.companyForm.firmname
-    
+    this.survey.Companyprofile= this.companyForm;
+    // this.firm.firmName=this.companyForm.firmname
     this.survey.FirmDemographics = this.formFromChild1.controls['regions'].value;
     this.survey.PromotionsAssociatePartners = this.formFromChild3.controls['regions'].value;
     this.survey.LeftLawyers = this.formFromChild4.controls['regions'].value;
