@@ -27,7 +27,6 @@ getFirms(){
   console.log(" getFirms() is working")
 }
 savebtn(){
-  console.log(this.result.myForm.value)
   // console.log(this.result.formFromChild1.value)
   // console.log(this.result.formFromChild2.value)
   // console.log(this.result.formFromChild3.value)

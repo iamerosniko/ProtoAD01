@@ -9,7 +9,7 @@ export interface CompanyProfiles {
     srcemail?:string;
     totalfw?:number;
     totalusfw?:number;
-    sizecat?:number;
+    sizecat?:string;
     firmown?:string;
     catown?:string;
     firmcert?:string;
