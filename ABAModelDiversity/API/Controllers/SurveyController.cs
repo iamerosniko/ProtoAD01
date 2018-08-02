@@ -3,7 +3,6 @@ using API.Tables;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -78,8 +77,8 @@ namespace API.Controllers
       return Ok(companyProfiles);
     }
 
-    [HttpGet("GetSurvey/{companyID}")]
-    public async Task<Survey> GetSurvey([FromRoute] Guid companyID)
+    [HttpGet("GetSurvey/{companyID}/{mode}")]
+    public async Task<dynamic> GetSurvey([FromRoute] Guid companyID, [FromRoute] int mode)
     {
       Survey survey = new Survey();
       try
@@ -99,20 +98,32 @@ namespace API.Controllers
         var ld = leadershipDemographicsController.GetLeadershipDemographics(companyID);
         var ui = await undertakenInitiativesController.GetUndertakenInitiatives(companyID);
 
-        survey = new Survey
+        switch (mode)
         {
-          CompanyProfile = companyProfile,
-          Certificates = cert.ToList(),
-          FirmDemographics = fd.ToList(),
-          JoinedLawyers = jl.ToList(),
-          LeftLawyers = ll.ToList(),
-          PromotionsAssociatePartners = pap.ToList(),
-          ReducedHoursLawyers = rhl.ToList(),
-          TopTenHighestCompensations = thc.ToList(),
-          LeadershipDemographics = ld.ToList(),
-          UndertakenInitiatives = ui
-        };
-        return survey;
+          case 1: return companyProfile;
+          case 2: return fd;
+          case 3: return ld;
+          case 4: return pap;
+          case 5: return ll;
+          case 6: return jl;
+          case 7: return rhl;
+          case 8: return thc;
+          case 9: return ui;
+          default: return survey;
+        }
+        //survey = new Survey
+        //{
+        //  CompanyProfile = companyProfile,
+        //  Certificates = cert.ToList(),
+        //  FirmDemographics = fd.ToList(),
+        //  JoinedLawyers = jl.ToList(),
+        //  LeftLawyers = ll.ToList(),
+        //  PromotionsAssociatePartners = pap.ToList(),
+        //  ReducedHoursLawyers = rhl.ToList(),
+        //  TopTenHighestCompensations = thc.ToList(),
+        //  LeadershipDemographics = ld.ToList(),
+        //  UndertakenInitiatives = ui
+        //};
       }
       catch (Exception ex)
       {

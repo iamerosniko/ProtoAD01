@@ -1,20 +1,22 @@
-import { Component, OnInit,Output,EventEmitter,Input  } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter,Input,OnChanges  } from '@angular/core';
 import { UndertakenInitiatives } from '../../../entities/entities';
-import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UUID } from 'angular2-uuid';
+import { SurveyService } from '../../../services/survey.service'
 
 @Component({
   selector: 'app-undertaken-initiatives',
   templateUrl: './undertaken-initiatives.component.html',
   styleUrls: ['./undertaken-initiatives.component.css']
 })
-export class UndertakenInitiativesComponent implements OnInit {
+export class UndertakenInitiativesComponent implements OnInit, OnChanges {
   @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   initData:UndertakenInitiatives={};
   myForm: FormGroup;
+  isExisting:boolean=false;
   commentsForm: FormGroup;
-  // tempComment:commentsdata={}
+
   rdb1Condition:boolean = true;
   rdb2Condition:boolean = true;
   rdb3Condition:boolean = true;
@@ -32,10 +34,79 @@ export class UndertakenInitiativesComponent implements OnInit {
   rdb15Condition:boolean = true;
   rdb16Condition:boolean = true;
   rdb17Condition:boolean = true;
+  
+  constructor(private surveySvc:SurveyService, private fb:FormBuilder) { 
+   
+  }
 
-  // rdbChange(status:boolean){
-  //   this.rdb1Condition=status;
-  // }
+  ngOnChanges(){
+    this.getValue();
+    console.log('undertaken initiatives')
+  }
+
+  async getValue(){
+    var companyProfile = await this.surveySvc.getSurvey(this.companyProfileID,9);
+    this.isExisting = companyProfile ? true : false ;
+    this.initData = companyProfile ? companyProfile : {};
+    console.log(this.initData )
+    this.initializeForm();
+  }
+
+  initializeForm(){
+    this.myForm = this.fb.group({
+      undertakenInitiativeID:[UUID.UUID(),Validators.required],
+      'companyProfileID': [this.companyProfileID,Validators.required],
+      answer1:[this.initData.answer1,Validators.required],
+      answer2:[this.initData.answer2,Validators.required],
+      answer3:[this.initData.answer3,Validators.required],
+      answer4:[this.initData.answer4,Validators.required],
+      answer5:[this.initData.answer5,Validators.required],
+      answer6:[this.initData.answer6,Validators.required],
+      answer7:[this.initData.answer7,Validators.required],
+      answer8:[this.initData.answer8,Validators.required],
+      answer9:[this.initData.answer9,Validators.required],
+      answer10:[this.initData.answer10,Validators.required],
+      answer11:[this.initData.answer11,Validators.required],
+      answer12:[this.initData.answer12,Validators.required],
+      answer13:[this.initData.answer13,Validators.required],
+      answer14:[this.initData.answer14,Validators.required],
+      answer15:[this.initData.answer15,Validators.required],
+      answer16:[this.initData.answer16,Validators.required],
+      answer17:[this.initData.answer17,Validators.required],
+      mainComment:[this.initData.mainComment,Validators.required],
+      comment1:[this.initData.comment1],
+      comment2:[this.initData.comment2],
+      comment3:[this.initData.comment3],
+      comment4:[this.initData.comment4],
+      comment5:[this.initData.comment5],
+      comment6:[this.initData.comment6],
+      comment7:[this.initData.comment7],
+      comment8:[this.initData.comment8],
+      comment9:[this.initData.comment9],
+      comment10:[this.initData.comment10],
+      comment11:[this.initData.comment11],
+      comment12:[this.initData.comment12],
+      comment13:[this.initData.comment13],
+      comment14:[this.initData.comment14],
+      comment15:[this.initData.comment15],
+      comment16:[this.initData.comment16],
+      comment17:[this.initData.comment17],
+    });
+
+    this.myForm.valueChanges.subscribe(()=>{
+      this.sendthistoparent();
+    });
+    this.sendthistoparent();
+  }
+
+  ngOnInit() {
+    this.initializeForm();
+  }
+
+  sendthistoparent(){
+    this.updateChildFormToParent.emit(this.myForm)
+  }
+  
   rdb1yesclick(){
     this.rdb1Condition = true;
     this.initData.comment1 = null;
@@ -156,59 +227,4 @@ export class UndertakenInitiativesComponent implements OnInit {
   rdb17noclick(){
     this.rdb17Condition = false;
   }
-  
-  constructor(private fb:FormBuilder) { 
-   
-  }
-  ngOnInit() {
-    this.myForm = this.fb.group({
-      undertakenInitiativeID:[UUID.UUID(),Validators.required],
-      'companyProfileID': [this.companyProfileID,Validators.required],
-      answer1:[this.initData.answer1,Validators.required],
-      answer2:[this.initData.answer2,Validators.required],
-      answer3:[this.initData.answer3,Validators.required],
-      answer4:[this.initData.answer4,Validators.required],
-      answer5:[this.initData.answer5,Validators.required],
-      answer6:[this.initData.answer6,Validators.required],
-      answer7:[this.initData.answer7,Validators.required],
-      answer8:[this.initData.answer8,Validators.required],
-      answer9:[this.initData.answer9,Validators.required],
-      answer10:[this.initData.answer10,Validators.required],
-      answer11:[this.initData.answer11,Validators.required],
-      answer12:[this.initData.answer12,Validators.required],
-      answer13:[this.initData.answer13,Validators.required],
-      answer14:[this.initData.answer14,Validators.required],
-      answer15:[this.initData.answer15,Validators.required],
-      answer16:[this.initData.answer16,Validators.required],
-      answer17:[this.initData.answer17,Validators.required],
-      mainComment:[this.initData.mainComment,Validators.required],
-      comment1:[this.initData.comment1],
-      comment2:[this.initData.comment2],
-      comment3:[this.initData.comment3],
-      comment4:[this.initData.comment4],
-      comment5:[this.initData.comment5],
-      comment6:[this.initData.comment6],
-      comment7:[this.initData.comment7],
-      comment8:[this.initData.comment8],
-      comment9:[this.initData.comment9],
-      comment10:[this.initData.comment10],
-      comment11:[this.initData.comment11],
-      comment12:[this.initData.comment12],
-      comment13:[this.initData.comment13],
-      comment14:[this.initData.comment14],
-      comment15:[this.initData.comment15],
-      comment16:[this.initData.comment16],
-      comment17:[this.initData.comment17],
-    });
-
-    this.myForm.valueChanges.subscribe(()=>{
-      this.sendthistoparent();
-    });
-    this.sendthistoparent();
-    
-  }
-  sendthistoparent(){
-    this.updateChildFormToParent.emit(this.myForm)
-  }
-
 }

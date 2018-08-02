@@ -37,9 +37,9 @@ export class SurveyService {
     return this.api.getAll();
   }
 
-  getSurvey(companyID:string ){
+  getSurvey(companyID:string,mode:number){
     this.api.normalHeader();
-    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/GetSurvey/"+companyID)
+    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/GetSurvey/"+companyID+"/"+mode)
     return this.api.getAll();
   }
 

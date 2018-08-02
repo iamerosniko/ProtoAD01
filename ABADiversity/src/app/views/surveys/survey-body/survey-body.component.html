@@ -4,14 +4,14 @@
             <label>Year: </label>
         </div>
         <div class="col-md-6">
-            <select class="form-control"id="dateBox" type="text" maxlength="100" >
-                <option >Add New Survey Year</option>
+            <select class="form-control" [(ngModel)]="selectedYearCompanyProfileID" (change)="updateCompanyProfileID()" id="dateBox" type="text" maxlength="100" >
+                <option value="0">Add New Survey Year</option>
                 <option *ngFor="let c of years" [value]="c.companyProfileID" >{{c.year}}</option>
             </select>
         </div>
     </div>
     <div class="col-md-4 ">   
-        <button type="button" [disabled]="isValid()" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#modal_confirm">
+        <button type="button" *ngIf="selectedYearCompanyProfileID=='0'" [disabled]="isValid()" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#modal_confirm">
             <i class="fa fa-save"></i> Submit
         </button>
     </div>

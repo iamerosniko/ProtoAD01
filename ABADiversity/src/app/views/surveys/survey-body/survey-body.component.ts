@@ -29,7 +29,91 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   companyProfileID : string = '';
   // tempCompanyProfiles : CompanyProfiles[];
   years:Years[]=[];
+  selectedYearCompanyProfileID:string="0";
 
+  constructor( private surveySvc:SurveyService, private activatedroute: ActivatedRoute) {
+    this.activatedroute.params.subscribe(async ()=>{
+      var firmID = this.activatedroute.snapshot.params['FirmID'];
+      if(firmID!=null){
+        this.isNewFirm=false;
+        this.getCompanyProfiles(firmID);
+        this.firm.firmID=firmID
+      }
+      else{
+        this.isNewFirm=true;
+        this.firm = { firmID : UUID.UUID() };
+      }
+      this.companyProfileID = UUID.UUID();
+    });  
+  }
+
+  ngOnChanges(){
+  }
+
+  ngOnInit(){
+  
+  }
+
+  updateCompanyProfileID(){
+    this.companyProfileID = this.selectedYearCompanyProfileID=="0"? UUID.UUID() : this.selectedYearCompanyProfileID;
+    console.log(this.companyProfileID)
+  }
+  //for combobox of years
+  async getCompanyProfiles(firmID:string){
+    this.years=[];
+    var companyProfiles =<CompanyProfiles[]> await this.surveySvc.getYears(firmID);
+    companyProfiles.forEach(element => {
+      this.years.push(
+        {
+          companyProfileID : element.companyProfileID,
+          year : this.getYear(element.datecomp)
+        })
+    });
+  }
+
+  getYear(dateComp : any):number{
+    console.log(dateComp)
+    var a =  new Date(dateComp).getFullYear();
+    console.log(a)
+    return a;
+  }
+
+  async save(){
+    this.companyForm = this.formFromChild.value;
+    this.survey.Companyprofile= this.companyForm;
+    // this.firm.firmName=this.companyForm.firmname
+    this.survey.FirmDemographics = this.formFromChild1.controls['regions'].value;
+    this.survey.PromotionsAssociatePartners = this.formFromChild3.controls['regions'].value;
+    this.survey.LeftLawyers = this.formFromChild4.controls['regions'].value;
+    this.survey.JoinedLawyers = this.formFromChild5.controls['regions'].value;
+    this.survey.ReducedhoursLawyers = this.formFromChild6.controls['regions'].value;
+    this.survey.TopTenHighestCompensations = this.formFromChild7.controls['regions'].value;
+    this.survey.UndertakenInitiatives = this.formFromChild8.value;
+    this.survey.Firm = this.firm;
+    this.survey.IsNewFirm=true;
+    this.survey.Certificates=this.certificateForm.controls['certificates'].value;
+    this.survey.LeadershipDemographics = this.formFromChild2.controls['numbers'].value;
+    console.log(this.survey)
+    this.surveySvc.postSurvey(this.survey);
+  }
+
+  isValid():boolean{
+
+    var a = 
+      this.formFromChild.valid  && 
+      // this.formFromChild1.valid && 
+      // this.formFromChild2.valid && 
+      // this.formFromChild3.valid && 
+      // this.formFromChild4.valid &&
+      // this.formFromChild5.valid && 
+      // this.formFromChild6.valid && 
+      // this.formFromChild7.valid && 
+      this.formFromChild8.valid &&
+      this.isNewFirm; 
+    return !a;
+  }
+
+  
   getChild(event:any){
     this.formFromChild = event;
     // console.log('Company Profile')
@@ -81,76 +165,4 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
     // console.log(this.formFromChild8.value)
   }
 
-  constructor( private fb:FormBuilder ,private surveySvc:SurveyService,
-  private router:Router,private activatedroute: ActivatedRoute) {
-    this.activatedroute.params.subscribe(async ()=>{
-      var firmID = this.activatedroute.snapshot.params['FirmID'];
-      if(firmID!=null){
-        this.isNewFirm=false;
-        this.getCompanyProfiles(firmID);
-      }
-      else{
-        this.isNewFirm=true;
-        this.firm = { firmID : UUID.UUID() };
-      }
-      this.companyProfileID = UUID.UUID();
-    });  
-  }
-
-  ngOnChanges(){
-  }
-
-  ngOnInit(){
-  
-  }
-
-  async getCompanyProfiles(firmID:string){
-    this.years=[];
-    var companyProfiles =<CompanyProfiles[]> await this.surveySvc.getYears(firmID);
-    companyProfiles.forEach(element => {
-      this.years.push({companyProfileID:element.companyProfileID,year:this.getYear(element.datecomp)})
-    });
-  }
-
-  getYear(dateComp : any):number{
-    console.log(dateComp)
-    var a =  new Date(dateComp).getFullYear();
-    console.log(a)
-    return a;
-  }
-
-  async save(){
-    this.companyForm = this.formFromChild.value;
-    this.survey.Companyprofile= this.companyForm;
-    // this.firm.firmName=this.companyForm.firmname
-    this.survey.FirmDemographics = this.formFromChild1.controls['regions'].value;
-    this.survey.PromotionsAssociatePartners = this.formFromChild3.controls['regions'].value;
-    this.survey.LeftLawyers = this.formFromChild4.controls['regions'].value;
-    this.survey.JoinedLawyers = this.formFromChild5.controls['regions'].value;
-    this.survey.ReducedhoursLawyers = this.formFromChild6.controls['regions'].value;
-    this.survey.TopTenHighestCompensations = this.formFromChild7.controls['regions'].value;
-    this.survey.UndertakenInitiatives = this.formFromChild8.value;
-    this.survey.Firm = this.firm;
-    this.survey.IsNewFirm=true;
-    this.survey.Certificates=this.certificateForm.controls['certificates'].value;
-    this.survey.LeadershipDemographics = this.formFromChild2.controls['numbers'].value;
-    console.log(this.survey)
-    this.surveySvc.postSurvey(this.survey);
-  }
-
-  isValid():boolean{
-
-    var a = 
-      this.formFromChild.valid  && 
-      // this.formFromChild1.valid && 
-      // this.formFromChild2.valid && 
-      // this.formFromChild3.valid && 
-      // this.formFromChild4.valid &&
-      // this.formFromChild5.valid && 
-      // this.formFromChild6.valid && 
-      // this.formFromChild7.valid && 
-      this.formFromChild8.valid &&
-      this.isNewFirm; 
-    return !a;
-  }
 }
