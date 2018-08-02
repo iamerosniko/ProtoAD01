@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 import { UUID } from 'angular2-uuid';
@@ -7,7 +7,7 @@ import { UUID } from 'angular2-uuid';
   templateUrl: './firm-leadership-demographic.component.html',
   styleUrls: ['./firm-leadership-demographic.component.css']
 })
-export class FirmLeadershipDemographicComponent implements OnInit {
+export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
   @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmLead:string[]=['Minority Female','Minority Male','White Female','White Male','LGBT','Disabled','Total']
@@ -27,7 +27,12 @@ export class FirmLeadershipDemographicComponent implements OnInit {
   myForm: FormGroup;
   constructor(private fb:FormBuilder) { 
 
-   }
+  }
+
+  ngOnChanges(){
+    
+  }
+
   ngOnInit() {
     this.myForm = this.fb.group
     ({
@@ -41,7 +46,6 @@ export class FirmLeadershipDemographicComponent implements OnInit {
       const control = <FormArray>this.myForm.controls['numbers'];
       for(var i =0;i<control.length;i++){
         const demographics =<FormGroup> control.at(i);
-
         this.firmLeadassign.forEach(element => {
           if(element!='Totals'){
             if(demographics.controls[element].invalid){

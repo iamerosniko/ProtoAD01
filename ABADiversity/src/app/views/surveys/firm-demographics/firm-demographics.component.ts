@@ -1,21 +1,23 @@
-import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input,OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util'; 
 import { FirmDemographics } from '../../../entities/entities';
 import { UUID } from '../../../../../node_modules/angular2-uuid';
+import { SurveyService } from '../../../services/survey.service'
 
 @Component({
   selector: 'app-firm-demographics',
   templateUrl: './firm-demographics.component.html',
   styleUrls: ['./firm-demographics.component.css']
 })
-export class FirmDemographicsComponent implements OnInit {
+export class FirmDemographicsComponent implements OnInit,OnChanges {
   @Output() updateChildFormToParent = new EventEmitter<any>();
   @Input() companyProfileID : string ;
 
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmDemoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
-
+  isExisting:boolean=false;
+  firmDemographics:FirmDemographics[]=[]
   items:string[]=
   [
     'African American/Black(not Hispanic/Latino)',
@@ -30,11 +32,25 @@ export class FirmDemographicsComponent implements OnInit {
     'Women',
     'Men'
   ]
+
   myForm: FormGroup;
-  constructor(private fb:FormBuilder) {
+  constructor(private surveySvc:SurveyService, private fb:FormBuilder) {
   }
 
-  ngOnInit() {
+  ngOnChanges(){
+    this.getValue();
+    console.log('firmdemographics')
+  }
+
+  async getValue(){
+    var fd = await this.surveySvc.getSurvey(this.companyProfileID,2);
+    this.isExisting = fd ? true : false ;
+    this.firmDemographics = fd ? fd : [];
+    console.log(this.firmDemographics )
+    this.initializeForm();
+  }
+
+  initializeForm(){
     this.myForm = this.fb.group
     ({
       regions: this.fb.array([]),
@@ -61,6 +77,10 @@ export class FirmDemographicsComponent implements OnInit {
       }
     })
   }
+
+  ngOnInit() {
+    this.initializeForm();
+  }
   addRow(){
     //1.get the value of formarray that has name regions
     // this.myForm = this.fb.group({
@@ -79,17 +99,33 @@ export class FirmDemographicsComponent implements OnInit {
   }
   
   initItems(name:string): FormGroup{
+    var fd = this.firmDemographics.find(x=>x.regionName==name);
+
+    if(fd==null){
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[0,Validators.required],
+        'NonEquityPartners': [0,Validators.required],
+        'Associates': [0, Validators.required ],
+        'Counsel': [0,Validators.required ],
+        'OtherLawyers': [0,Validators.required],
+      });
+    }
+    else{
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[fd.equityPartners,Validators.required],
+        'NonEquityPartners': [fd.nonEquityPartners,Validators.required],
+        'Associates': [fd.associates, Validators.required ],
+        'Counsel': [fd.counsel,Validators.required ],
+        'OtherLawyers': [fd.otherLawyers,Validators.required],
+      });
+    }
     // Here, we make the form for each day
-    return this.fb.group({
-      'companyProfileID': [this.companyProfileID,Validators.required],
-      firmDemographicID:[UUID.UUID(),Validators.required],
-      regionName:[name],
-      'EquityPartners':[0,Validators.required],
-      'NonEquityPartners': [0,Validators.required],
-      'Associates': [0, Validators.required ],
-      'Counsel': [0,Validators.required ],
-      'OtherLawyers': [0,Validators.required],
-    });
   }
 
   sample(index:number){

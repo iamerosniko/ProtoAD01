@@ -45,9 +45,9 @@ export class UndertakenInitiativesComponent implements OnInit, OnChanges {
   }
 
   async getValue(){
-    var companyProfile = await this.surveySvc.getSurvey(this.companyProfileID,9);
-    this.isExisting = companyProfile ? true : false ;
-    this.initData = companyProfile ? companyProfile : {};
+    var ui = await this.surveySvc.getSurvey(this.companyProfileID,9);
+    this.isExisting = ui ? true : false ;
+    this.initData = ui ? ui : {};
     console.log(this.initData )
     this.initializeForm();
   }
