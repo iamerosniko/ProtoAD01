@@ -30,7 +30,7 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   // tempCompanyProfiles : CompanyProfiles[];
   years:Years[]=[];
   selectedYearCompanyProfileID:string="0";
-
+  isValid:boolean=false;
   constructor( private surveySvc:SurveyService, private activatedroute: ActivatedRoute) {
     this.activatedroute.params.subscribe(async ()=>{
       var firmID = this.activatedroute.snapshot.params['FirmID'];
@@ -97,7 +97,7 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
     this.surveySvc.postSurvey(this.survey);
   }
 
-  isValid():boolean{
+  checkValid():boolean{
 
     var a = 
       this.formFromChild.valid  && 
@@ -108,8 +108,9 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
       // this.formFromChild5.valid && 
       // this.formFromChild6.valid && 
       // this.formFromChild7.valid && 
-      this.formFromChild8.valid &&
-      this.isNewFirm; 
+      this.formFromChild8.valid 
+
+    this.isValid = !a;
     return !a;
   }
 
