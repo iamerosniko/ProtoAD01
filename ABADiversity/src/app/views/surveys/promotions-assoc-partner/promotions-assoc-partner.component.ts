@@ -1,18 +1,22 @@
-import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input,OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 import { UUID } from 'angular2-uuid';
+import { SurveyService } from '../../../services/survey.service'
+import { PromotionsAssociatePartners } from '../../../entities/entities';
 
 @Component({
   selector: 'app-promotions-assoc-partner',
   templateUrl: './promotions-assoc-partner.component.html',
   styleUrls: ['./promotions-assoc-partner.component.css']
 })
-export class PromotionsAssocPartnerComponent implements OnInit {
+export class PromotionsAssocPartnerComponent implements OnInit ,OnChanges{
   @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmPromo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Total']
   firmPromoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
+  isExisting:boolean=false;
+  promotionsAssociatePartners:PromotionsAssociatePartners[]=[]
 
   items:string[]=
   [
@@ -29,18 +33,31 @@ export class PromotionsAssocPartnerComponent implements OnInit {
     'Men'
   ]
   myForm: FormGroup;
-  constructor(private fb:FormBuilder) { }
+  constructor(private surveySvc:SurveyService, private fb:FormBuilder) {
+  }
 
-  ngOnInit() {
+  ngOnChanges(){
+    this.getValue();
+  }
+
+  async getValue(){
+    var pap = await this.surveySvc.getSurvey(this.companyProfileID,4);
+    this.isExisting = pap ? true : false ;
+    this.promotionsAssociatePartners = pap ? pap : [];
+    console.log(this.promotionsAssociatePartners )
+    this.initializeForm();
+  }
+
+  initializeForm(){
     this.myForm = this.fb.group
     ({
       regions: this.fb.array([]),
     })
     this.addRow();
     this.updateChildFormToParent.emit(this.myForm)
+
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
-
       this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
@@ -58,6 +75,11 @@ export class PromotionsAssocPartnerComponent implements OnInit {
       }
     })
   }
+
+  ngOnInit() {
+    this.initializeForm();
+  }
+
   addRow(){
     //1.get the value of formarray that has name regions
     // this.myForm = this.fb.group({
@@ -77,17 +99,33 @@ export class PromotionsAssocPartnerComponent implements OnInit {
   }
 
   initItems(name:string): FormGroup{
+    var pap = this.promotionsAssociatePartners.find(x=>x.regionName==name);
+
+    if(pap==null){
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[0,Validators.required],
+        'NonEquityPartners': [0,Validators.required],
+        'Associates': [0, Validators.required ],
+        'Counsel': [0,Validators.required ],
+        'OtherLawyers': [0,Validators.required],
+      });
+    }
+    else{
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[pap.equityPartners,Validators.required],
+        'NonEquityPartners': [pap.nonEquityPartners,Validators.required],
+        'Associates': [pap.associates, Validators.required ],
+        'Counsel': [pap.counsel,Validators.required ],
+        'OtherLawyers': [pap.otherLawyers,Validators.required],
+      });
+    }
     // Here, we make the form for each day
-    return this.fb.group({
-      regionName:[name],
-      promotionsAssociatePartnerID:[UUID.UUID(),Validators.required],
-      'companyProfileID': [this.companyProfileID,Validators.required],
-      'EquityPartners':[0,Validators.required],
-      'NonEquityPartners': [0,Validators.required ],
-      'Associates': [0, Validators.required ],
-      'Counsel': [0,Validators.required ],
-      'OtherLawyers': [0,Validators.required],
-    });
   }
 
   sample(index:number){

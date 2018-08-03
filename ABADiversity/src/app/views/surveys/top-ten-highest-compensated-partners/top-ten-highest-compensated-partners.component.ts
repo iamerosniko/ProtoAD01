@@ -1,7 +1,9 @@
-import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input,OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 import { UUID } from 'angular2-uuid';
+import { SurveyService } from '../../../services/survey.service'
+import { TopTenHighestCompensations } from '../../../entities/entities';
 
 @Component({
   selector: 'app-top-ten-highest-compensated-partners',
@@ -13,6 +15,8 @@ export class TopTenHighestCompensatedPartnersComponent implements OnInit {
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmDemoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
+  isExisting:boolean=false;
+  topTenHighestCompensations:TopTenHighestCompensations[]=[]
 
   items:string[]=
   [
@@ -29,15 +33,30 @@ export class TopTenHighestCompensatedPartnersComponent implements OnInit {
     'Men'
   ]
   myForm: FormGroup;
-  constructor(private fb:FormBuilder) { }
+  constructor(private surveySvc:SurveyService, private fb:FormBuilder) {
+  }
 
-  ngOnInit() {
+  
+  ngOnChanges(){
+    this.getValue();
+  }
+
+  async getValue(){
+    var tt = await this.surveySvc.getSurvey(this.companyProfileID,8);
+    this.isExisting = tt ? true : false ;
+    this.topTenHighestCompensations = tt ? tt : [];
+    console.log(this.topTenHighestCompensations )
+    this.initializeForm();
+  }
+
+  initializeForm(){
     this.myForm = this.fb.group
     ({
       regions: this.fb.array([]),
     })
     this.addRow();
     this.updateChildFormToParent.emit(this.myForm)
+
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
       this.updateChildFormToParent.emit(this.myForm)
@@ -57,6 +76,11 @@ export class TopTenHighestCompensatedPartnersComponent implements OnInit {
       }
     })
   }
+
+  ngOnInit() {
+    this.initializeForm();
+  }
+
   addRow(){
     //1.get the value of formarray that has name regions
     // this.myForm = this.fb.group({
@@ -76,17 +100,33 @@ export class TopTenHighestCompensatedPartnersComponent implements OnInit {
   }
 
   initItems(name:string): FormGroup{
+    var tt = this.topTenHighestCompensations.find(x=>x.regionName==name);
+
+    if(tt==null){
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[0,Validators.required],
+        'NonEquityPartners': [0,Validators.required],
+        'Associates': [0, Validators.required ],
+        'Counsel': [0,Validators.required ],
+        'OtherLawyers': [0,Validators.required],
+      });
+    }
+    else{
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[tt.equityPartners,Validators.required],
+        'NonEquityPartners': [tt.nonEquityPartners,Validators.required],
+        'Associates': [tt.associates, Validators.required ],
+        'Counsel': [tt.counsel,Validators.required ],
+        'OtherLawyers': [tt.otherLawyers,Validators.required],
+      });
+    }
     // Here, we make the form for each day
-    return this.fb.group({
-      regionName:[name],
-      topTenHighestCompensationID:[UUID.UUID(),Validators.required],
-      'companyProfileID': [this.companyProfileID,Validators.required],
-      'EquityPartners':[0,Validators.required],
-      'NonEquityPartners': [0,Validators.required ],
-      'Associates': [0, Validators.required ],
-      'Counsel': [0,Validators.required ],
-      'OtherLawyers': [0,Validators.required],
-    });
   }
 
   sample(index:number){

@@ -41,7 +41,7 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
     console.log('firmdemographics')
   }
   async getValue(){
-    var fd = await this.surveySvc.getSurvey(this.companyProfileID,2);
+    var fd = await this.surveySvc.getSurvey(this.companyProfileID,6);
     this.isExisting = fd ? true : false ;
     this.joinedLawyers = fd ? fd : [];
     console.log(this.joinedLawyers )
@@ -97,17 +97,33 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
   }
 
   initItems(name:string): FormGroup{
+    var jl = this.joinedLawyers.find(x=>x.regionName==name);
+
     // Here, we make the form for each day
-    return this.fb.group({
-      'companyProfileID': [this.companyProfileID,Validators.required],
-      joinedLawyerID:[UUID.UUID(),Validators.required],
-      regionName:[name],
-      'EP':[0,Validators.required],
-      'NEP': [0,Validators.required ],
-      'AS': [0, Validators.required ],
-      'CO': [0,Validators.required ],
-      'OL': [0,Validators.required],
-    });
+    if(jl==null){
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[0,Validators.required],
+        'NonEquityPartners': [0,Validators.required],
+        'Associates': [0, Validators.required ],
+        'Counsel': [0,Validators.required ],
+        'OtherLawyers': [0,Validators.required],
+      });
+    }
+    else{
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        firmDemographicID:[UUID.UUID(),Validators.required],
+        regionName:[name],
+        'EquityPartners':[jl.equityPartners,Validators.required],
+        'NonEquityPartners': [jl.nonEquityPartners,Validators.required],
+        'Associates': [jl.associates, Validators.required ],
+        'Counsel': [jl.counsel,Validators.required ],
+        'OtherLawyers': [jl.otherLawyers,Validators.required],
+      });
+    }
   }
 
   sample(index:number){
