@@ -70,6 +70,46 @@ namespace API.Controllers
       return Ok(survey);
     }
 
+    [HttpPost("UpdateSurvey")]
+    public async Task<IActionResult> updateSUrvey([FromBody]Survey survey)
+    {
+      if (!ModelState.IsValid)
+      {
+        return null;
+      }
+
+      var companyProfile = await _context.CompanyProfiles.SingleOrDefaultAsync(m => m.CompanyProfileID == survey.CompanyProfile.CompanyProfileID);
+
+      if (companyProfile == null)
+      {
+        return null;
+      }
+      var fd = firmDemographicsController.GetFirmDemographics(companyProfile.CompanyProfileID);
+      var jl = joinedLawyersController.GetJoinedLawyers(companyProfile.CompanyProfileID);
+      var ll = leftLawyersController.GetLeftLawyers(companyProfile.CompanyProfileID);
+      var pap = promotionsAssociatePartnersController.GetPromotionsAssociatePartners(companyProfile.CompanyProfileID);
+      var rhl = reducedHoursLawyersController.GetReducedHoursLawyers(companyProfile.CompanyProfileID);
+      var thc = topTenHighestCompensationsController.GetTopTenHighestCompensations(companyProfile.CompanyProfileID);
+      var cert = certificatesController.GetCertificates(companyProfile.CompanyProfileID);
+      var ld = leadershipDemographicsController.GetLeadershipDemographics(companyProfile.CompanyProfileID);
+      var ui = await undertakenInitiativesController.GetUndertakenInitiatives(companyProfile.CompanyProfileID);
+
+      _context.RemoveRange(fd);
+      _context.RemoveRange(jl);
+      _context.RemoveRange(ll);
+      _context.RemoveRange(pap);
+      _context.RemoveRange(rhl);
+      _context.RemoveRange(thc);
+      _context.RemoveRange(cert);
+      _context.RemoveRange(ld);
+      _context.Remove(ui);
+
+      await _context.SaveChangesAsync();
+
+      return Ok(SaveSUrvey(survey));
+    }
+
+
     [HttpGet("GetYears/{firmID}")]
     public IActionResult GetYears([FromRoute] Guid firmID)
     {
