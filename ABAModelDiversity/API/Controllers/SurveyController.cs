@@ -109,6 +109,7 @@ namespace API.Controllers
           case 7: return rhl;
           case 8: return thc;
           case 9: return ui;
+          case 10: return cert;
           default: return survey;
         }
         //survey = new Survey

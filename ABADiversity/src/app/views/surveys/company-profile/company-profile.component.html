@@ -123,8 +123,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let Certificates of tempCertificates">
-                    <td>{{Certificates.Name}}</td>
-                    <td>{{Certificates.DateCert | date:'MM/dd/yyy' }}</td>
+                    <td>{{Certificates.name}}</td>
+                    <td>{{Certificates.dateCert | date:'MM/dd/yyy' }}</td>
                     <td align="center">
                       <div class="btn-group">
                         <!-- <a (click)="mainDetails()"  class="btn btn-default btn-xs" data-toggle="tab" data-target="#dep_editor" title="More Details"><i class="fa fa-search-plus"></i></a> -->
@@ -139,10 +139,10 @@
             <div class="col-md-12">
           
               <label class="control-label input-sm">Name:</label>
-              <input [(ngModel)]="tempCertificate.Name" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm"/>
+              <input [(ngModel)]="tempCertificate.name" type="text" class="form-control input-sm"/>
               <label class="control-label input-sm">Date of certification:</label>
-              <input [(ngModel)]="tempCertificate.DateCert" [ngModelOptions]="{standalone: true}" type="date"  class="form-control input-sm"/><br>
-              <button (click)='addcert(tempCertificate)' type="submit"  class="btn btn-success btn-sm" data-dismiss="modal">
+              <input [(ngModel)]="tempCertificate.dateCert" type="date"  class="form-control input-sm"/><br>
+              <button (click)='addcert(tempCertificate)'  class="btn btn-success btn-sm" data-dismiss="modal">
                   <i class="fa fa-plus"></i>&nbsp;Add
               </button>
             </div>

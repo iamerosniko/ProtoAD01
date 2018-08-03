@@ -37,9 +37,12 @@ export class CompanyProfileComponent implements OnInit,OnChanges {
 
   async getValue(){
     var companyProfile = await this.surveySvc.getSurvey(this.companyProfileID,1);
+    var tempCertificates = await this.surveySvc.getSurvey(this.companyProfileID,10)
+    this.tempCertificates=tempCertificates ? tempCertificates : [];
     this.isExisting = companyProfile ? true : false ;
     this.CPdata = companyProfile ? companyProfile : {};
     console.log(this.CPdata )
+    console.log(this.tempCertificates )
     this.initializeForm();
   }
 
@@ -48,9 +51,12 @@ export class CompanyProfileComponent implements OnInit,OnChanges {
     this.updateCertFormToParent.emit(this.certform)
   }
   addcert(cert:Certificates){
+    console.log(cert);
+    console.log(this.tempCertificate)
+    console.log(this.tempCertificates)
     cert.certificateID=UUID.UUID();
     cert.companyProfileID=this.companyProfileID;
-    this.tempCertificates.push(cert);
+    this.tempCertificates.push(this.tempCertificate);
     this.tempCertificate={};
     console.log(this.myForm.value)
   }
@@ -58,7 +64,7 @@ export class CompanyProfileComponent implements OnInit,OnChanges {
   initializeForm(){
     this.myForm = this.fb.group({
       CompanyProfileID:[this.companyProfileID,Validators.required],
-      FirmID:[this.companyProfileID,Validators.required],
+      FirmID:[this.firmID,Validators.required],
       Firmname:[this.CPdata.firmname, Validators.required],
       Firmhead:[this.CPdata.firmhead, Validators.required],
       Datecomp:[null, Validators.required],

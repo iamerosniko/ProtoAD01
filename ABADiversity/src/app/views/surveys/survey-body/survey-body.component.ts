@@ -25,7 +25,7 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   formFromChild8:FormGroup;
   myForm:FormGroup;
   firm:Firms={};
-  isNewFirm:boolean=true;
+  isNewFirm:boolean;
   companyProfileID : string = '';
   // tempCompanyProfiles : CompanyProfiles[];
   years:Years[]=[];
@@ -51,7 +51,17 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   }
 
   ngOnInit(){
-  
+    var firmID = this.activatedroute.snapshot.params['FirmID'];
+    if(firmID!=null){
+      this.isNewFirm=false;
+      this.getCompanyProfiles(firmID);
+      this.firm.firmID=firmID
+    }
+    else{
+      this.isNewFirm=true;
+      this.firm = { firmID : UUID.UUID() };
+    }
+    this.companyProfileID = UUID.UUID();
   }
 
   updateCompanyProfileID(){
@@ -60,14 +70,15 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   }
   //for combobox of years
   async getCompanyProfiles(firmID:string){
-    this.years=[];
     var companyProfiles =<CompanyProfiles[]> await this.surveySvc.getYears(firmID);
-    companyProfiles.forEach(element => {
+    this.years=await [];
+    companyProfiles.forEach(async element => {
       this.years.push(
         {
           companyProfileID : element.companyProfileID,
           year : this.getYear(element.datecomp)
         })
+        console.log(this.years)
     });
   }
 
@@ -90,7 +101,7 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
     this.survey.TopTenHighestCompensations = this.formFromChild7.controls['regions'].value;
     this.survey.UndertakenInitiatives = this.formFromChild8.value;
     this.survey.Firm = this.firm;
-    this.survey.IsNewFirm=true;
+    this.survey.IsNewFirm=this.isNewFirm;
     this.survey.Certificates=this.certificateForm.controls['certificates'].value;
     this.survey.LeadershipDemographics = this.formFromChild2.controls['numbers'].value;
     console.log(this.survey)
