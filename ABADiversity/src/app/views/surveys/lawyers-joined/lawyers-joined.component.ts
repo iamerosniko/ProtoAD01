@@ -14,7 +14,7 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
   @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
-  firmDemoassign:string[]=['EP','NEP','AS','CO','OL','Totals']
+  firmDemoassign:string[]=['EquityPartners','NonEquityPartners','Associates','Counsel','OtherLawyers','Totals']
   joinedLawyers:JoinedLawyers[]=[]
   isExisting:boolean=false;
 
@@ -56,7 +56,6 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
     this.updateChildFormToParent.emit(this.myForm)
 
     this.myForm.valueChanges.subscribe(()=>{
-      console.log('t')
       this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
@@ -69,8 +68,6 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
             }
           }
         });
-
-
       }
     })
   }
@@ -124,15 +121,6 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
         'OtherLawyers': [jl.otherLawyers,Validators.required],
       });
     }
-  }
-
-  sample(index:number){
-    const control = <FormArray>this.myForm.controls['regions'];
-    const formb=<FormGroup>control.at(index)
-    return (formb.controls['regionName'].value)
-    // console.log(formbuild)
-    // return formbuild.control['validate'].value
-    //return control[index].controls['validate'].value
   }
 
   compute(index : number){

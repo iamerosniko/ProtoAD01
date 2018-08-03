@@ -141,15 +141,6 @@ export class LawyersReducedHoursComponent implements OnInit,OnChanges  {
     // Here, we make the form for each day
   }
 
-  sample(index:number){
-    const control = <FormArray>this.myForm.controls['regions'];
-    const formb=<FormGroup>control.at(index)
-    return (formb.controls['regionName'].value)
-    // console.log(formbuild)
-    // return formbuild.control['validate'].value
-    //return control[index].controls['validate'].value
-  }
-
   compute(index : number){
     const control = <FormArray>this.myForm.controls['regions'];
     const formb=<FormGroup>control.at(index)

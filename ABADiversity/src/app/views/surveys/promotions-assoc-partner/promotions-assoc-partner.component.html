@@ -1,145 +1,32 @@
 <div class="row">
-<!-- <div class="panel panel-primary"> -->
-    <!-- <div class="panel-body"> -->
-      <!-- <table class="table table-striped table-hover input-sm">
+    <fieldset [disabled]="isExisting" >
+
+    <form [formGroup]="myForm">
+    <table class="table table-inverse table-bordered table-hover table-striped input-sm">
         <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th>Equity Partners</th>
-            <th>Non-Equity Partners</th>
-            <th>Associates</th>
-            <th>Counsel</th>
-            <th>Other Lawyers</th>
-            <th>Totals</th>
-          </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <th *ngFor="let title of firmPromo">{{title}}</th>
+            </tr>
         </thead>
-        <tbody>
-          <tr>
-              <td>African American/Black(not Hispanic/Latino)</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Hispanic/Latino</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Alaska Native/American Indian</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Asian</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Native Hawaiian/Other Pacific Islander</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Multiracial</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>White</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>LGBT</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Disabled</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Women</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
-          <tr>
-              <td>Men</td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-              <td><input type="text" class="form-control input-sm" /></td>
-          </tr>
+        <tbody formArrayName="regions">
+            <tr *ngFor="let address of myForm.controls.regions.controls; let i=index" [formGroupName]="i">
+                <th>
+                    <!-- -->
+                    {{ myForm.controls['regions'].at(i).controls['regionName'].value }}
+                    <!-- {{i}} -->
+                </th>
+                <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="EquityPartners"></td>
+                <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="NonEquityPartners"></td>
+                <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="Associates"></td>
+                <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="Counsel"></td>
+                <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="OtherLawyers"></td>
+                <td>{{compute(i)}}</td>
+            </tr>
         </tbody>
-      </table> -->
-      <form [formGroup]="myForm">
-        <table class="table table-inverse table-bordered table-hover table-striped input-sm">
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th *ngFor="let title of firmPromo">{{title}}</th>
-                </tr>
-            </thead>
-            <tbody formArrayName="regions">
-                <tr *ngFor="let address of myForm.controls.regions.controls; let i=index" [formGroupName]="i">
-                    <th>
-                        <!-- -->
-                        {{sample(i)}} 
-                        <!-- {{i}} -->
-                    </th>
-                    <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="EquityPartners"></td>
-                    <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="NonEquityPartners"></td>
-                    <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="Associates"></td>
-                    <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="Counsel"></td>
-                    <td><input type='text' class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*[0-9]" formControlName="OtherLawyers"></td>
-                    <td>{{compute(i)}}</td>
-                </tr>
-            </tbody>
-        </table>
-       </form>
+    </table>
+    </form>
+    </fieldset> 
     <!-- </div> -->
   <!-- </div> -->
 </div>

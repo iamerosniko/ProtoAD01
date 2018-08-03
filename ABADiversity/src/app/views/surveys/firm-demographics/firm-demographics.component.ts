@@ -58,7 +58,6 @@ export class FirmDemographicsComponent implements OnInit,OnChanges {
     this.updateChildFormToParent.emit(this.myForm)
 
     this.myForm.valueChanges.subscribe(()=>{
-      console.log('t')
       this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
@@ -136,15 +135,6 @@ export class FirmDemographicsComponent implements OnInit,OnChanges {
       });
     }
     // Here, we make the form for each day
-  }
-
-  sample(index:number){
-    const control = <FormArray>this.myForm.controls['regions'];
-    const formb=<FormGroup>control.at(index)
-    return (formb.controls['regionName'].value)
-    // console.log(formbuild)
-    // return formbuild.control['validate'].value
-    //return control[index].controls['validate'].value
   }
 
   compute(index : number){

@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter,Input, OnChanges } from '@angul
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
 import { UUID } from 'angular2-uuid';
+import { LeadershipDemographics } from '../../../entities/entities';
+import { SurveyService } from '../../../services/survey.service'
 @Component({
   selector: 'app-firm-leadership-demographic',
   templateUrl: './firm-leadership-demographic.component.html',
@@ -12,7 +14,8 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmLead:string[]=['Minority Female','Minority Male','White Female','White Male','LGBT','Disabled','Total']
   firmLeadassign:string[]=['MinorityFemale','MinorityMale','WhiteFemale','WhiteMale','LGBT','Disabled','Totals']
-
+  isExisting:boolean=false;
+  leadershipDemographics:LeadershipDemographics[]=[]
   items:string[]=
   [
     'Number of attorneys who serve on the highest governance committee of the firm',
@@ -25,15 +28,22 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
     'Number of hiring partners or equivalent'
   ]
   myForm: FormGroup;
-  constructor(private fb:FormBuilder) { 
-
+  constructor(private surveySvc:SurveyService, private fb:FormBuilder) {
   }
 
   ngOnChanges(){
-    
+    this.getValue();
   }
 
-  ngOnInit() {
+  async getValue(){
+    var ld = await this.surveySvc.getSurvey(this.companyProfileID,3);
+    this.isExisting = ld ? true : false ;
+    this.leadershipDemographics = ld ? ld : [];
+    console.log(this.leadershipDemographics )
+    this.initializeForm();
+  }
+
+  initializeForm(){
     this.myForm = this.fb.group
     ({
       numbers: this.fb.array([]),
@@ -56,6 +66,10 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
       }
     })
   }
+
+  ngOnInit() {
+    this.initializeForm();
+  }
   addRow(){
     //1.get the value of formarray that has name numbers
     // this.myForm = this.fb.group({
@@ -74,28 +88,35 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
   }
 
   initItems(name:string): FormGroup{
+    var ld = this.leadershipDemographics.find(x=>x.numberQuestion==name);
+    if(ld==null){
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        leadershipDemographicID:[UUID.UUID(),Validators.required],
+        NumberQuestion:[name],
+        'MinorityFemale':[0,Validators.required],
+        'MinorityMale': [0,Validators.required ],
+        'WhiteFemale': [0, Validators.required ],
+        'WhiteMale': [0,Validators.required ],
+        'LGBT': [0,Validators.required],
+        'Disabled': [0,Validators.required]
+      });
+    }
+    else{
+      return this.fb.group({
+        'companyProfileID': [this.companyProfileID,Validators.required],
+        leadershipDemographicID:[UUID.UUID(),Validators.required],
+        NumberQuestion:[name],
+        'MinorityFemale':[ld.minorityFemale,Validators.required],
+        'MinorityMale': [ld.minorityMale,Validators.required ],
+        'WhiteFemale': [ld.whiteFemale, Validators.required ],
+        'WhiteMale': [ld.whiteMale,Validators.required ],
+        'LGBT': [ld.LGBT,Validators.required],
+        'Disabled': [ld.disabled,Validators.required]
+      });
+    }
     // Here, we make the form for each day
-    return this.fb.group({
-      'companyProfileID': [this.companyProfileID,Validators.required],
-      leadershipDemographicID:[UUID.UUID(),Validators.required],
-      NumberQuestion:[name],
-      'MinorityFemale':[0,Validators.required],
-      'MinorityMale': [0,Validators.required ],
-      'WhiteFemale': [0, Validators.required ],
-      'WhiteMale': [0,Validators.required ],
-      'LGBT': [0,Validators.required],
-      'Disabled': [0,Validators.required]
-    });
-  }
-
-  sample(index:number){
-    const control = <FormArray>this.myForm.controls['numbers'];
-    const formb=<FormGroup>control.at(index)
-    // console.log((formb.controls['numbers'].value))
-    return (formb.controls['NumberQuestion'].value)
-    // console.log(formbuild)
-    // return formbuild.control['validate'].value
-    //return control[index].controls['validate'].value
+    
   }
 
   compute(index : number){
