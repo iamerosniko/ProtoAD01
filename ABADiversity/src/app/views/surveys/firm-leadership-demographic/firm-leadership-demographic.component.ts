@@ -90,16 +90,28 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
   initItems(name:string): FormGroup{
     var ld = this.leadershipDemographics.find(x=>x.numberQuestion==name);
     if(ld==null){
+      // return this.fb.group({
+      //   'companyProfileID': [this.companyProfileID,Validators.required],
+      //   leadershipDemographicID:[UUID.UUID(),Validators.required],
+      //   NumberQuestion:[name],
+      //   'MinorityFemale':[0,Validators.required],
+      //   'MinorityMale': [0,Validators.required ],
+      //   'WhiteFemale': [0, Validators.required ],
+      //   'WhiteMale': [0,Validators.required ],
+      //   'LGBT': [0,Validators.required],
+      //   'Disabled': [0,Validators.required]
+      // });
+
       return this.fb.group({
         'companyProfileID': [this.companyProfileID,Validators.required],
         leadershipDemographicID:[UUID.UUID(),Validators.required],
         NumberQuestion:[name],
-        'MinorityFemale':[0,Validators.required],
-        'MinorityMale': [0,Validators.required ],
-        'WhiteFemale': [0, Validators.required ],
-        'WhiteMale': [0,Validators.required ],
-        'LGBT': [0,Validators.required],
-        'Disabled': [0,Validators.required]
+        'MinorityFemale':[Math.floor((Math.random() * 10) + 1),Validators.required],
+        'MinorityMale': [Math.floor((Math.random() * 10) + 1),Validators.required ],
+        'WhiteFemale': [Math.floor((Math.random() * 10) + 1), Validators.required ],
+        'WhiteMale': [Math.floor((Math.random() * 10) + 1),Validators.required ],
+        'LGBT': [Math.floor((Math.random() * 10) + 1),Validators.required],
+        'Disabled': [Math.floor((Math.random() * 10) + 1),Validators.required]
       });
     }
     else{

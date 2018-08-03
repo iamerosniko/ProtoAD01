@@ -115,15 +115,25 @@ export class LawyersReducedHoursComponent implements OnInit,OnChanges  {
     var lr = this.reducedHoursLawyers.find(x=>x.regionName==name);
 
     if(lr==null){
+      // return this.fb.group({
+      //   'companyProfileID': [this.companyProfileID,Validators.required],
+      //   firmDemographicID:[UUID.UUID(),Validators.required],
+      //   regionName:[name],
+      //   'EquityPartners':[0,Validators.required],
+      //   'NonEquityPartners': [0,Validators.required],
+      //   'Associates': [0, Validators.required ],
+      //   'Counsel': [0,Validators.required ],
+      //   'OtherLawyers': [0,Validators.required],
+      // });
       return this.fb.group({
         'companyProfileID': [this.companyProfileID,Validators.required],
         firmDemographicID:[UUID.UUID(),Validators.required],
         regionName:[name],
-        'EquityPartners':[0,Validators.required],
-        'NonEquityPartners': [0,Validators.required],
-        'Associates': [0, Validators.required ],
-        'Counsel': [0,Validators.required ],
-        'OtherLawyers': [0,Validators.required],
+        'EquityPartners':[Math.floor((Math.random() * 10) + 1),Validators.required],
+        'NonEquityPartners': [Math.floor((Math.random() * 10) + 1),Validators.required],
+        'Associates': [Math.floor((Math.random() * 10) + 1), Validators.required ],
+        'Counsel': [Math.floor((Math.random() * 10) + 1),Validators.required ],
+        'OtherLawyers': [Math.floor((Math.random() * 10) + 1),Validators.required],
       });
     }
     else{
