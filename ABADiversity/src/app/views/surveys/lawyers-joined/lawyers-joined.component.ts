@@ -1,18 +1,22 @@
-import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input,OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { isNumber } from 'util';
+import { JoinedLawyers } from '../../../entities/entities';
 import { UUID } from 'angular2-uuid';
+import { SurveyService } from '../../../services/survey.service'
 
 @Component({
   selector: 'app-lawyers-joined',
   templateUrl: './lawyers-joined.component.html',
   styleUrls: ['./lawyers-joined.component.css']
 })
-export class LawyersJoinedComponent implements OnInit {
+export class LawyersJoinedComponent implements OnInit ,OnChanges {
   @Input() companyProfileID : string ;
   @Output() updateChildFormToParent = new EventEmitter<any>();
   firmDemo:string[]=['Equity Partners','Non-Equity Partners','Associates','Counsel','Other Lawyers','Totals']
   firmDemoassign:string[]=['EP','NEP','AS','CO','OL','Totals']
+  joinedLawyers:JoinedLawyers[]=[]
+  isExisting:boolean=false;
 
   items:string[]=
   [
@@ -29,15 +33,28 @@ export class LawyersJoinedComponent implements OnInit {
     'Men'
   ]
   myForm: FormGroup;
-  constructor(private fb:FormBuilder) { }
+  constructor(private surveySvc:SurveyService, private fb:FormBuilder) {
+  }
 
-  ngOnInit() {
+  ngOnChanges(){
+    this.getValue();
+    console.log('firmdemographics')
+  }
+  async getValue(){
+    var fd = await this.surveySvc.getSurvey(this.companyProfileID,2);
+    this.isExisting = fd ? true : false ;
+    this.joinedLawyers = fd ? fd : [];
+    console.log(this.joinedLawyers )
+    this.initializeForm();
+  }
+  initializeForm(){
     this.myForm = this.fb.group
     ({
       regions: this.fb.array([]),
     })
     this.addRow();
     this.updateChildFormToParent.emit(this.myForm)
+
     this.myForm.valueChanges.subscribe(()=>{
       console.log('t')
       this.updateChildFormToParent.emit(this.myForm)
@@ -56,6 +73,10 @@ export class LawyersJoinedComponent implements OnInit {
 
       }
     })
+  }
+  
+  ngOnInit() {
+    this.initializeForm();
   }
   addRow(){
     //1.get the value of formarray that has name regions
