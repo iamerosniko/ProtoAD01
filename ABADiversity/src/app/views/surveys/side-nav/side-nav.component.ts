@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Firms } from '../../../entities/entities';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { SurveyService } from '../../../services/survey.service';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css']
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit,OnChanges {
   mainList:Firms[]=[];
   firmlist:Firms[]=[];
   firm:Firms={};
@@ -37,4 +37,11 @@ export class SideNavComponent implements OnInit {
     await this.getFirms();
   }
 
+  async ngOnChanges(){
+    
+  }
+
+  async refreshNav(){
+    await this.ngOnInit();
+  }
 }

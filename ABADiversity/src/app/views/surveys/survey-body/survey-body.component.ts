@@ -1,10 +1,9 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
+import { Component, OnInit, OnChanges,Output,EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Survey,Firms,CompanyProfiles,Years } from '../../../entities/entities'
 import { SurveyService } from '../../../services/survey.service'
 import { UUID } from 'angular2-uuid'
-import { Router,ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-survey-body',
   templateUrl: './survey-body.component.html',
@@ -27,11 +26,12 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   firm:Firms={};
   isNewFirm:boolean;
   companyProfileID : string = '';
+  @Output() refreshNav = new EventEmitter();
   // tempCompanyProfiles : CompanyProfiles[];
   years:Years[]=[];
   selectedYearCompanyProfileID:string="0";
   isValid:boolean=false;
-  constructor( private surveySvc:SurveyService, private activatedroute: ActivatedRoute) {
+  constructor( private surveySvc:SurveyService, private activatedroute: ActivatedRoute,private router :Router) {
     this.activatedroute.params.subscribe(async ()=>{
       var firmID = this.activatedroute.snapshot.params['FirmID'];
       if(firmID!=null){
@@ -102,6 +102,8 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
     this.survey.LeadershipDemographics = this.formFromChild2.controls['numbers'].value;
     await this.surveySvc.postSurvey(this.survey);
     await this.getCompanyProfiles(this.firm.firmID);
+    // await this.refreshNav.emit();
+    this.isNewFirm ? location.reload(true) : null;
   }
 
   checkValid():boolean{
