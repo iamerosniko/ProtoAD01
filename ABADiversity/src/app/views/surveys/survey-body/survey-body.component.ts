@@ -66,7 +66,6 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
 
   updateCompanyProfileID(){
     this.companyProfileID = this.selectedYearCompanyProfileID=="0"? UUID.UUID() : this.selectedYearCompanyProfileID;
-    console.log(this.companyProfileID)
   }
   //for combobox of years
   async getCompanyProfiles(firmID:string){
@@ -78,14 +77,11 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
           companyProfileID : element.companyProfileID,
           year : this.getYear(element.datecomp)
         })
-        console.log(this.years)
     });
   }
 
   getYear(dateComp : any):number{
-    console.log(dateComp)
     var a =  new Date(dateComp).getFullYear();
-    console.log(a)
     return a;
   }
 
@@ -104,21 +100,14 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
     this.survey.IsNewFirm=this.isNewFirm;
     this.survey.Certificates=this.certificateForm.controls['certificates'].value;
     this.survey.LeadershipDemographics = this.formFromChild2.controls['numbers'].value;
-    console.log(this.survey)
-    this.surveySvc.postSurvey(this.survey);
+    await this.surveySvc.postSurvey(this.survey);
+    await this.getCompanyProfiles(this.firm.firmID);
   }
 
   checkValid():boolean{
 
     var a = 
       this.formFromChild.valid  && 
-      // this.formFromChild1.valid && 
-      // this.formFromChild2.valid && 
-      // this.formFromChild3.valid && 
-      // this.formFromChild4.valid &&
-      // this.formFromChild5.valid && 
-      // this.formFromChild6.valid && 
-      // this.formFromChild7.valid && 
       this.formFromChild8.valid 
 
     this.isValid = !a;

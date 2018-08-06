@@ -38,13 +38,11 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
 
   ngOnChanges(){
     this.getValue();
-    console.log('firmdemographics')
   }
   async getValue(){
     var fd = await this.surveySvc.getSurvey(this.companyProfileID,6);
     this.isExisting = fd ? true : false ;
     this.joinedLawyers = fd ? fd : [];
-    console.log(this.joinedLawyers )
     this.initializeForm();
   }
   initializeForm(){
@@ -149,16 +147,15 @@ export class LawyersJoinedComponent implements OnInit ,OnChanges {
     return value;
   }
 
-  submit(){
-    console.log(this.myForm.value)
-    const control = <FormArray>this.myForm.controls['regions'];
-    for(var i =0;i<control.length;i++){
-      const demographics =<FormGroup> control.at(i);
+  // submit(){
+  //   const control = <FormArray>this.myForm.controls['regions'];
+  //   for(var i =0;i<control.length;i++){
+  //     const demographics =<FormGroup> control.at(i);
 
-      this.firmDemo.forEach(element => {
-        if(element!='Totals')
-        console.log(element +' ' +demographics.controls[element].value)
-      });
-    }
-  }
+  //     this.firmDemo.forEach(element => {
+  //       if(element!='Totals')
+  //       console.log(element +' ' +demographics.controls[element].value)
+  //     });
+  //   }
+  // }
 }

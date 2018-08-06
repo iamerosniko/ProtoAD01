@@ -45,7 +45,6 @@ export class FirmDemographicsComponent implements OnInit,OnChanges {
     var fd = await this.surveySvc.getSurvey(this.companyProfileID,2);
     this.isExisting = fd ? true : false ;
     this.firmDemographics = fd ? fd : [];
-    console.log(this.firmDemographics )
     this.initializeForm();
   }
 
@@ -152,16 +151,16 @@ export class FirmDemographicsComponent implements OnInit,OnChanges {
     return value;
   }
 
-  submit(){
-    console.log(this.myForm.value)
-    const control = <FormArray>this.myForm.controls['regions'];
-    for(var i =0;i<control.length;i++){
-      const demographics =<FormGroup> control.at(i);
+  // submit(){
+  //   console.log(this.myForm.value)
+  //   const control = <FormArray>this.myForm.controls['regions'];
+  //   for(var i =0;i<control.length;i++){
+  //     const demographics =<FormGroup> control.at(i);
 
-      this.firmDemo.forEach(element => {
-        if(element!='Totals')
-        console.log(element +' ' +demographics.controls[element].value)
-      });
-    }
-  }
+  //     this.firmDemo.forEach(element => {
+  //       if(element!='Totals')
+  //       console.log(element +' ' +demographics.controls[element].value)
+  //     });
+  //   }
+  // }
 }

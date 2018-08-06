@@ -39,7 +39,6 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
     var ld = await this.surveySvc.getSurvey(this.companyProfileID,3);
     this.isExisting = ld ? true : false ;
     this.leadershipDemographics = ld ? ld : [];
-    console.log(this.leadershipDemographics )
     this.initializeForm();
   }
 
@@ -51,7 +50,6 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
     this.addRow();
     this.updateChildFormToParent.emit(this.myForm)
     this.myForm.valueChanges.subscribe(()=>{
-      console.log('t')
       this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['numbers'];
       for(var i =0;i<control.length;i++){
@@ -146,16 +144,16 @@ export class FirmLeadershipDemographicComponent implements OnInit,OnChanges {
     return value;
   }
 
-  submit(){
-    console.log(this.myForm.value)
-    const control = <FormArray>this.myForm.controls['numbers'];
-    for(var i =0;i<control.length;i++){
-      const demographics =<FormGroup> control.at(i);
+  // submit(){
+  //   this.myForm.value)
+  //   const control = <FormArray>this.myForm.controls['numbers'];
+  //   for(var i =0;i<control.length;i++){
+  //     const demographics =<FormGroup> control.at(i);
 
-      this.firmLead.forEach(element => {
-        if(element!='Totals')
-        console.log(element +' ' +demographics.controls[element].value)
-      });
-    }
-  }
+  //     this.firmLead.forEach(element => {
+  //       if(element!='Totals')
+  //       element +' ' +demographics.controls[element].value)
+  //     });
+  //   }
+  // }
 }

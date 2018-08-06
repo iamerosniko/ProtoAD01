@@ -27,8 +27,6 @@ export class CompanyProfileComponent implements OnInit,OnChanges {
 
   ngOnChanges(){
     this.getValue();
-
-    console.log('company profile')
   }
 
   ngOnInit() {
@@ -41,8 +39,6 @@ export class CompanyProfileComponent implements OnInit,OnChanges {
     this.tempCertificates=tempCertificates ? tempCertificates : [];
     this.isExisting = companyProfile ? true : false ;
     this.CPdata = companyProfile ? companyProfile : {};
-    console.log(this.CPdata )
-    console.log(this.tempCertificates )
     this.initializeForm();
   }
 
@@ -51,14 +47,10 @@ export class CompanyProfileComponent implements OnInit,OnChanges {
     this.updateCertFormToParent.emit(this.certform)
   }
   addcert(cert:Certificates){
-    console.log(cert);
-    console.log(this.tempCertificate)
-    console.log(this.tempCertificates)
     cert.certificateID=UUID.UUID();
     cert.companyProfileID=this.companyProfileID;
     this.tempCertificates.push(this.tempCertificate);
     this.tempCertificate={};
-    console.log(this.myForm.value)
   }
 
   initializeForm(){

@@ -57,7 +57,6 @@ export class LawyersReducedHoursComponent implements OnInit,OnChanges  {
     var rl = await this.surveySvc.getSurvey(this.companyProfileID,7);
     this.isExisting = rl ? true : false ;
     this.reducedHoursLawyers = rl ? rl : [];
-    console.log(this.reducedHoursLawyers )
     this.initializeForm();
   }
 
@@ -70,7 +69,6 @@ export class LawyersReducedHoursComponent implements OnInit,OnChanges  {
     this.updateChildFormToParent.emit(this.myForm)
 
     this.myForm.valueChanges.subscribe(()=>{
-      console.log('t')
       this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
@@ -166,16 +164,15 @@ export class LawyersReducedHoursComponent implements OnInit,OnChanges  {
     return value;
   }
 
-  submit(){
-    console.log(this.myForm.value)
-    const control = <FormArray>this.myForm.controls['regions'];
-    for(var i =0;i<control.length;i++){
-      const demographics =<FormGroup> control.at(i);
+  // submit(){
+  //   const control = <FormArray>this.myForm.controls['regions'];
+  //   for(var i =0;i<control.length;i++){
+  //     const demographics =<FormGroup> control.at(i);
 
-      this.firmDemo.forEach(element => {
-        if(element!='Totals')
-        console.log(element +' ' +demographics.controls[element].value)
-      });
-    }
-  }
+  //     this.firmDemo.forEach(element => {
+  //       if(element!='Totals')
+  //       console.log(element +' ' +demographics.controls[element].value)
+  //     });
+  //   }
+  // }
 }
