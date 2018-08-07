@@ -31,15 +31,15 @@ export class SurveyService {
     return this.api.getAll();
   }
 
-  getProfiles(firmID:string){
-    this.api.normalHeader();
-    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/GetYears/"+firmID)
-    return this.api.getAll();
-  }
-
   getSurvey(companyID:string,mode:number){
     this.api.normalHeader();
     this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/GetSurvey/"+companyID+"/"+mode)
+    return this.api.getAll();
+  }
+
+  getSurveys(firmID:string){
+    this.api.normalHeader();
+    this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/"+firmID)
     return this.api.getAll();
   }
 

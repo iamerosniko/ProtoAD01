@@ -3,6 +3,8 @@ using API.Tables;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -171,6 +173,56 @@ namespace API.Controllers
         System.Diagnostics.Debug.Write(ex.ToString());
       }
       return new Survey();
+    }
+
+    [HttpGet("{firmID}")]
+    public async Task<List<Survey>> getSurveys([FromRoute] Guid firmID)
+    {
+      List<Survey> surveys = new List<Survey>();
+      Firms firm = await _context.Firms.SingleOrDefaultAsync(x => x.FirmID == firmID);
+
+      if (firm == null)
+      {
+        return null;
+      }
+      List<CompanyProfiles> companyProfiles = new List<CompanyProfiles>();
+      companyProfiles = _context.CompanyProfiles.Where(x => x.FirmID == firmID).ToList();
+
+      foreach (var companyProfile in companyProfiles)
+      {
+        var survey = await getSurvey(companyProfile, companyProfile.CompanyProfileID);
+        survey.Firm = firm;
+        surveys.Add(survey);
+      }
+
+      return surveys;
+    }
+
+    public async Task<Survey> getSurvey(CompanyProfiles companyProfile, Guid companyID)
+    {
+      var fd = firmDemographicsController.GetFirmDemographics(companyID);
+      var jl = joinedLawyersController.GetJoinedLawyers(companyID);
+      var ll = leftLawyersController.GetLeftLawyers(companyID);
+      var pap = promotionsAssociatePartnersController.GetPromotionsAssociatePartners(companyID);
+      var rhl = reducedHoursLawyersController.GetReducedHoursLawyers(companyID);
+      var thc = topTenHighestCompensationsController.GetTopTenHighestCompensations(companyID);
+      var cert = certificatesController.GetCertificates(companyID);
+      var ld = leadershipDemographicsController.GetLeadershipDemographics(companyID);
+      var ui = await undertakenInitiativesController.GetUndertakenInitiatives(companyID);
+      return new Survey
+      {
+        CompanyProfile = companyProfile,
+        Certificates = cert.ToList(),
+        FirmDemographics = fd.ToList(),
+        JoinedLawyers = jl.ToList(),
+        LeftLawyers = ll.ToList(),
+        PromotionsAssociatePartners = pap.ToList(),
+        ReducedHoursLawyers = rhl.ToList(),
+        TopTenHighestCompensations = thc.ToList(),
+        LeadershipDemographics = ld.ToList(),
+        UndertakenInitiatives = ui
+      };
+
     }
   }
 }
