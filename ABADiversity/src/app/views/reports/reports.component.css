@@ -1,6 +1,6 @@
 #reportCanvas{
-    width: 1000px;
-    height: 500px;
+    max-width: 800px;
+    max-height: 500px;
     border: solid 1px black;
     margin: 25px;
 }

@@ -2,19 +2,19 @@
   <br/>
 </div>
 <div class="row col-md-12">
+  <br/>
+</div>
+<div class="row col-md-12">
     <div class="col-md-1">
         <div class="input-group">
             <label class="control-label">Firm: </label>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="input-group">
             <select id="dateBox" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
                 <option>Select Firm</option>
-                <option>John Hancock</option>
-                <option>Manulife</option>
-                <option>Security Bank</option>
-                <option>Ayala</option>
+                <option *ngFor="let firmlist of firmlist">{{firmlist.firmName}}</option>
             </select>
         </div>
     </div>
@@ -26,16 +26,8 @@
     <div class="col-md-4">
         <div class="input-group">
             <select id="dateBox" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
-                <option>All</option>
-                <option>Company Profile</option>
-                <option>Overall Firm Demographics</option>
-                <option>Firm Leadership/Management Demographic Profile</option>
-                <option>Number of Promotions from Associate to Partner</option>
-                <option>Lawyers Who Left The Firm</option>
-                <option>Hires</option>
-                <option>Lawyers Working Reduced Hours Schedule</option>
-                <option>Top 10% Highest Compensated Partners</option>
-                <option>Undertaken Initiatives/Actions</option>
+                <option>Select Category</option>
+                <option *ngFor="let firmCategory of firmCategory">{{firmCategory}}</option>
             </select>
         </div>
     </div>
@@ -48,13 +40,72 @@
         <div class="input-group">
             <select id="dateBox" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
                 <option>Select Type</option>
-                <option>Race VS Role</option>
-                <option>Race Across the Position</option>
-                <option>Position Across the Race</option>
+                <option *ngFor="let reportType of reportType">{{reportType}}</option>
             </select>
         </div>
     </div>
+    <div class="col-md-1">
+        <div class="col-md-6 btn-group">
+          <button class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i>&nbsp;Generate Reports</button>
+        </div>
+    </div>
 </div>
-<div>
-  <canvas id="reportCanvas"></canvas>
+<div class="row col-md-12"><br/></div>
+<div class="row col-md-12">
+  <div class="col-md-9"></div>
+  <div class="col-md-3 btn-group">
+    <button class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i>&nbsp;Export as PDF</button>
+    <button class="btn btn-primary btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Export as Excel</button>
+  </div>
 </div>
+<!-- <div class="col-md-12"> -->
+  <!-- <canvas id="reportCanvas"></canvas> -->
+  <!-- <div class="col-md-2"></div>
+  <div class="col-md-8" >
+    <canvas id="reportCanvas" baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+    <button (click)="randomize()">Update</button>
+  </div>
+  <div class="col-md-2"></div>
+</div> -->
+<div class="row col-md-12">
+    <div class="row col-md-12">
+        <div class="col-md-2"></div>
+        <div class="row col-md-8">
+          <div style="display: block;">
+          <canvas id="reportCanvas" baseChart 
+                      [datasets]="lineChartData"
+                      [labels]="lineChartLabels"
+                      [options]="lineChartOptions"
+                      [colors]="lineChartColors"
+                      [legend]="lineChartLegend"
+                      [chartType]="lineChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="row col-md-8" style="margin-bottom: 10px">
+          <table class="table table-responsive table-condensed">
+            <tr>
+              <th *ngFor="let label of lineChartLabels">{{label}}</th>
+            </tr>
+            <tr *ngFor="let d of lineChartData">
+              <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+            </tr>
+          </table>
+          <button (click)="randomize()">CLICK</button>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<!-- </div> -->
