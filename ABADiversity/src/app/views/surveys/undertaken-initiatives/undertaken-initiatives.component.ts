@@ -41,14 +41,12 @@ export class UndertakenInitiativesComponent implements OnInit, OnChanges {
 
   ngOnChanges(){
     this.getValue();
-    console.log('undertaken initiatives')
   }
 
   async getValue(){
     var ui = await this.surveySvc.getSurvey(this.companyProfileID,9);
     this.isExisting = ui ? true : false ;
     this.initData = ui ? ui : {};
-    console.log(this.initData )
     this.initializeForm();
   }
 

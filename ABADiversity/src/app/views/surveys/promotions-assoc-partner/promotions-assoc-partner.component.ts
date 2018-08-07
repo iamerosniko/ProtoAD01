@@ -44,7 +44,6 @@ export class PromotionsAssocPartnerComponent implements OnInit ,OnChanges{
     var pap = await this.surveySvc.getSurvey(this.companyProfileID,4);
     this.isExisting = pap ? true : false ;
     this.promotionsAssociatePartners = pap ? pap : [];
-    console.log(this.promotionsAssociatePartners )
     this.initializeForm();
   }
 
@@ -57,7 +56,6 @@ export class PromotionsAssocPartnerComponent implements OnInit ,OnChanges{
     this.updateChildFormToParent.emit(this.myForm)
 
     this.myForm.valueChanges.subscribe(()=>{
-      console.log('t')
       this.updateChildFormToParent.emit(this.myForm)
       const control = <FormArray>this.myForm.controls['regions'];
       for(var i =0;i<control.length;i++){
@@ -153,16 +151,15 @@ export class PromotionsAssocPartnerComponent implements OnInit ,OnChanges{
     return value;
   }
 
-  submit(){
-    console.log(this.myForm.value)
-    const control = <FormArray>this.myForm.controls['regions'];
-    for(var i =0;i<control.length;i++){
-      const demographics =<FormGroup> control.at(i);
+  // submit(){
+  //   const control = <FormArray>this.myForm.controls['regions'];
+  //   for(var i =0;i<control.length;i++){
+  //     const demographics =<FormGroup> control.at(i);
 
-      this.firmPromo.forEach(element => {
-        if(element!='Totals')
-        console.log(element +' ' +demographics.controls[element].value)
-      });
-    }
-  }
+  //     this.firmPromo.forEach(element => {
+  //       if(element!='Totals')
+  //       console.log(element +' ' +demographics.controls[element].value)
+  //     });
+  //   }
+  // }
 }

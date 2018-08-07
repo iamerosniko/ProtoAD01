@@ -1,10 +1,9 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,FormArray } from '@angular/forms';
+import { Component, OnInit, OnChanges,Output,EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Survey,Firms,CompanyProfiles,Years } from '../../../entities/entities'
 import { SurveyService } from '../../../services/survey.service'
 import { UUID } from 'angular2-uuid'
-import { Router,ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-survey-body',
   templateUrl: './survey-body.component.html',
@@ -27,11 +26,12 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
   firm:Firms={};
   isNewFirm:boolean;
   companyProfileID : string = '';
+  @Output() refreshNav = new EventEmitter();
   // tempCompanyProfiles : CompanyProfiles[];
   years:Years[]=[];
   selectedYearCompanyProfileID:string="0";
   isValid:boolean=false;
-  constructor( private surveySvc:SurveyService, private activatedroute: ActivatedRoute) {
+  constructor( private surveySvc:SurveyService, private activatedroute: ActivatedRoute,private router :Router) {
     this.activatedroute.params.subscribe(async ()=>{
       var firmID = this.activatedroute.snapshot.params['FirmID'];
       if(firmID!=null){
@@ -66,7 +66,6 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
 
   updateCompanyProfileID(){
     this.companyProfileID = this.selectedYearCompanyProfileID=="0"? UUID.UUID() : this.selectedYearCompanyProfileID;
-    console.log(this.companyProfileID)
   }
   //for combobox of years
   async getCompanyProfiles(firmID:string){
@@ -78,14 +77,11 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
           companyProfileID : element.companyProfileID,
           year : this.getYear(element.datecomp)
         })
-        console.log(this.years)
     });
   }
 
   getYear(dateComp : any):number{
-    console.log(dateComp)
     var a =  new Date(dateComp).getFullYear();
-    console.log(a)
     return a;
   }
 
@@ -104,21 +100,16 @@ export class SurveyBodyComponent implements OnInit,OnChanges{
     this.survey.IsNewFirm=this.isNewFirm;
     this.survey.Certificates=this.certificateForm.controls['certificates'].value;
     this.survey.LeadershipDemographics = this.formFromChild2.controls['numbers'].value;
-    console.log(this.survey)
-    this.surveySvc.postSurvey(this.survey);
+    await this.surveySvc.postSurvey(this.survey);
+    await this.getCompanyProfiles(this.firm.firmID);
+    // await this.refreshNav.emit();
+    this.isNewFirm ? location.reload(true) : null;
   }
 
   checkValid():boolean{
 
     var a = 
       this.formFromChild.valid  && 
-      // this.formFromChild1.valid && 
-      // this.formFromChild2.valid && 
-      // this.formFromChild3.valid && 
-      // this.formFromChild4.valid &&
-      // this.formFromChild5.valid && 
-      // this.formFromChild6.valid && 
-      // this.formFromChild7.valid && 
       this.formFromChild8.valid 
 
     this.isValid = !a;

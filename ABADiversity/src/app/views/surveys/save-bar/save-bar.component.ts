@@ -24,7 +24,6 @@ export class SaveBarComponent implements OnInit {
   
   // msg1:string;
 getFirms(){
-  console.log(" getFirms() is working")
 }
 savebtn(){
   // console.log(this.result.formFromChild1.value)
