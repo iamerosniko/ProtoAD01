@@ -1,7 +1,6 @@
 export class ClientApiSettings {
     private static CURRENT_URL = "http://localhost:50000/api/"
-    // private static BW_URL = "http://localhost:64112/api/"
-    private static BW_URL ="http://abadiversityapilocal.azurewebsites.net/api/"
+    private static BW_URL = "http://localhost:64112/api/"
 
     public static GETBWURL(controller:string):string{
         return this.BW_URL+controller;
