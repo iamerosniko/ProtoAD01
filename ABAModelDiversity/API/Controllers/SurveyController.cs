@@ -116,7 +116,7 @@ namespace API.Controllers
     public IActionResult GetYears([FromRoute] Guid firmID)
     {
       var companyProfiles = companyProfilesController.GetCompanyProfiles(firmID);
-      return Ok(companyProfiles);
+      return Ok(companyProfiles.OrderBy(x => x.Datecomp));
     }
 
     [HttpGet("GetSurvey/{companyID}/{mode}")]
