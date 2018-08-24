@@ -1,0 +1,23 @@
+<div>
+    <table *ngFor="let title of items" class="table table-inverse table-bordered table-hover table-striped input-sm">
+        <tr>
+            <th style="max-width: 100px; min-width: 100px;">{{title}}</th>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th style="max-width: 100px; min-width: 100px;" *ngFor="let title of reportTypeRaceVsRole">{{title}}</th>
+        </tr>
+        <tr *ngFor="let topSurveyYearTest of topSurveyYearTest">
+            <td>{{topSurveyYearTest}}</td>
+            <td *ngFor="let title of reportTypeRaceVsRole"></td>
+        </tr>
+        <tr *ngFor="let baseSurveyYearTest of baseSurveyYearTest">
+            <td>{{baseSurveyYearTest}}</td>
+            <td *ngFor="let title of reportTypeRaceVsRole"></td>
+        </tr>
+        <tr *ngFor="let rate of rate">
+                <td>Rate</td>
+                <td *ngFor="let title of reportTypeRaceVsRole"></td>
+        </tr>
+    </table>
+</div>

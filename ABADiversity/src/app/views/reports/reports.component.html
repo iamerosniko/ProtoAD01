@@ -2,9 +2,106 @@
   <br/>
 </div>
 <div class="row col-md-12">
-  <br/>
+  <!-- <br/> -->
+    <div class="col-md-3">
+        <div id="sideMenu" class="input-group">
+            <label class="control-label">Firm: </label>
+            <select id="firmBox" type="text" [(ngModel)]="selectedFirm" (change)="updateSelectedFirm()" maxlength="100" class="form-control" >
+                <option selected value="0">Select Firm</option>
+                <option *ngFor="let firmlist of firmList" [value]="firmlist.firmID">{{firmlist.firmName}}</option>
+            </select>
+        </div>
+        <div id="sideMenu" class="input-group">
+            <label class="control-label">Category: </label>
+            <select id="categoryBox" [(ngModel)]="selectedCategory" (change)="updateCategoryMode()" type="text" maxlength="100" class="form-control ng-pristine ng-valid" >
+                <option selected value="0">Select Category</option>
+                <option *ngFor="let firmCategory of firmCategory" [value]='firmCategory'>{{firmCategory}}</option>
+            </select>
+        </div>
+        <div id="sideMenu" class="input-group">
+            <label class="control-label">Report Type: </label>
+            <select id="reportTypeBox" [(ngModel)]="selectedReportType" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
+                <option selected value="0">Select Type</option>
+                <option *ngFor="let reportType of reportType">{{reportType}}</option>
+            </select>
+        </div>
+        <div id="sideMenu" class="input-group">
+            <label class="control-label">Base Survey Year : </label>
+            <select id="baseSurveyYearBox" [(ngModel)]="selectedBaseSurveyYear" (change)="updateBaseSurveyYear()" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
+                <option selected value="">Select Base Year</option>
+                <option *ngFor="let c of years" [value]="c.companyProfileID">{{c.year}}</option>
+            </select>
+        </div>
+        <div id="sideMenu" class="input-group">
+            <label class="control-label">Top Survey Year : </label>
+            <select id="topSurveyYearBox" [(ngModel)]="selectedTopSurveyYear" (change)="updateTopSurveyYear()" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
+                <option selected value="">Select Top Year</option>
+                <option *ngFor="let c of years" [value]="c.companyProfileID">{{c.year}}</option>
+            </select>
+        </div>
+        <div class="col-md-12"><br/></div>
+        <div class="btn-group">
+            <button class="btn btn-primary btn-sm" (click)="genReport()"><i class="fa fa-bar-chart"></i>&nbsp;Generate Reports</button>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="row col-md-12">
+            <div class="col-md-9"></div>
+            <div class="col-md-3 btn-group">
+                <button class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i>&nbsp;Export PDF</button>
+                <button class="btn btn-primary btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Export Excel</button>
+            </div>
+        </div>
+        <!-- <div class="row col-md-12">
+            <div style="display: block;">
+                <canvas id="reportCanvas" baseChart 
+                            [datasets]="lineChartData"
+                            [labels]="lineChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors"
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+        </div> -->
+        <div>
+            <table *ngFor="let title of items" class="table table-inverse table-bordered table-hover table-striped input-sm">
+                <tr>
+                    <th style="max-width: 100px; min-width: 100px;">{{title}}</th>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th style="max-width: 100px; min-width: 100px;" *ngFor="let title of reportTypeRaceVsRole">{{title}}</th>
+                </tr>
+                <tr *ngFor="let topSurveyYearTest of topSurveyYearTest">
+                    <td>{{topSurveyYearTest}}</td>
+                    <td *ngFor="let title of reportTypeRaceVsRole"></td>
+                </tr>
+                <tr *ngFor="let baseSurveyYearTest of baseSurveyYearTest">
+                    <td>{{baseSurveyYearTest}}</td>
+                    <td *ngFor="let title of reportTypeRaceVsRole"></td>
+                </tr>
+                <tr *ngFor="let rate of rate">
+                        <td>Rate</td>
+                        <td *ngFor="let title of reportTypeRaceVsRole"></td>
+                </tr>
+                <!-- <tr>
+                    <td>Flagged</td>
+                    <td>Percent</td>
+                    <td>Days</td>
+                    <td>Flagged</td>
+                    <td>Percent</td>
+                    <td>Days</td>
+                    <td>Days</td>
+                </tr> -->
+            </table>
+        </div>
+    </div>
 </div>
-<div class="row col-md-12">
+<!--  -->
+<!-- <div class="row col-md-12">
     <div class="col-md-1">
         <div class="input-group">
             <label class="control-label">Firm: </label>
@@ -12,9 +109,9 @@
     </div>
     <div class="col-md-2">
         <div class="input-group">
-            <select id="dateBox" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
-                <option>Select Firm</option>
-                <option *ngFor="let firmlist of firmlist">{{firmlist.firmName}}</option>
+            <select id="firmBox" type="text" [(ngModel)]="selectedFirm" (change)="updateSelectedFirm()" maxlength="100" class="form-control" >
+                <option selected value="0">Select Firm</option>
+                <option *ngFor="let firmlist of firmList" [value]="firmlist.firmID">{{firmlist.firmName}}</option>
             </select>
         </div>
     </div>
@@ -25,9 +122,9 @@
     </div>
     <div class="col-md-4">
         <div class="input-group">
-            <select id="dateBox" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
-                <option>Select Category</option>
-                <option *ngFor="let firmCategory of firmCategory">{{firmCategory}}</option>
+            <select id="categoryBox" [(ngModel)]="selectedCategoryMode" (change)="updateSelectedFirm()" type="text" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" >
+                <option selected value="0">Select Category</option>
+                <option *ngFor="let firmCategory of firmCategory; let firmCategoryMode of firmCategoryMode" [value]='firmCategoryMode'>{{firmCategory}}</option>
             </select>
         </div>
     </div>
@@ -46,7 +143,7 @@
     </div>
     <div class="col-md-1">
         <div class="col-md-6 btn-group">
-          <button class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i>&nbsp;Generate Reports</button>
+          <button class="btn btn-primary btn-sm" (click)="genReport()"><i class="fa fa-file-pdf-o"></i>&nbsp;Generate Reports</button>
         </div>
     </div>
 </div>
@@ -57,7 +154,7 @@
     <button class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i>&nbsp;Export as PDF</button>
     <button class="btn btn-primary btn-sm"><i class="fa fa-file-excel-o"></i>&nbsp;Export as Excel</button>
   </div>
-</div>
+</div> -->
 <!-- <div class="col-md-12"> -->
   <!-- <canvas id="reportCanvas"></canvas> -->
   <!-- <div class="col-md-2"></div>
@@ -74,7 +171,7 @@
   </div>
   <div class="col-md-2"></div>
 </div> -->
-<div class="row col-md-12">
+<!-- <div class="row col-md-12">
     <div class="row col-md-12">
         <div class="col-md-2"></div>
         <div class="row col-md-8">
@@ -107,5 +204,5 @@
         </div>
         <div class="col-md-2"></div>
     </div>
-</div>
+</div> -->
 <!-- </div> -->
