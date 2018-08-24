@@ -4,3 +4,8 @@
     border: solid 1px black;
     margin: 25px;
 }
+#sideMenu{
+    max-width: 300px ;
+    min-width: 300px ;
+    margin-bottom: 10px;
+}
