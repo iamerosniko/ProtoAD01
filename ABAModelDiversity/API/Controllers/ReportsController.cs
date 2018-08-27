@@ -1,3 +1,4 @@
+using API.DTO;
 using API.Tables;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -40,9 +41,14 @@ namespace API.Controllers
       undertakenInitiativesController = new UndertakenInitiativesController(context);
     }
 
-    [HttpGet("{firmID}/{category}/{BaseSurvey}/{TopSurvey}")]
+    [HttpGet("GetReportRaceVSRole/{firmID}/{category}/{BaseSurvey}/{TopSurvey}")]
     public async Task<dynamic> GetReportRaceVSRole([FromRoute] Guid firmID, [FromRoute]int category, [FromRoute]Guid BaseSurvey, [FromRoute] Guid TopSurvey)
     {
+      string[] Races = new string[] { "Asian", "Multiracial","Women", "Hispanic/Latino",
+        "Native Hawaiian/Other Pacific Islander", "African American/Black(not Hispanic/Latino)",
+        "Disabled","Alaska Native/American Indian","White", "Men","LGBT",
+      };
+
       var firm = _context.Firms.SingleOrDefault(x => x.FirmID == firmID);
       if (firm == null)
       {
@@ -75,9 +81,114 @@ namespace API.Controllers
       }
 
       firmDemographics.Add(topSurveyValue);
+      List<RaceRoleValues> raceRoleValues = new List<RaceRoleValues>();
+      RaceRoleValues raceRoleValue = new RaceRoleValues();
 
 
-      return firmDemographics;
+      foreach (var race in Races)
+      {
+        raceRoleValue = new RaceRoleValues();
+        raceRoleValue.MyRoleValues = new List<RoleValues>();
+        foreach (var fd in firmDemographics)
+        {
+          var currentRace = fd.SingleOrDefault(x => x.RegionName == race);
+          if (currentRace != null)
+          {
+            RoleValues roleValue = new RoleValues
+            {
+              Associates = currentRace.Associates,
+              Counsel = currentRace.Counsel,
+              EquityPartners = currentRace.EquityPartners,
+              NonEquityPartners = currentRace.NonEquityPartners,
+              OtherLawyers = currentRace.OtherLawyers,
+              Year = companyProfiles.SingleOrDefault(x => x.CompanyProfileID == currentRace.CompanyProfileID).Datecomp.Year.ToString()
+            };
+
+            roleValue.Total = Compute(roleValue);
+            raceRoleValue.MyRoleValues.Add(roleValue);
+          }
+        }
+        raceRoleValue.Race = race;
+        //for rate
+        RoleValues rateRoleValue = new RoleValues();
+        rateRoleValue = getRate(race, raceRoleValue.MyRoleValues);
+        raceRoleValue.MyRoleValues.Add(rateRoleValue);
+        //main RaceVSRoles
+        raceRoleValues.Add(raceRoleValue);
+
+
+      }
+
+      return raceRoleValues;
+    }
+
+    private RoleValues getRate(string race, List<RoleValues> roleValues)
+    {
+      double baseAssociates = ConvertToInt(roleValues.First().Associates);
+      double baseCounsel = ConvertToInt(roleValues.First().Counsel);
+      double baseEquityPartners = ConvertToInt(roleValues.First().EquityPartners);
+      double baseNonEquityPartners = ConvertToInt(roleValues.First().NonEquityPartners);
+      double baseOtherLawyers = ConvertToInt(roleValues.First().OtherLawyers);
+      double baseTotal = ConvertToInt(roleValues.First().Total);
+
+      double topAssociates = ConvertToInt(roleValues.Last().Associates);
+      double topCounsel = ConvertToInt(roleValues.Last().Counsel);
+      double topEquityPartners = ConvertToInt(roleValues.Last().EquityPartners);
+      double topNonEquityPartners = ConvertToInt(roleValues.Last().NonEquityPartners);
+      double topOtherLawyers = ConvertToInt(roleValues.Last().OtherLawyers);
+      double topTotal = ConvertToInt(roleValues.Last().Total);
+
+
+      double rateAssociates = ((topAssociates - baseAssociates) / baseAssociates) * 100;
+      double rateCounsel = ((topCounsel - baseCounsel) / baseCounsel) * 100;
+      double rateEquityPartners = ((topEquityPartners - baseEquityPartners) / baseEquityPartners) * 100;
+      double rateNonEquityPartners = ((topNonEquityPartners - baseNonEquityPartners) / baseNonEquityPartners) * 100;
+      double rateOtherLawyers = ((topOtherLawyers - baseOtherLawyers) / baseOtherLawyers) * 100;
+      double rateTotal = ((topTotal - baseTotal) / baseTotal) * 100;
+
+      RoleValues roleValue = new RoleValues
+      {
+        Associates = rateAssociates.ToString(),
+        Counsel = rateCounsel.ToString(),
+        EquityPartners = rateEquityPartners.ToString(),
+        NonEquityPartners = rateNonEquityPartners.ToString(),
+        OtherLawyers = rateOtherLawyers.ToString(),
+        Total = rateTotal.ToString()
+      };
+      //roleValue.Total = Compute(roleValue);
+      roleValue.Associates += "%";
+      roleValue.Counsel += "%";
+      roleValue.EquityPartners += "%";
+      roleValue.NonEquityPartners += "%";
+      roleValue.OtherLawyers += "%";
+      roleValue.Year = "Rate";
+
+      return roleValue;
+    }
+
+    private string Compute(RoleValues roleValue)
+    {
+      return (
+
+        ConvertToInt(roleValue.EquityPartners) +
+        ConvertToInt(roleValue.NonEquityPartners) +
+        ConvertToInt(roleValue.OtherLawyers) +
+        ConvertToInt(roleValue.Associates) +
+        ConvertToInt(roleValue.Counsel)
+        ).ToString();
+
+    }
+
+    private double ConvertToInt(string stringValue)
+    {
+      try
+      {
+        return Convert.ToDouble(stringValue);
+      }
+      catch
+      {
+        return 0;
+      }
     }
   }
 }
