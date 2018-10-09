@@ -42,3 +42,4 @@ C:\Users\alverer\Desktop\Apps\aba\JSAB\app\API\obj\Debug\netcoreapp2.0\API.Assem
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\API\obj\Debug\netcoreapp2.0\API.dll
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\API\obj\Debug\netcoreapp2.0\API.pdb
+C:\Users\alverer\Desktop\Apps\aba\JSAB\app\API\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

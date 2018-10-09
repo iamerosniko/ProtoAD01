@@ -147,12 +147,14 @@ namespace API.Controllers
       double topTotal = ConvertToInt(roleValues.Last().Total);
 
 
-      double rateAssociates = ((topAssociates - baseAssociates) / baseAssociates) * 100;
-      double rateCounsel = ((topCounsel - baseCounsel) / baseCounsel) * 100;
-      double rateEquityPartners = ((topEquityPartners - baseEquityPartners) / baseEquityPartners) * 100;
-      double rateNonEquityPartners = ((topNonEquityPartners - baseNonEquityPartners) / baseNonEquityPartners) * 100;
-      double rateOtherLawyers = ((topOtherLawyers - baseOtherLawyers) / baseOtherLawyers) * 100;
-      double rateTotal = ((topTotal - baseTotal) / baseTotal) * 100;
+      double rateAssociates = Math.Round(((topAssociates - baseAssociates) / baseAssociates) * 100, 2);
+      double rateCounsel = Math.Round(((topCounsel - baseCounsel) / baseCounsel) * 100, 2);
+      double rateEquityPartners = Math.Round(((topEquityPartners - baseEquityPartners) / baseEquityPartners) * 100, 2);
+      double rateNonEquityPartners = Math.Round(((topNonEquityPartners - baseNonEquityPartners) / baseNonEquityPartners) * 100, 2);
+      double rateOtherLawyers = Math.Round(((topOtherLawyers - baseOtherLawyers) / baseOtherLawyers) * 100, 2);
+      double rateTotal = Math.Round(((topTotal - baseTotal) / baseTotal) * 100, 2);
+
+
 
       RoleValues roleValue = new RoleValues
       {
@@ -169,6 +171,7 @@ namespace API.Controllers
       roleValue.EquityPartners += "%";
       roleValue.NonEquityPartners += "%";
       roleValue.OtherLawyers += "%";
+      roleValue.Total += "%";
       roleValue.Year = "Rate";
 
       return roleValue;

@@ -10,12 +10,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="DefaultConnection">
-      <Value>Data Source=tcp:biztechdbserversandbox.database.windows.net,1433;Initial Catalog=ABADIversity;User Id=biztech@biztechdbserversandbox.database.windows.net;Password=L0c@ldatabase;</Value>
+      <Value>Data Source=tcp:biztechdbserversandbox.database.windows.net,1433%3bInitial Catalog=ABADIversity%3bUser Id=biztech%40biztechdbserversandbox.database.windows.net%3bPassword=L0c%40ldatabase%3b</Value>
     </DestinationConnectionStrings>
   </ItemGroup>
   <ItemGroup>
     <EFMigrations Include="API.Tables.ADContext">
-      <Value>Data Source=tcp:biztechdbserversandbox.database.windows.net,1433;Initial Catalog=ABADIversity;User Id=biztech@biztechdbserversandbox.database.windows.net;Password=L0c@ldatabase;</Value>
+      <Value>Data Source=tcp:biztechdbserversandbox.database.windows.net,1433%3bInitial Catalog=ABADIversity%3bUser Id=biztech%40biztechdbserversandbox.database.windows.net%3bPassword=L0c%40ldatabase%3b</Value>
     </EFMigrations>
   </ItemGroup>
 </Project>
