@@ -1,0 +1,11 @@
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\bin\Debug\netcoreapp2.0\Client.deps.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\bin\Debug\netcoreapp2.0\Client.runtimeconfig.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\bin\Debug\netcoreapp2.0\Client.runtimeconfig.dev.json
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\bin\Debug\netcoreapp2.0\Client.dll
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\bin\Debug\netcoreapp2.0\Client.pdb
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\obj\Debug\netcoreapp2.0\Client.csprojResolveAssemblyReference.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\obj\Debug\netcoreapp2.0\Client.csproj.CoreCompileInputs.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\obj\Debug\netcoreapp2.0\Client.AssemblyInfoInputs.cache
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\obj\Debug\netcoreapp2.0\Client.AssemblyInfo.cs
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\obj\Debug\netcoreapp2.0\Client.dll
+C:\Users\zEROSeven\Documents\GitHub\ProtoAD01\Client\obj\Debug\netcoreapp2.0\Client.pdb
