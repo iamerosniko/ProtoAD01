@@ -63,24 +63,32 @@ namespace API.Controllers
       insideScopeOfCompanyProfiles = insideScopeOfCompanyProfiles.Where(x => x.CompanyProfileID != TopSurvey);
       //filter betweendates
       insideScopeOfCompanyProfiles = insideScopeOfCompanyProfiles.Where(x => x.Datecomp > baseCompanyProfiledate && x.Datecomp < topCompanyProfiledate).OrderBy(x => x.Datecomp);
+
+
+      List<List<GenericDataSurveyDTO>> GenericListOfDataSurvey = new List<List<GenericDataSurveyDTO>>();
+
       //get firmdemographics
-      var baseSurveyValue = _context.FirmDemographics.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
-      var topSurveyValue = _context.FirmDemographics.Where(x => x.CompanyProfileID == TopSurvey).ToList();
+      //var baseSurveyValue = _context.FirmDemographics.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
+      //var topSurveyValue = _context.FirmDemographics.Where(x => x.CompanyProfileID == TopSurvey).ToList();
 
-      List<List<FirmDemographics>> firmDemographics = new List<List<FirmDemographics>>();
+      //List<List<FirmDemographics>> firmDemographics = new List<List<FirmDemographics>>();
 
-      firmDemographics.Add(baseSurveyValue);
+      //firmDemographics.Add(baseSurveyValue);
 
-      foreach (var insideScopeOfCompanyProfile in insideScopeOfCompanyProfiles)
-      {
-        var firmDemo = _context.FirmDemographics.Where(x => x.CompanyProfileID == insideScopeOfCompanyProfile.CompanyProfileID).ToList();
-        if (firmDemo != null)
-        {
-          firmDemographics.Add(firmDemo);
-        }
-      }
+      //foreach (var insideScopeOfCompanyProfile in insideScopeOfCompanyProfiles)
+      //{
+      //  var firmDemo = _context.FirmDemographics.Where(x => x.CompanyProfileID == insideScopeOfCompanyProfile.CompanyProfileID).ToList();
+      //  if (firmDemo != null)
+      //  {
+      //    firmDemographics.Add(firmDemo);
+      //  }
+      //}
 
-      firmDemographics.Add(topSurveyValue);
+      //firmDemographics.Add(topSurveyValue);
+
+
+      List<List<GenericDataSurveyDTO>> genericDataSurveys = getCategoryValues(category, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+
       List<RaceRoleValues> raceRoleValues = new List<RaceRoleValues>();
       RaceRoleValues raceRoleValue = new RaceRoleValues();
 
@@ -89,9 +97,9 @@ namespace API.Controllers
       {
         raceRoleValue = new RaceRoleValues();
         raceRoleValue.MyRoleValues = new List<RoleValues>();
-        foreach (var fd in firmDemographics)
+        foreach (var glds in GenericListOfDataSurvey)
         {
-          var currentRace = fd.SingleOrDefault(x => x.RegionName == race);
+          var currentRace = glds.SingleOrDefault(x => x.RegionName == race);
           if (currentRace != null)
           {
             RoleValues roleValue = new RoleValues
@@ -189,6 +197,95 @@ namespace API.Controllers
       {
         return 0;
       }
+    }
+
+
+    public List<List<GenericDataSurveyDTO>> getCategoryValues(int categoryNumber, Guid BaseSurvey, Guid TopSurvey, IEnumerable<CompanyProfiles> insideScopeOfCompanyProfiles)
+    {
+      List<List<GenericDataSurveyDTO>> genericDataSurveys = new List<List<GenericDataSurveyDTO>>();
+      List<GenericDataSurveyDTO> tempGenericSurvey = new List<GenericDataSurveyDTO>();
+
+      switch (categoryNumber)
+      {
+        //fd
+        case 2:
+
+          var baseFD = _context.FirmDemographics.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
+          var topSurveyFD = _context.FirmDemographics.Where(x => x.CompanyProfileID == TopSurvey).ToList();
+
+          foreach (var bfd in baseFD)
+          {
+            tempGenericSurvey.Add(new GenericDataSurveyDTO
+            {
+              Associates = bfd.Associates,
+              CompanyProfileID = bfd.CompanyProfileID,
+              Counsel = bfd.Counsel,
+              EquityPartners = bfd.EquityPartners,
+              NonEquityPartners = bfd.NonEquityPartners,
+              OtherLawyers = bfd.OtherLawyers,
+              RegionName = bfd.RegionName
+            });
+          }
+          genericDataSurveys.Add(tempGenericSurvey);
+          //clear the list
+          tempGenericSurvey = new List<GenericDataSurveyDTO>();
+
+          foreach (var insideScopeOfCompanyProfile in insideScopeOfCompanyProfiles)
+          {
+            var firmDemo = _context.FirmDemographics.Where(x => x.CompanyProfileID == insideScopeOfCompanyProfile.CompanyProfileID).ToList();
+            if (firmDemo != null)
+            {
+              foreach (var fd in firmDemo)
+              {
+                tempGenericSurvey.Add(new GenericDataSurveyDTO
+                {
+                  Associates = fd.Associates,
+                  CompanyProfileID = fd.CompanyProfileID,
+                  Counsel = fd.Counsel,
+                  EquityPartners = fd.EquityPartners,
+                  NonEquityPartners = fd.NonEquityPartners,
+                  OtherLawyers = fd.OtherLawyers,
+                  RegionName = fd.RegionName
+                });
+              }
+              genericDataSurveys.Add(tempGenericSurvey);
+              tempGenericSurvey = new List<GenericDataSurveyDTO>();
+            }
+          }
+
+          foreach (var tpfd in topSurveyFD)
+          {
+            tempGenericSurvey.Add(new GenericDataSurveyDTO
+            {
+              Associates = tpfd.Associates,
+              CompanyProfileID = tpfd.CompanyProfileID,
+              Counsel = tpfd.Counsel,
+              EquityPartners = tpfd.EquityPartners,
+              NonEquityPartners = tpfd.NonEquityPartners,
+              OtherLawyers = tpfd.OtherLawyers,
+              RegionName = tpfd.RegionName
+            });
+          }
+          genericDataSurveys.Add(tempGenericSurvey);
+          break;
+        //pap
+        case 4:
+          break;
+        //LL
+        case 5:
+          break;
+        //JL
+        case 6:
+          break;
+        //RHL
+        case 7:
+          break;
+        //UI
+        case 8:
+          break;
+      }
+
+      return genericDataSurveys;
     }
   }
 }
