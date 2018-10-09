@@ -64,9 +64,6 @@ namespace API.Controllers
       //filter betweendates
       insideScopeOfCompanyProfiles = insideScopeOfCompanyProfiles.Where(x => x.Datecomp > baseCompanyProfiledate && x.Datecomp < topCompanyProfiledate).OrderBy(x => x.Datecomp);
 
-
-      List<List<GenericDataSurveyDTO>> GenericListOfDataSurvey = new List<List<GenericDataSurveyDTO>>();
-
       //get firmdemographics
       //var baseSurveyValue = _context.FirmDemographics.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
       //var topSurveyValue = _context.FirmDemographics.Where(x => x.CompanyProfileID == TopSurvey).ToList();
@@ -97,7 +94,7 @@ namespace API.Controllers
       {
         raceRoleValue = new RaceRoleValues();
         raceRoleValue.MyRoleValues = new List<RoleValues>();
-        foreach (var glds in GenericListOfDataSurvey)
+        foreach (var glds in genericDataSurveys)
         {
           var currentRace = glds.SingleOrDefault(x => x.RegionName == race);
           if (currentRace != null)
