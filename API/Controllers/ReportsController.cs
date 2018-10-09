@@ -91,7 +91,13 @@ namespace API.Controllers
 
       if (genericDataSurveys.Count() != 0)
       {
+<<<<<<< HEAD
         foreach (var race in Races)
+=======
+        raceRoleValue = new RaceRoleValues();
+        raceRoleValue.MyRoleValues = new List<RoleValues>();
+        foreach (var glds in genericDataSurveys)
+>>>>>>> origin/master
         {
           raceRoleValue = new RaceRoleValues();
           raceRoleValue.MyRoleValues = new List<RoleValues>();
