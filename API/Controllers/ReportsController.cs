@@ -25,6 +25,11 @@ namespace API.Controllers
     TopTenHighestCompensationsController topTenHighestCompensationsController;
     UndertakenInitiativesController undertakenInitiativesController;
 
+    private string[] Races = new string[] { "Asian", "Multiracial","Women", "Hispanic/Latino",
+        "Native Hawaiian/Other Pacific Islander", "African American/Black(not Hispanic/Latino)",
+        "Disabled","Alaska Native/American Indian","White", "Men","LGBT",
+      };
+
     public ReportsController(ADContext context)
     {
       _context = context;
@@ -41,13 +46,10 @@ namespace API.Controllers
       undertakenInitiativesController = new UndertakenInitiativesController(context);
     }
 
+    #region APIs
     [HttpGet("GetReportRaceVSRole/{firmID}/{category}/{BaseSurvey}/{TopSurvey}")]
     public async Task<dynamic> GetReportRaceVSRole([FromRoute] Guid firmID, [FromRoute]int category, [FromRoute]Guid BaseSurvey, [FromRoute] Guid TopSurvey)
     {
-      string[] Races = new string[] { "Asian", "Multiracial","Women", "Hispanic/Latino",
-        "Native Hawaiian/Other Pacific Islander", "African American/Black(not Hispanic/Latino)",
-        "Disabled","Alaska Native/American Indian","White", "Men","LGBT",
-      };
 
       var firm = _context.Firms.SingleOrDefault(x => x.FirmID == firmID);
       if (firm == null)
@@ -84,7 +86,9 @@ namespace API.Controllers
       //firmDemographics.Add(topSurveyValue);
 
 
-      List<List<GenericDataSurveyDTO>> genericDataSurveys = getCategoryValues(category, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+      List<List<GenericDataSurveyDTO>> genericDataSurveys = category != 0
+        ? getCategoryValues(category, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles)
+        : getCategoryOfAllValues(BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
 
       List<RaceRoleValues> raceRoleValues = new List<RaceRoleValues>();
       RaceRoleValues raceRoleValue = new RaceRoleValues();
@@ -129,6 +133,7 @@ namespace API.Controllers
 
       return raceRoleValues;
     }
+    #endregion
 
     private RoleValues getRate(string race, List<RoleValues> roleValues)
     {
@@ -153,8 +158,6 @@ namespace API.Controllers
       double rateNonEquityPartners = Math.Round(((topNonEquityPartners - baseNonEquityPartners) / baseNonEquityPartners) * 100, 2);
       double rateOtherLawyers = Math.Round(((topOtherLawyers - baseOtherLawyers) / baseOtherLawyers) * 100, 2);
       double rateTotal = Math.Round(((topTotal - baseTotal) / baseTotal) * 100, 2);
-
-
 
       RoleValues roleValue = new RoleValues
       {
@@ -202,7 +205,97 @@ namespace API.Controllers
       }
     }
 
+    #region all
+    public List<List<GenericDataSurveyDTO>> getCategoryOfAllValues(Guid BaseSurvey, Guid TopSurvey, IEnumerable<CompanyProfiles> insideScopeOfCompanyProfiles)
+    {
+      List<List<GenericDataSurveyDTO>> genericDataSurveys = new List<List<GenericDataSurveyDTO>>();
+      List<GenericDataSurveyDTO> tempGenericSurvey = new List<GenericDataSurveyDTO>();
 
+      var fd = getCategoryValues(2, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+      var pap = getCategoryValues(4, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+      var ll = getCategoryValues(5, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+      var jl = getCategoryValues(6, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+      var rhl = getCategoryValues(7, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+
+      var rrvFD = getRaceRoleValues(fd, insideScopeOfCompanyProfiles);
+      var rrvPAP = getRaceRoleValues(pap, insideScopeOfCompanyProfiles);
+      var rrvLL = getRaceRoleValues(ll, insideScopeOfCompanyProfiles);
+      var rrvJL = getRaceRoleValues(jl, insideScopeOfCompanyProfiles);
+      var rrvRHL = getRaceRoleValues(rhl, insideScopeOfCompanyProfiles);
+
+
+      rrvFD = removeRating(rrvFD);
+
+
+
+      List<RaceRoleValues> allRaceRoleValues = new List<RaceRoleValues>();
+
+      //foreach (var race in Races)
+      //{
+
+      //}
+
+
+
+      return genericDataSurveys;
+    }
+
+
+    public List<RaceRoleValues> removeRating(List<RaceRoleValues> raceRoleValues)
+    {
+      List<RaceRoleValues> removedRaceRoleValues = new List<RaceRoleValues>();
+
+      foreach (var rv in raceRoleValues)
+      {
+        rv.MyRoleValues = rv.MyRoleValues.Where(x => x.Year != "Rate").ToList();
+      }
+      return raceRoleValues;
+    }
+
+
+    public List<RaceRoleValues> getRaceRoleValues(List<List<GenericDataSurveyDTO>> genericDataSurveys, IEnumerable<CompanyProfiles> companyProfiles)
+    {
+      List<RaceRoleValues> raceRoleValues = new List<RaceRoleValues>();
+      RaceRoleValues raceRoleValue;
+      foreach (var race in Races)
+      {
+        raceRoleValue = new RaceRoleValues();
+        raceRoleValue.MyRoleValues = new List<RoleValues>();
+        foreach (var glds in genericDataSurveys)
+        {
+          var currentRace = glds.SingleOrDefault(x => x.RegionName == race);
+          if (currentRace != null)
+          {
+            RoleValues roleValue = new RoleValues
+            {
+              Associates = currentRace.Associates,
+              Counsel = currentRace.Counsel,
+              EquityPartners = currentRace.EquityPartners,
+              NonEquityPartners = currentRace.NonEquityPartners,
+              OtherLawyers = currentRace.OtherLawyers,
+              Year = companyProfiles.SingleOrDefault(x => x.CompanyProfileID == currentRace.CompanyProfileID).Datecomp.Year.ToString()
+            };
+
+            roleValue.Total = Compute(roleValue);
+            raceRoleValue.MyRoleValues.Add(roleValue);
+          }
+        }
+        raceRoleValue.Race = race;
+        //for rate
+        RoleValues rateRoleValue = new RoleValues();
+        rateRoleValue = getRate(race, raceRoleValue.MyRoleValues);
+        raceRoleValue.MyRoleValues.Add(rateRoleValue);
+        //main RaceVSRoles
+        raceRoleValues.Add(raceRoleValue);
+
+
+      }
+      return raceRoleValues;
+    }
+
+    #endregion
+
+    #region categoryFilteringConditions
     public List<List<GenericDataSurveyDTO>> getCategoryValues(int categoryNumber, Guid BaseSurvey, Guid TopSurvey, IEnumerable<CompanyProfiles> insideScopeOfCompanyProfiles)
     {
       List<List<GenericDataSurveyDTO>> genericDataSurveys = new List<List<GenericDataSurveyDTO>>();
@@ -210,7 +303,7 @@ namespace API.Controllers
 
       switch (categoryNumber)
       {
-        //fd
+        #region FirmDemographics
         case 2:
           var baseFD = _context.FirmDemographics.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
           var topSurveyFD = _context.FirmDemographics.Where(x => x.CompanyProfileID == TopSurvey).ToList();
@@ -270,7 +363,9 @@ namespace API.Controllers
           }
           genericDataSurveys.Add(tempGenericSurvey);
           break;
-        //pap
+
+        #endregion
+        #region PAP
         case 4:
           var basepap = _context.PromotionsAssociatePartners.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
           var topSurveypap = _context.PromotionsAssociatePartners.Where(x => x.CompanyProfileID == TopSurvey).ToList();
@@ -331,7 +426,8 @@ namespace API.Controllers
           genericDataSurveys.Add(tempGenericSurvey);
 
           break;
-        //LL
+        #endregion
+        #region LeftLawyers
         case 5:
           var basell = _context.LeftLawyers.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
           var topSurveyll = _context.LeftLawyers.Where(x => x.CompanyProfileID == TopSurvey).ToList();
@@ -392,7 +488,8 @@ namespace API.Controllers
           genericDataSurveys.Add(tempGenericSurvey);
 
           break;
-        //JL
+        #endregion
+        #region JoinedLawyers
         case 6:
           var basejl = _context.JoinedLawyers.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
           var topSurveyjl = _context.JoinedLawyers.Where(x => x.CompanyProfileID == TopSurvey).ToList();
@@ -453,7 +550,9 @@ namespace API.Controllers
           genericDataSurveys.Add(tempGenericSurvey);
 
           break;
-        //RHL
+
+        #endregion
+        #region RHL
         case 7:
           var baserhl = _context.ReducedHoursLawyers.Where(x => x.CompanyProfileID == BaseSurvey).ToList();
           var topSurveyrhl = _context.ReducedHoursLawyers.Where(x => x.CompanyProfileID == TopSurvey).ToList();
@@ -514,9 +613,12 @@ namespace API.Controllers
           genericDataSurveys.Add(tempGenericSurvey);
 
           break;
+          #endregion
       }
-
       return genericDataSurveys;
     }
+    #endregion
+
+
   }
 }
