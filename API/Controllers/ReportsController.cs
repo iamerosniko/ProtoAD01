@@ -25,6 +25,8 @@ namespace API.Controllers
     TopTenHighestCompensationsController topTenHighestCompensationsController;
     UndertakenInitiativesController undertakenInitiativesController;
 
+
+    private IEnumerable<CompanyProfiles> companyProfiles;
     private string[] Races = new string[] { "Asian", "Multiracial","Women", "Hispanic/Latino",
         "Native Hawaiian/Other Pacific Islander", "African American/Black(not Hispanic/Latino)",
         "Disabled","Alaska Native/American Indian","White", "Men","LGBT",
@@ -57,7 +59,7 @@ namespace API.Controllers
         return null;
       }
       //get companyProfiles of this firm
-      var companyProfiles = companyProfilesController.GetCompanyProfiles(firm.FirmID);
+      companyProfiles = companyProfilesController.GetCompanyProfiles(firm.FirmID);
       var baseCompanyProfiledate = companyProfiles.FirstOrDefault(x => x.CompanyProfileID == BaseSurvey).Datecomp;
       var topCompanyProfiledate = companyProfiles.FirstOrDefault(x => x.CompanyProfileID == TopSurvey).Datecomp;
       //remove companyprofiles of base and top
@@ -86,9 +88,11 @@ namespace API.Controllers
       //firmDemographics.Add(topSurveyValue);
 
 
-      List<List<GenericDataSurveyDTO>> genericDataSurveys = category != 0
-        ? getCategoryValues(category, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles)
-        : getCategoryOfAllValues(BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+      if (category == 0)
+      {
+        return getCategoryOfAllValues(BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
+      }
+      List<List<GenericDataSurveyDTO>> genericDataSurveys = getCategoryValues(category, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
 
       List<RaceRoleValues> raceRoleValues = new List<RaceRoleValues>();
       RaceRoleValues raceRoleValue = new RaceRoleValues();
@@ -206,54 +210,104 @@ namespace API.Controllers
     }
 
     #region all
-    public List<List<GenericDataSurveyDTO>> getCategoryOfAllValues(Guid BaseSurvey, Guid TopSurvey, IEnumerable<CompanyProfiles> insideScopeOfCompanyProfiles)
+    public List<RaceRoleValues> getCategoryOfAllValues(Guid BaseSurvey, Guid TopSurvey, IEnumerable<CompanyProfiles> insideScopeOfCompanyProfiles)
     {
-      List<List<GenericDataSurveyDTO>> genericDataSurveys = new List<List<GenericDataSurveyDTO>>();
-      List<GenericDataSurveyDTO> tempGenericSurvey = new List<GenericDataSurveyDTO>();
-
       var fd = getCategoryValues(2, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
       var pap = getCategoryValues(4, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
       var ll = getCategoryValues(5, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
       var jl = getCategoryValues(6, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
       var rhl = getCategoryValues(7, BaseSurvey, TopSurvey, insideScopeOfCompanyProfiles);
 
-      var rrvFD = getRaceRoleValues(fd, insideScopeOfCompanyProfiles);
-      var rrvPAP = getRaceRoleValues(pap, insideScopeOfCompanyProfiles);
-      var rrvLL = getRaceRoleValues(ll, insideScopeOfCompanyProfiles);
-      var rrvJL = getRaceRoleValues(jl, insideScopeOfCompanyProfiles);
-      var rrvRHL = getRaceRoleValues(rhl, insideScopeOfCompanyProfiles);
-
-
-      rrvFD = removeRating(rrvFD);
-
+      var rrvFD = getRaceRoleValues(fd);
+      var rrvPAP = getRaceRoleValues(pap);
+      var rrvLL = getRaceRoleValues(ll);
+      var rrvJL = getRaceRoleValues(jl);
+      var rrvRHL = getRaceRoleValues(rhl);
 
 
       List<RaceRoleValues> allRaceRoleValues = new List<RaceRoleValues>();
 
-      //foreach (var race in Races)
-      //{
 
-      //}
-
-
-
-      return genericDataSurveys;
-    }
-
-
-    public List<RaceRoleValues> removeRating(List<RaceRoleValues> raceRoleValues)
-    {
-      List<RaceRoleValues> removedRaceRoleValues = new List<RaceRoleValues>();
-
-      foreach (var rv in raceRoleValues)
+      foreach (var race in Races)
       {
-        rv.MyRoleValues = rv.MyRoleValues.Where(x => x.Year != "Rate").ToList();
+        var racevalueofFD = rrvFD.Find(x => x.Race == race);
+        var racevalueofpap = rrvPAP.Find(x => x.Race == race);
+        var racevalueofLL = rrvLL.Find(x => x.Race == race);
+        var racevalueofJL = rrvJL.Find(x => x.Race == race);
+        var racevalueofRHL = rrvRHL.Find(x => x.Race == race);
+        List<RoleValues> rolevalues = new List<RoleValues>();
+        for (int i = 0; i < racevalueofFD.MyRoleValues.Count(); i++)
+        {
+
+          var assoc = ConvertToInt(racevalueofFD.MyRoleValues[i].Associates)
+            + ConvertToInt(racevalueofJL.MyRoleValues[i].Associates)
+            + ConvertToInt(racevalueofpap.MyRoleValues[i].Associates)
+            + ConvertToInt(racevalueofLL.MyRoleValues[i].Associates)
+            + ConvertToInt(racevalueofRHL.MyRoleValues[i].Associates);
+
+          var counsel = ConvertToInt(racevalueofFD.MyRoleValues[i].Counsel)
+            + ConvertToInt(racevalueofJL.MyRoleValues[i].Counsel)
+            + ConvertToInt(racevalueofpap.MyRoleValues[i].Counsel)
+            + ConvertToInt(racevalueofLL.MyRoleValues[i].Counsel)
+            + ConvertToInt(racevalueofRHL.MyRoleValues[i].Counsel);
+
+          var ep = ConvertToInt(racevalueofFD.MyRoleValues[i].EquityPartners)
+            + ConvertToInt(racevalueofJL.MyRoleValues[i].EquityPartners)
+            + ConvertToInt(racevalueofpap.MyRoleValues[i].EquityPartners)
+            + ConvertToInt(racevalueofLL.MyRoleValues[i].EquityPartners)
+            + ConvertToInt(racevalueofRHL.MyRoleValues[i].EquityPartners);
+
+          var nep = ConvertToInt(racevalueofFD.MyRoleValues[i].NonEquityPartners)
+            + ConvertToInt(racevalueofJL.MyRoleValues[i].NonEquityPartners)
+            + ConvertToInt(racevalueofpap.MyRoleValues[i].NonEquityPartners)
+            + ConvertToInt(racevalueofLL.MyRoleValues[i].NonEquityPartners)
+            + ConvertToInt(racevalueofRHL.MyRoleValues[i].NonEquityPartners);
+
+          var ol = ConvertToInt(racevalueofFD.MyRoleValues[i].OtherLawyers)
+            + ConvertToInt(racevalueofJL.MyRoleValues[i].OtherLawyers)
+            + ConvertToInt(racevalueofpap.MyRoleValues[i].OtherLawyers)
+            + ConvertToInt(racevalueofLL.MyRoleValues[i].OtherLawyers)
+            + ConvertToInt(racevalueofRHL.MyRoleValues[i].OtherLawyers);
+
+          var total = ConvertToInt(racevalueofFD.MyRoleValues[i].Total)
+            + ConvertToInt(racevalueofJL.MyRoleValues[i].Total)
+            + ConvertToInt(racevalueofpap.MyRoleValues[i].Total)
+            + ConvertToInt(racevalueofLL.MyRoleValues[i].Total)
+            + ConvertToInt(racevalueofRHL.MyRoleValues[i].Total);
+
+          var allYear = racevalueofFD.MyRoleValues[i].Year;
+          rolevalues.Add(new RoleValues
+          {
+            Associates = assoc.ToString(),
+            Counsel = counsel.ToString(),
+            EquityPartners = ep.ToString(),
+            NonEquityPartners = nep.ToString(),
+            OtherLawyers = ol.ToString(),
+            Total = total.ToString(),
+            Year = allYear
+          });
+
+          //for rate
+          RoleValues rateRoleValue = new RoleValues();
+          rateRoleValue = getRate(race, rolevalues);
+          rolevalues.Add(rateRoleValue);
+
+        }
+
+        allRaceRoleValues.Add(new RaceRoleValues
+        {
+          Race = race,
+          MyRoleValues = rolevalues
+        });
       }
-      return raceRoleValues;
+
+
+      return allRaceRoleValues;
     }
 
 
-    public List<RaceRoleValues> getRaceRoleValues(List<List<GenericDataSurveyDTO>> genericDataSurveys, IEnumerable<CompanyProfiles> companyProfiles)
+
+    public List<RaceRoleValues> getRaceRoleValues(List<List<GenericDataSurveyDTO>> genericDataSurveys)
     {
       List<RaceRoleValues> raceRoleValues = new List<RaceRoleValues>();
       RaceRoleValues raceRoleValue;
@@ -281,13 +335,8 @@ namespace API.Controllers
           }
         }
         raceRoleValue.Race = race;
-        //for rate
-        RoleValues rateRoleValue = new RoleValues();
-        rateRoleValue = getRate(race, raceRoleValue.MyRoleValues);
-        raceRoleValue.MyRoleValues.Add(rateRoleValue);
         //main RaceVSRoles
         raceRoleValues.Add(raceRoleValue);
-
 
       }
       return raceRoleValues;
