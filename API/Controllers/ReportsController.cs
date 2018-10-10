@@ -286,12 +286,11 @@ namespace API.Controllers
             Year = allYear
           });
 
-          //for rate
-          RoleValues rateRoleValue = new RoleValues();
-          rateRoleValue = getRate(race, rolevalues);
-          rolevalues.Add(rateRoleValue);
-
         }
+        //for rate
+        RoleValues rateRoleValue = new RoleValues();
+        rateRoleValue = getRate(race, rolevalues);
+        rolevalues.Add(rateRoleValue);
 
         allRaceRoleValues.Add(new RaceRoleValues
         {
