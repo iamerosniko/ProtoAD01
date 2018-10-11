@@ -21,6 +21,7 @@ namespace API.Tables
     //public DbSet<Regions> Regions { get; set; }
     public DbSet<TopTenHighestCompensations> TopTenHighestCompensations { get; set; }
     public DbSet<UndertakenInitiatives> UndertakenInitiatives { get; set; }
+    public DbSet<Audit> AuditTrails { get; set; }
 
   }
 }
