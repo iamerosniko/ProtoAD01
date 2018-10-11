@@ -251,3 +251,25 @@ END;
 
 GO
 
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20181011123806_m002')
+BEGIN
+    CREATE TABLE [AD_Audit] (
+        [AuditID] uniqueidentifier NOT NULL,
+        [Action] nvarchar(max) NULL,
+        [DateModified] datetime2 NOT NULL,
+        [Module] nvarchar(max) NULL,
+        [Username] nvarchar(max) NULL,
+        CONSTRAINT [PK_AD_Audit] PRIMARY KEY ([AuditID])
+    );
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20181011123806_m002')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20181011123806_m002', N'2.0.1-rtm-125');
+END;
+
+GO
+
