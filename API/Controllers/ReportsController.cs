@@ -239,12 +239,12 @@ namespace API.Controllers
       double topTotal = ConvertToNumber(roleValues.Last().Total);
 
 
-      double rateAssociates = Math.Round(((topAssociates - baseAssociates) / baseAssociates) * 100, 2);
-      double rateCounsel = Math.Round(((topCounsel - baseCounsel) / baseCounsel) * 100, 2);
-      double rateEquityPartners = Math.Round(((topEquityPartners - baseEquityPartners) / baseEquityPartners) * 100, 2);
-      double rateNonEquityPartners = Math.Round(((topNonEquityPartners - baseNonEquityPartners) / baseNonEquityPartners) * 100, 2);
-      double rateOtherLawyers = Math.Round(((topOtherLawyers - baseOtherLawyers) / baseOtherLawyers) * 100, 2);
-      double rateTotal = Math.Round(((topTotal - baseTotal) / baseTotal) * 100, 2);
+      double rateAssociates = topAssociates == 0 || baseAssociates == 0 ? 0 : Math.Round(((topAssociates - baseAssociates) / baseAssociates) * 100, 2);
+      double rateCounsel = topCounsel == 0 || baseCounsel == 0 ? 0 : Math.Round(((topCounsel - baseCounsel) / baseCounsel) * 100, 2);
+      double rateEquityPartners = topEquityPartners == 0 || baseEquityPartners == 0 ? 0 : Math.Round(((topEquityPartners - baseEquityPartners) / baseEquityPartners) * 100, 2);
+      double rateNonEquityPartners = topNonEquityPartners == 0 || baseNonEquityPartners == 0 ? 0 : Math.Round(((topNonEquityPartners - baseNonEquityPartners) / baseNonEquityPartners) * 100, 2);
+      double rateOtherLawyers = topOtherLawyers == 0 || baseOtherLawyers == 0 ? 0 : Math.Round(((topOtherLawyers - baseOtherLawyers) / baseOtherLawyers) * 100, 2);
+      double rateTotal = topTotal == 0 || baseTotal == 0 ? 0 : Math.Round(((topTotal - baseTotal) / baseTotal) * 100, 2);
 
       RoleValues roleValue = new RoleValues
       {
