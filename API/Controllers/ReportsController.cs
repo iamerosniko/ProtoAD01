@@ -59,11 +59,107 @@ namespace API.Controllers
     }
 
     #region APIs
-    [HttpGet("GetDiversityRanking/")]
-    public void GetDiversityRanking()
-    {
 
+    #region DiversityRanking
+    [HttpPost("GetDiversityRanking/{Group}/{Position}/{BaseYear}/{TopYear}")]
+    public dynamic GetDiversityRanking([FromBody]List<Firms> firms, [FromRoute] int Group, [FromRoute] int Position, [FromRoute] int BaseYear, [FromRoute] int TopYear)
+    {
+      List<DiversityRankingDTO> diversityRankingDTOs = new List<DiversityRankingDTO>();
+
+      foreach (var firm in firms)
+      {
+        var baseSurvey = _context.CompanyProfiles.ToList().Find(x => x.FirmID == firm.FirmID && x.Datecomp.Year == BaseYear);
+        var topSurvey = _context.CompanyProfiles.ToList().Find(x => x.FirmID == firm.FirmID && x.Datecomp.Year == TopYear);
+        if (baseSurvey != null && topSurvey != null)
+        {
+          var a = Group == 1
+            ? GetMinorities(firm.FirmID, 0, baseSurvey.CompanyProfileID, topSurvey.CompanyProfileID)
+            : GetGeneral(firm.FirmID, 0, baseSurvey.CompanyProfileID, topSurvey.CompanyProfileID);
+          if (a != null)
+          {
+            var rateOnly = getRateOnly(a);
+            diversityRankingDTOs.Add(new DiversityRankingDTO
+            {
+              FirmName = firm.FirmName,
+              Associates = ConvertToNumber(rateOnly.Associates.TrimEnd('%')),
+              Counsel = ConvertToNumber(rateOnly.Counsel.TrimEnd('%')),
+              EquityPartners = ConvertToNumber(rateOnly.EquityPartners.TrimEnd('%')),
+              NonEquityPartners = ConvertToNumber(rateOnly.NonEquityPartners.TrimEnd('%')),
+              OtherLawyers = ConvertToNumber(rateOnly.OtherLawyers.TrimEnd('%')),
+              Total = ConvertToNumber(rateOnly.Total.TrimEnd('%'))
+            });
+          }
+        }
+
+
+        switch (Position)
+        {
+          case 0:
+            diversityRankingDTOs = diversityRankingDTOs.OrderByDescending(x => x.Total).ToList(); break;
+          case 1:
+            diversityRankingDTOs = diversityRankingDTOs.OrderByDescending(x => x.EquityPartners).ToList(); break;
+          case 2:
+            diversityRankingDTOs = diversityRankingDTOs.OrderByDescending(x => x.NonEquityPartners).ToList(); break;
+          case 3:
+            diversityRankingDTOs = diversityRankingDTOs.OrderByDescending(x => x.Associates).ToList(); break;
+          case 4:
+            diversityRankingDTOs = diversityRankingDTOs.OrderByDescending(x => x.Counsel).ToList(); break;
+          case 5:
+            diversityRankingDTOs = diversityRankingDTOs.OrderByDescending(x => x.OtherLawyers).ToList(); break;
+        }
+
+      }
+      return diversityRankingDTOs;
     }
+
+    public RoleValues getRateOnly(List<RaceRoleValues> raceRoleValue)
+    {
+      return raceRoleValue[0].MyRoleValues.Find(x => x.Year == "Rate");
+    }
+
+    [HttpGet("GetCompanyProfileYears")]
+    public List<string> GetCompanyProfileYears()
+    {
+      var companyProfiles = _context.CompanyProfiles.ToList().OrderBy(x => x.Datecomp);
+      List<string> years = new List<string>();
+      foreach (var cp in companyProfiles)
+      {
+        years.Add(cp.Datecomp.Year.ToString());
+      }
+
+      var distinctYears = years.Distinct().ToList();
+      return distinctYears;
+    }
+
+    [HttpGet("GetFirmsAvailable/{BaseYear}/{TopYear}")]
+    public dynamic GetFirmsAvailable(int BaseYear, int TopYear)
+    {
+      var companyProfilesBaseYears = _context.CompanyProfiles.Where(x => x.Datecomp.Year == BaseYear).ToList();
+      var companyProfilesTopYears = _context.CompanyProfiles.Where(x => x.Datecomp.Year == TopYear).ToList();
+
+      List<CompanyProfiles> filteredTopYears = new List<CompanyProfiles>();
+      foreach (var cpby in companyProfilesBaseYears)
+      {
+        var cp = companyProfilesTopYears.Find(x => x.FirmID == cpby.FirmID);
+        if (cp != null)
+        {
+          filteredTopYears.Add(cp);
+        }
+      }
+
+      List<Firms> firms = new List<Firms>();
+
+      foreach (var cp in filteredTopYears)
+      {
+        var firm = _context.Firms.Find(cp.FirmID);
+        if (firm != null)
+        {
+          firms.Add(firm);
+        }
+      }
+      return firms;
+    }
+    #endregion
 
 
     [HttpGet("GetMinorities/{firmID}/{category}/{BaseSurvey}/{TopSurvey}")]
@@ -82,6 +178,93 @@ namespace API.Controllers
       foreach (var minority in Minorities)
       {
         var raceRoleValue = raceRoleValues.Find(x => x.Race == minority);
+        if (raceRoleValue != null)
+        {
+          minorityRaceRoleValuesTemp.Add(raceRoleValue);
+        }
+      }
+
+      //remove the rating
+      foreach (var rrv in minorityRaceRoleValuesTemp)
+      {
+        rrv.MyRoleValues = rrv.MyRoleValues.Where(x => x.Year != "Rate").ToList();
+      }
+
+      //summation of every year
+      var numberOfRaceRoleValue = minorityRaceRoleValuesTemp.Count();
+      if (numberOfRaceRoleValue == 0)
+      {
+        return new List<RaceRoleValues>();
+      }
+
+      var numberOfYears = minorityRaceRoleValuesTemp[0].MyRoleValues.Count();
+
+      List<RaceRoleValues> minoritySummationList = new List<RaceRoleValues>();
+      RaceRoleValues minorityRaceRoleValue = new RaceRoleValues
+      {
+        Race = "Minorities",
+        MyRoleValues = new List<RoleValues>()
+      };
+
+
+      for (int i = 0; i < numberOfYears; i++)
+      {
+        EquityPartners = 0;
+        OtherLawyers = 0;
+        Associates = 0;
+        Counsel = 0;
+        NonEquityPartners = 0;
+        year = "";
+        for (int j = 0; j < numberOfRaceRoleValue; j++)
+        {
+          EquityPartners += ConvertToNumber(minorityRaceRoleValuesTemp[j].MyRoleValues[i].EquityPartners);
+          OtherLawyers += ConvertToNumber(minorityRaceRoleValuesTemp[j].MyRoleValues[i].OtherLawyers);
+          Associates += ConvertToNumber(minorityRaceRoleValuesTemp[j].MyRoleValues[i].Associates);
+          Counsel += ConvertToNumber(minorityRaceRoleValuesTemp[j].MyRoleValues[i].Counsel);
+          NonEquityPartners += ConvertToNumber(minorityRaceRoleValuesTemp[j].MyRoleValues[i].NonEquityPartners);
+          year = minorityRaceRoleValuesTemp[j].MyRoleValues[i].Year;
+        }
+
+        var minorityRoleValue = new RoleValues
+        {
+          Associates = Associates.ToString(),
+          Counsel = Counsel.ToString(),
+          EquityPartners = EquityPartners.ToString(),
+          NonEquityPartners = NonEquityPartners.ToString(),
+          OtherLawyers = NonEquityPartners.ToString(),
+          Year = year
+        };
+
+        minorityRoleValue.Total = Compute(minorityRoleValue);
+        minorityRaceRoleValue.MyRoleValues.Add(minorityRoleValue);
+      }
+      RoleValues rateRoleValue = new RoleValues();
+      rateRoleValue = getRate("Rate", minorityRaceRoleValue.MyRoleValues);
+      minorityRaceRoleValue.MyRoleValues.Add(rateRoleValue);
+      //main RaceVSRoles
+      minoritySummationList.Add(minorityRaceRoleValue);
+
+
+      return minoritySummationList;
+    }
+
+
+    [HttpGet("GetGeneral/{firmID}/{category}/{BaseSurvey}/{TopSurvey}")]
+    public List<RaceRoleValues> GetGeneral([FromRoute] Guid firmID, [FromRoute]int category, [FromRoute]Guid BaseSurvey, [FromRoute] Guid TopSurvey)
+    {
+      var raceRoleValues = GetReportRaceVSRole(firmID, category, BaseSurvey, TopSurvey);
+      List<RaceRoleValues> minorityRaceRoleValuesTemp = new List<RaceRoleValues>();
+      //filtering
+      double EquityPartners;
+      double OtherLawyers;
+      double Associates;
+      double Counsel;
+      double NonEquityPartners;
+      string year;
+
+      foreach (var general in DiversityRankRace)
+      {
+        var raceRoleValue = raceRoleValues.Find(x => x.Race == general);
         if (raceRoleValue != null)
         {
           minorityRaceRoleValuesTemp.Add(raceRoleValue);

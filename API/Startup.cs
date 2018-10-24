@@ -60,8 +60,12 @@ namespace API
 
         System.Diagnostics.Debug.WriteLine(ex, "Failed to migrate or seed database");
       }
-
-      app.UseMvc();
+      app.UseMvc(routes =>
+      {
+        routes.MapRoute(
+                  name: "default",
+                  template: "{controller=Home}/{action=Index}/{id?}");
+      });
     }
   }
 }
