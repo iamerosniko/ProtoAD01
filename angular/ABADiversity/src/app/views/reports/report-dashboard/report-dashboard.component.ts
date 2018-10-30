@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ReportService } from '../../../services/report.services';
-import { CompanyProfiles,Firms,Years,FirmDemographics, DiversityRank } from '../../../entities/entities';
+import { Firms,DiversityRank } from '../../../entities/entities';
 
 @Component({
   selector: 'app-report-dashboard',

@@ -1,19 +1,14 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CompanyProfiles,Firms,Years,FirmDemographics } from '../../entities/entities';
 import { SurveyService } from '../../services/survey.service';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { isNumber } from 'util'; 
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReportService } from '../../services/report.services';
 import { RaceVSRoles } from '../../entities/racevsroles';
-import { race, defer } from 'q';
+import { defer } from 'q';
 import { RolesValues } from '../../entities/rolesvalues';
-import { BaseChartDirective } from 'ng2-charts';
-import { splitAtPeriod } from '@angular/compiler/src/util';
 import * as jspdf from 'jspdf';
 import * as haha from 'html2canvas';
-import { DeferredExecutor } from 'selenium-webdriver';
-import { forEach } from '@angular/router/src/utils/collection';
 
 
 @Component({

@@ -1,7 +1,5 @@
 import { Component, OnInit,OnChanges, Input } from '@angular/core';
 import { RaceVSRoles } from '../../../entities/racevsroles';
-import { RolesValues } from '../../../entities/rolesvalues';
-import { ReportService } from '../../../services/report.services';
 import { Years } from '../../../entities/entities';
 
 @Component({
