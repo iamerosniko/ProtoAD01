@@ -22,7 +22,13 @@ const routes: Routes = [
   { path: 'Redirecting', component : RedirectingComponent},
   { path: 'Logout', component:LogoutComponent},
   { path: 'Noaccess', component:NoaccessComponent},
-  { path: 'Reports', component : ReportsComponent },
+  { 
+    path: 'Reports', component : ReportsComponent,
+  children: [
+    // { path: 'RaceAcrossthePosition', component : RacePositionComponent, outlet:'reportroute' },
+    // { path: 'PositionAcrosstheRace', component : PositionRaceComponent, outlet:'reportroute' }
+]
+},
   // , canActivate:[AuthGuard]
   {
     path:'Survey', component:SurveysComponent,
@@ -32,7 +38,7 @@ const routes: Routes = [
     ], 
   },
 
-  { path: '**', redirectTo :'/Survey' },
+  // { path: '**', redirectTo :'/Survey' },
 ];
 
 @NgModule({

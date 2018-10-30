@@ -9,4 +9,5 @@ export * from './promotionsassociatepartners';
 export * from './toptenhighestcompensations';
 export * from './survey';
 export * from './undertakeninitiatives'
-export * from './racevsroles'
+export * from './racevsroles';
+export * from './diversityrank';

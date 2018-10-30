@@ -59,7 +59,7 @@ export class CompanyProfileComponent implements OnInit,OnChanges {
       FirmID:[this.firmID,Validators.required],
       Firmname:[this.CPdata.firmname, Validators.required],
       Firmhead:[this.CPdata.firmhead, Validators.required],
-      Datecomp:[null, Validators.required],
+      Datecomp:[this.CPdata.datecomp, Validators.required],
       Srcname :[this.CPdata.srcname, Validators.required],
       Srctitle:[this.CPdata.srctitle, Validators.required],
       Srcemail:[this.CPdata.srcemail, Validators.required],

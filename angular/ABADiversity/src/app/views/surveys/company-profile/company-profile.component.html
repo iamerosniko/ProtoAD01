@@ -22,7 +22,8 @@
           <div class="col-md-12">
             <label class="control-label input-sm">Date of Survey Completion</label>
             <div class="input-group">
-              <input type="date" formControlName="Datecomp" class="form-control input-sm"/> <!--date filter-->
+              <input type="date" *ngIf="!isExisting" formControlName="Datecomp" class="form-control input-sm"/> <!--date filter-->
+              <input type="input" *ngIf="isExisting" value="{{this.CPdata.datecomp | date : 'MM/dd/yyyy'}}" class="form-control input-sm"/> 
               <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
           </div>
