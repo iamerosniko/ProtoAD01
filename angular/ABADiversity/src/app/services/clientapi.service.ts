@@ -10,10 +10,9 @@ export class ClientApiService {
   constructor(private http:Http) { }
 
   public authorizedHeader(){
-    this.headers=new Headers([
-      {'authorization':'Bearer '+sessionStorage.getItem('Cache1')},
-      {'Content-Type': 'application/json'}
-    ]);
+    this.headers=new Headers(
+      {'Authorization':'Bearer '+sessionStorage.getItem('ATR')},
+    );
   }
 
   public normalHeader(){

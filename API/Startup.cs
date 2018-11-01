@@ -40,10 +40,9 @@ namespace API
       .AddJwtBearer(x =>
       {
         x.RequireHttpsMetadata = false;
-        x.SaveToken = true;
         x.TokenValidationParameters = new TokenValidationParameters
         {
-          ValidateIssuerSigningKey = true,
+          ValidateIssuerSigningKey = false,
           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Startup.Configuration["JWT:IssuerSigningKey"])),
           ValidateIssuer = false,
           ValidateAudience = false
@@ -52,6 +51,8 @@ namespace API
 
 
       var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+      //var connectionString = "Server=biztechdbserversandbox.database.secure.windows.net,15021;Database=ABADIversity;User ID=biztech;Password=L0c@ldatabase;";
+
       services.AddDbContext<ADContext>(cfg =>
       {
         cfg.UseSqlServer(connectionString);

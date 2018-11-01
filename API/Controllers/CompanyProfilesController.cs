@@ -1,4 +1,5 @@
 using API.Tables;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+  [Authorize]
+
   [Produces("application/json")]
   [Route("api/CompanyProfiles")]
   public class CompanyProfilesController : Controller

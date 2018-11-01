@@ -1,5 +1,6 @@
 export class ClientApiSettings {
-    private static CURRENT_URL = "http://localhost:50000/api/"
+    private static CURRENT_URL = "api/"
+    // private static CURRENT_URL = "https://abadiversityclientlocal.azurewebsites.net/api/"
     // private static BW_URL = "http://localhost:64112/api/"
     private static BW_URL ="https://abadiversityapilocal.azurewebsites.net/api/"
 

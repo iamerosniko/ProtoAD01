@@ -1,5 +1,6 @@
 using API.DTO;
 using API.Tables;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 
 namespace API.Controllers
 {
+  [Authorize]
   [Produces("application/json")]
   [Route("api/Reports")]
   public class ReportsController : Controller

@@ -27,3 +27,4 @@ C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Release\netcoreapp2.1\Clie
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Release\netcoreapp2.1\Client.dll
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Release\netcoreapp2.1\Client.pdb
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Release\netcoreapp2.1\Client.csproj.CopyComplete
+C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Release\netcoreapp2.1\UserSecretsAssemblyInfo.cs

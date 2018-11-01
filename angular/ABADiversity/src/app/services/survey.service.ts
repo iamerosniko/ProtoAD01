@@ -20,31 +20,31 @@ export class SurveyService {
   // }
 
   getFirms(){
-    this.api.normalHeader();
+    this.api.authorizedHeader();
     this.api.apiUrl=ClientApiSettings.GETBWURL("Firms")
     return this.api.getAll();
   }
 
   getYears(firmID: string) {
-    this.api.normalHeader();
+    this.api.authorizedHeader();
     this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/GetYears/"+firmID)
     return this.api.getAll();
   }
 
   getSurvey(companyID:string,mode:number){
-    this.api.normalHeader();
+    this.api.authorizedHeader();
     this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/GetSurvey/"+companyID+"/"+mode)
     return this.api.getAll();
   }
 
   getSurveys(firmID:string){
-    this.api.normalHeader();
+    this.api.authorizedHeader();
     this.api.apiUrl=ClientApiSettings.GETBWURL("Survey/"+firmID)
     return this.api.getAll();
   }
 
   postSurvey(surveyObj: Survey) {
-    this.api.normalHeader();
+    this.api.authorizedHeader();
     this.api.apiUrl=ClientApiSettings.GETBWURL("Survey")
     var body = JSON.stringify(surveyObj);
     return this.api.postData(body);

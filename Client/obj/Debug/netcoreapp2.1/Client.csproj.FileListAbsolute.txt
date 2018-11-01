@@ -9,6 +9,7 @@ C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\Client
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\Client.csproj.CoreCompileInputs.cache
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\Client.RazorAssemblyInfo.cache
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\Client.RazorAssemblyInfo.cs
+C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\Client.AssemblyInfoInputs.cache
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\Client.AssemblyInfo.cs
 C:\Users\alverer\Desktop\Apps\aba\JSAB\app\Client\obj\Debug\netcoreapp2.1\Client.TagHelpers.input.cache

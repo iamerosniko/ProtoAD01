@@ -4,12 +4,12 @@
       <a href="#" class="navbar-brand">ABA Model Diversity</a>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" *ngIf="currentUser.Role!=''">
         <li [routerLinkActive]="['active']" role="presentation"><a [routerLink]="['./Survey']">Survey</a></li>
         <li [routerLinkActive]="['active']" role="presentation"><a [routerLink]="['./Reports']">Reports</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-user-circle"></i>&nbsp;Hello, </a></li>
+        <li><a href="#"><i class="fa fa-user-circle"></i>&nbsp;Hello, {{getName()}}</a></li>
       </ul>
     </div>
   </div> 
