@@ -11,7 +11,7 @@ export class ClientApiService {
 
   public authorizedHeader(){
     this.headers=new Headers(
-      {'Authorization':'Bearer '+sessionStorage.getItem('ATR')},
+      {'Authorization':'Bearer '+sessionStorage.getItem('ATR'),'Content-Type':'application/json'},
     );
   }
 
